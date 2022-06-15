@@ -1,6 +1,6 @@
 class MakeRequest {
   constructor () {
-    this._apiBase = 'https://lemon-heart.netlify.app'
+    this._apiBase = 'https://medix-lab.netlify.app'
     // this._apiBase = 'http://localhost:3000'
   }
 
