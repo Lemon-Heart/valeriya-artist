@@ -1,0 +1,94 @@
+%custom-scroll {
+	$track: transparent;
+	$thumb:  #00B9AC;
+
+	/* firefox */
+	scrollbar-width: thin;
+	scrollbar-color: $thumb $track;
+	padding-right: 6px;
+	&::-webkit-scrollbar {
+		width: 4px;
+		height: 4px;
+	}
+
+	&::-webkit-scrollbar-button {
+		display: none
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: $track;
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $thumb;
+		border-radius: 10px;
+		opacity: .5;
+		transition: opacity .3s ease;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		opacity: 1;
+	}
+}
+
+// font-family
+@mixin font($alias, $name, $weight: normal, $style: normal) {
+	@font-face {
+		font-family: $alias;
+		src: url("/assets/fonts/" + $name + ".woff2") format("woff2"), url("/assetsfonts/" + $name + ".woff") format("woff");
+		font-weight: $weight;
+		font-style: $style;
+		font-display: swap;
+	}
+}
+
+@mixin r($width) {
+	@media screen and (max-width: $width) {
+		@content;
+	}
+}
+
+@mixin rmin($width) {
+	@media screen and (min-width: $width) {
+		@content;
+	}
+}
+
+@mixin rd($widthMin, $widthMax) {
+	@media screen and (min-width: $widthMin) and (max-width: $widthMax) {
+		@content;
+	}
+}
+
+@mixin rh($height) {
+	@media screen and (max-height: $height) {
+		@content;
+	}
+}
+
+@mixin rhmin($height) {
+	@media screen and (min-height: $height) {
+		@content;
+	}
+}
+
+@mixin rhd($heightMin, $heightMax) {
+	@media screen and (min-height: $heightMin) and (max-height: $heightMax) {
+		@content;
+	}
+}
+
+@mixin retina() {
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+		@content;
+	}
+}
+
+@function max($numbers...) {
+	@return m#{a}x(#{$numbers});
+}
+
+@function min($numbers...) {
+	@return m#{i}n(#{$numbers});
+}

@@ -1,0 +1,20 @@
+.breadcrumbs {
+  margin: 40px 0 30px;
+  a, span {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  > *:not(:last-child) {
+    &:after {
+      content: '/';
+      margin-left: 10px;
+    }
+  }
+  > *:not(:first-child) {
+    margin-left: 10px;
+  }
+  > *:last-child {
+    color: #CCCCCC;
+    cursor: default;
+  }
+}

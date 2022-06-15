@@ -1,0 +1,17 @@
+{
+  "title": "Оформить заказ",
+  "form": [
+    {
+      "type": "input",
+      "label": "Как к Вам обращаться?",
+      "name": "name",
+      "required": true
+    },
+    {
+      "type": "input",
+      "label": "Ваш номер телефона",
+      "name": "phone",
+      "required": true
+    }
+  ]
+}

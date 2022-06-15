@@ -1,0 +1,17 @@
+{
+  "title": "Вход",
+  "form": [
+    {
+      "type": "input",
+      "label": "Логин",
+      "name": "login",
+      "required": true
+    },
+    {
+      "type": "input",
+      "label": "Пароль",
+      "name": "password",
+      "required": true
+    }
+  ]
+}

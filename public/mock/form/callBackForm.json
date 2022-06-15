@@ -1,0 +1,25 @@
+{
+  "title": "Заказать обратный звонок",
+  "btnTxt": "Позвоните мне!",
+  "form": [
+    {
+      "type": "input",
+      "label": "Как к Вам обращаться?",
+      "name": "name",
+      "required": true
+    },
+    {
+      "type": "input",
+      "label": "Ваш номер телефона",
+      "name": "phone",
+      "required": true
+    },
+    {
+      "type": "checkbox",
+      "label": "Я принимаю пользовательское соглашение",
+      "value": "Да",
+      "name": "agree",
+      "required": true
+    }
+  ]
+}
