@@ -5,8 +5,8 @@
     <blocks-note :link="index.data.value.note.link" :label="index.data.value.note.label" :numbers="index.data.value.note.numbers" />
     <blocks-analyzes :head="index.data.value.analyzesBlock.head" :items="index.data.value.analyzesBlock.items" />
     <blocks-services :head="servicesBlock.head" :subhead="servicesBlock.subhead" :items="servicesBlock.items" />
-    <blocks-map :head="mapBlock.head" :text="mapBlock.text" :map="mapBlock.map" :height="mapBlock.height" :btnText="mapBlock.btnText" />
-    <!-- <blocks-news :blocks="index.data.value.news" /> -->
+    <!-- <blocks-map :head="mapBlock.head" :text="mapBlock.text" :map="mapBlock.map" :height="mapBlock.height" :btnText="mapBlock.btnText" /> -->
+    <blocks-news :blocks="index.data.value.news" />
     <blocks-facts :facts="index.data.value.factsBlock" />
   </main>
 </template>
