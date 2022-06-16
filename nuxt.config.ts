@@ -3,6 +3,14 @@ import Icons from 'unplugin-icons/vite'
 
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 export default defineNuxtConfig({
+  app: {
+    head: {
+      script: [
+        { src: '/js/chatbot.js' },
+        { src: '/js/y-metrika.js' }
+      ]
+    }
+  },
   css: [
     '@/assets/css/main.scss'
   ],

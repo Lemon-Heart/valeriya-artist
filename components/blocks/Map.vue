@@ -6,7 +6,7 @@
         <div class="mapBlock__loc"><loc /><span v-html="props.text" /></div>
         <button class="btn primary" @click="$modal.show('CallBackForm')">{{ btnText || 'Записаться на прием' }}</button>
       </div>
-      <div class="mapBlock__map">
+      <div ref="map" class="mapBlock__map">
         <iframe v-if="showMap" :src="props.map" :width="props.width" :height="props.height" frameborder="0"></iframe>
       </div>
     </div>
@@ -15,7 +15,7 @@
 
 <script setup>
 import loc from '~icons/my-icons/loc'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
   head: {
@@ -45,7 +45,26 @@ const props = defineProps({
 })
 
 const showMap = ref(false)
+const observer = ref(null)
+const map = ref(null)
+
+const options = {
+  root: null,
+  threshold: 0.1
+}
+const callback = (entries) => {
+  if (entries[0].isIntersecting) {
+    showMap.value = true
+    observer.value.disconnect()
+  }
+}
+
 onMounted(() => {
-  showMap.value = true
+  observer.value = new IntersectionObserver(callback, options)
+  observer.value.observe(map.value)
+})
+
+onBeforeUnmount(() => {
+  observer.value.disconnect()
 })
 </script>

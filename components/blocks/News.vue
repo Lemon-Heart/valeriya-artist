@@ -1,7 +1,5 @@
 <template>
   <div class="newsBlock__wrap">
-    <pre>
-    </pre>
     <div class="cont">
       <div class="newsBlock">
         <span v-for="(item, i) in props.blocks" :key="i" class="newsBlock__tab" :class="{'active': i === activeBlockId}" @click="changeTab(i)">{{ item.head }}</span>
