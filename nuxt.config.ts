@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       script: [
-        // { src: '/js/chatbot.js' },
+        { src: '/js/chatbot.js' },
         { src: '/js/y-metrika.js' }
       ]
     }
