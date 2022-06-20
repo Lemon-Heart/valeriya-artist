@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-// import { sko } from '@/store/sko'
 const { $baseURL } = useNuxtApp()
 const { data } = await useAsyncData('sko', () => $fetch(`${$baseURL}/mock/sko.json`))
 

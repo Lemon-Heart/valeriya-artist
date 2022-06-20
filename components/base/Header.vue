@@ -23,8 +23,7 @@
 </template>
 
 <script setup>
+import loc from '~icons/my-icons/loc'
 const { $baseURL } = useNuxtApp()
 const { data } = await useAsyncData('header', () => $fetch(`${$baseURL}/mock/header.json`))
-
-import loc from '~icons/my-icons/loc'
 </script>
