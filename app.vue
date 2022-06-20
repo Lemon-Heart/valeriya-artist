@@ -1,9 +1,9 @@
 <template>
   <base-header />
   <base-breadcrumbs v-if="route.path !== '/'" />
-  <div>
+  <NuxtLayout>
     <nuxt-page />
-  </div>
+  </NuxtLayout>
   <base-footer />
   <modal-wrap v-if="$modal.visible.value" />
 </template>
