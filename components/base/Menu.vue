@@ -15,7 +15,7 @@
     </nuxt-link>
     <nuxt-link to="/basket" class="header__basket">
       <basketIcon />
-      <span v-if="basket.basketItems.length">{{ basket.basketItems.length }}</span>
+      <!-- <span v-if="basket.basketItems.length">{{ basket.basketItems.length }}</span> -->
     </nuxt-link>
   </div>
   <div ref="hamb" class="header__hamb hamb" @click="toogleClassOpen(hamb, menu)">
