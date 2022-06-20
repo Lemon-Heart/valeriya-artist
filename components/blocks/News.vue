@@ -16,7 +16,7 @@
             }
           }"
         >
-          <swiper-slide v-for="(slide, i) in activeBlock.items" :key="i" class="swiper-slide newsBlock__item">
+          <swiper-slide v-for="(slide, i) in activeBlock.items" :key="i" class="swiper-slide newsBlock__item" @click="$router.push(`${activeBlock.link}/${slide.head}`)">
             <div class="newsBlock__left">
               <img v-lazy="{src: `/img/${slide.img}`}">
             </div>

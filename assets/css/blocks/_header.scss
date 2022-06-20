@@ -79,9 +79,9 @@
   &__menu {
     font-size: 16px;
     color: #3D3D3D;
-    & > *:not(:last-child) {
-      margin-right: 15px;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 15px;
     @include r(750px) {
       position: absolute;
       background: #00B9AC;
@@ -100,7 +100,7 @@
       z-index: -10;
       transform: translateY(-100%);
       & > *:not(:last-child) {
-        margin-bottom: 5px;
+        grid-gap: 15px;
       }
       a {
         color: white;

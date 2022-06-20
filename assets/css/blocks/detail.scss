@@ -1,0 +1,12 @@
+.detail {
+  display: flex;
+  grid-gap: 20px;
+  img {
+    max-width: 300px;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+  }
+}

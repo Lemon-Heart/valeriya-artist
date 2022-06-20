@@ -1,7 +1,7 @@
 class MakeRequest {
   constructor () {
-    this._apiBase = 'https://medix-lab.netlify.app'
-    // this._apiBase = 'http://localhost:3000'
+    // this._apiBase = 'https://medix-lab.netlify.app'
+    this._apiBase = 'http://localhost:3000'
   }
 
   post = async (url = '', data = {}) => {

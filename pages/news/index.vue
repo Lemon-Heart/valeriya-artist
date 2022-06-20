@@ -3,7 +3,7 @@
     <div class="blockContent">
       <h1>{{ title }}</h1>
       <div class="list">
-        <div v-for="(item, i) in data[0].items" :key="i" class="list__item">
+        <nuxt-link v-for="(item, i) in data.items" :key="i" class="list__item" :to="`/news/${item.head}`">
           <div class="list__img">
             <img v-lazy="{src: `/img/${item.img}`}" alt="">
           </div>
@@ -13,7 +13,7 @@
             <span class="list__text">{{ item.text }}</span>
             <p class="list__textDetail">{{ item.textDetail }}</p>
           </div>
-        </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -21,9 +21,9 @@
 
 <script setup>
 const { $baseURL } = useNuxtApp()
-const { data } = await useAsyncData('news', () => $fetch(`${$baseURL}/mock/news.json`))
+const { data } = await useAsyncData('news', () => $fetch(`${$baseURL}/mock/news/news.json`))
 
-const title = data.value[0].head
+const title = data.value.head
 useHead({
   title
 })

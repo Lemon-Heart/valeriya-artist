@@ -1,14 +1,12 @@
 <template>
-  <div class="cont">
-    <div class="mapBlock">
-      <h2>{{ props.head }}</h2>
-      <div class="mapBlock__top">
-        <div class="mapBlock__loc"><loc /><span v-html="props.text" /></div>
-        <button class="btn primary" @click="$modal.show('CallBackForm')">{{ btnText || 'Записаться на прием' }}</button>
-      </div>
-      <div ref="map" class="mapBlock__map">
-        <iframe v-if="showMap" :src="props.map" :width="props.width" :height="props.height" frameborder="0"></iframe>
-      </div>
+  <div class="mapBlock">
+    <h2 v-if="props.head">{{ props.head }}</h2>
+    <div class="mapBlock__top">
+      <div class="mapBlock__loc"><loc /><span v-html="props.text" /></div>
+      <button class="btn primary" @click="$modal.show('CallBackForm')">{{ btnText || 'Записаться на прием' }}</button>
+    </div>
+    <div ref="map" class="mapBlock__map">
+      <iframe v-if="showMap" :src="props.map" :width="props.width" :height="props.height" frameborder="0"></iframe>
     </div>
   </div>
 </template>
