@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt'
+import  { resolve } from 'path';
 import Icons from 'unplugin-icons/vite'
 
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
@@ -17,14 +18,16 @@ export default defineNuxtConfig({
   hooks: {
     'pages:extend' (pages) {
       for (const page of pages) {
-        if (page.path.includes('/licenses')) page.name = 'Лицензии'
-        if (page.path.includes('/index')) page.name = 'Главная'
-        if (page.path.includes('/news')) page.name = 'Новости'
-        if (page.path.includes('/requisites')) page.name = 'Реквизиты'
-        if (page.path.includes('/sale')) page.name = 'Акции'
-        if (page.path.includes('/sko')) page.name = 'Надзорные органы'
-        if (page.path.includes('/basket')) page.name = 'Корзина'
-        if (page.path.includes('/lk')) page.name = 'Личный кабинет'
+        if (page.name.includes('catalog')) page.meta = {breadcrumbsName: 'Анализы и цены'}
+        if (page.name.includes('catalog-name')) page.meta = {breadcrumbsName: 'Анализы и цены'}
+        if (page.path.includes('/licenses')) page.meta = {breadcrumbsName: 'Лицензии'}
+        if (page.path.includes('/index')) page.meta = {breadcrumbsName: 'Главная'}
+        if (page.path.includes('/news')) page.meta = {breadcrumbsName: 'Новости'}
+        if (page.path.includes('/requisites')) page.meta = {breadcrumbsName: 'Реквизиты'}
+        if (page.path.includes('/sale')) page.meta = {breadcrumbsName: 'Акции'}
+        if (page.path.includes('/sko')) page.meta = {breadcrumbsName: 'Надзорные органы'}
+        if (page.path.includes('/basket')) page.meta = {breadcrumbsName: 'Корзина'}
+        if (page.path.includes('/lk')) page.meta = {breadcrumbsName: 'Личный кабинет'}
       }
     }
   },
