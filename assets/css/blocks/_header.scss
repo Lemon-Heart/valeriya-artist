@@ -156,13 +156,13 @@
         transform: translateY(-100%);
         transition: all 200ms ease-in-out;
         flex-direction: column;
+        width: 100%;
+        max-width: 350px;
         &.open {
           transition: all 200ms ease-in-out;
           z-index: 20;
           opacity: 1;
           transform: translateY(0);
-          width: 100%;
-          max-width: 350px;
           box-shadow: 0px 5px 20px 0px rgba(18, 25, 38, 0.1);
         }
         input {
