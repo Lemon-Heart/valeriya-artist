@@ -1,6 +1,10 @@
 .detail {
   display: flex;
   grid-gap: 20px;
+  @include r(650px) {
+    flex-direction: column;
+    align-items: center;
+  }
   img {
     max-width: 300px;
   }
