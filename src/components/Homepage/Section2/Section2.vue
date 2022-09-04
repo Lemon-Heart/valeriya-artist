@@ -1,7 +1,6 @@
 <template lang="pug">
 section.section2
-  h1
-   ui-text-anim Этот курс для тебя, если ты хочешь:
+  h1 Этот курс для тебя, если ты хочешь:
   .advantage
     block-list(:items="advantage")
   ui-button.button(is-animated variant="dark" scroll-to="tariffs") Хочу на курс

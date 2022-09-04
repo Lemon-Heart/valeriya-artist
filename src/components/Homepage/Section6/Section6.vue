@@ -1,7 +1,6 @@
 <template lang="pug">
 section.section6
-  h1
-    ui-text-anim Что вам потребуется для обучения?
+  h1 Что вам потребуется для обучения?
   block-list(:items="items")
 </template>
 
