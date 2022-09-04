@@ -83,7 +83,6 @@ export default {
       img
         object-fit: contain
         object-position: center
-        width: 100%
         height: 100%
   &__item_show
     .accordion__header
@@ -91,7 +90,6 @@ export default {
       &::after
         transform: rotate(-180deg)
   &__body
-    // transition: .3s
     height: 0
   &__content
     display: flex
