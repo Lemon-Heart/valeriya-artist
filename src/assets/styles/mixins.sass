@@ -1,0 +1,111 @@
+// ***** FONTS *****
+@mixin font($label)
+  // ***** Desktop *****
+  @if $label == 'h1'
+    font-family: GolosTextWebDemiBold, serif
+    font-size: 10*$u
+    line-height: 15*$u
+
+  @if $label == 'h2'
+    font-family: GolosTextWebDemiBold, serif
+    font-size: 6*$u
+    line-height: 8.5*$u
+
+  @if $label == 'h3'
+    font-family: GolosTextWebDemiBold, serif
+    font-size: 5*$u
+    line-height: 7.5*$u
+
+  @if $label == 't18-demibold'
+    font-family: GolosTextWebMedium, serif
+    font-size: 4.5*$u
+    line-height: 7*$u
+
+  @if $label == 't18-regular'
+    font-family: GolosTextWebRegular, serif
+    font-size: 4.5*$u
+    line-height: 7*$u
+
+  @if $label == 't16-medium'
+    font-family: GolosTextWebMedium, serif
+    font-size: 4*$u
+    line-height: 6.5*$u
+
+  @if $label == 't16-regular'
+    font-family: GolosTextWebRegular, serif
+    font-size: 4*$u
+    line-height: 6.5*$u
+
+  @if $label == 't16-demibold'
+    font-family: GolosTextWebDemiBold, serif
+    font-size: 4*$u
+    line-height: 6.5*$u
+
+  @if $label == 't15-regular'
+    font-family: GolosTextWebRegular, serif
+    font-size: 3.75*$u
+    line-height: 5*$u
+
+  @if $label == 't14-regular'
+    font-family: GolosTextWebRegular, serif
+    font-size: 3.5*$u
+    line-height: 5*$u
+
+// ***** Fix Browsers *****
+@mixin fix-old-browsers
+  @media not all and (min-resolution: .001dpcm)
+    @supports (-webkit-appearance: none) and (display: flow-root)
+      @content
+  @supports (-webkit-touch-callout: none)
+    @content
+
+// for only one direction in Safari
+@mixin gap($gap, $direction: "row")
+  gap: $gap
+
+  @include fix-old-browsers
+    gap: initial
+    > *
+      &:not(:last-child)
+        @if $direction == "row"
+          margin-right: $gap
+        @else if $direction == "column"
+          margin-bottom: $gap
+
+// for both directions with margins
+@mixin gap2d($gap, $clearVerticalMargins: false, $clearHorizontalMargins: false)
+  margin: calc( -#{$gap} / 2 )
+  @if $clearVerticalMargins
+    margin-top: 0
+    margin-bottom: 0
+  @if $clearHorizontalMargins
+    margin-right: 0
+    margin-left: 0
+
+  > *
+    margin: calc( #{$gap} / 2 )
+
+@mixin aspect-ratio($width, $height)
+  position: relative
+  &:before
+    display: block
+    content: ""
+    width: 100%
+    padding-top: ($height / $width) * 100%
+
+  > .content
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+@mixin invisible-scrollbar
+  overflow-x: scroll
+  -ms-overflow-style: none
+  scrollbar-width: none
+  &::-webkit-scrollbar
+    -webkit-appearance: none
+    width: 0
+    height: 0
+    display: none

@@ -1,30 +1,30 @@
 {
+  "name": "valeriya.artist",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "lint": "vue-cli-service lint",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "sass": "^1.52.1",
-    "sass-loader": "^13.0.0",
-    "swiper": "^8.2.2",
-    "vue-awesome-swiper": "^5.0.1",
-    "vue-yandex-maps": "^0.12.3",
-    "vue3-lazyload": "^0.3.4"
+    "core-js": "^3.8.3",
+    "style-resources-loader": "^1.5.0",
+    "swiper": "^8.3.2",
+    "vue": "^3.2.13",
+    "vue-cli-plugin-pug": "^2.0.0",
+    "vue-router": "^4.0.3",
+    "vue3-lazyload": "^0.3.6"
   },
   "devDependencies": {
-    "@iconify-json/fa6-solid": "^1.1.4",
-    "@vue/cli-plugin-eslint": "^5.0.4",
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-standard": "^6.1.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^8.7.1",
-    "nuxt": "3.0.0-rc.3",
-    "unplugin-icons": "^0.14.3"
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0"
   }
 }

@@ -1,0 +1,66 @@
+<template lang="pug">
+.cont
+  section-1
+.roundedLine
+.bg
+  .cont
+    section-2
+.roundedLine.flipped
+.cont
+  section-3
+  section-4
+  section-5
+  section-6
+</template>
+
+<script>
+import Section1 from '@/components/Homepage/Section1/Section1'
+import Section2 from '@/components/Homepage/Section2/Section2'
+import Section3 from '@/components/Homepage/Section3/Section3'
+import Section4 from '@/components/Homepage/Section4/Section4'
+import Section5 from '@/components/Homepage/Section5/Section5'
+import Section6 from '@/components/Homepage/Section6/Section6'
+
+export default {
+  components: { Section1, Section2, Section3, Section4, Section5, Section6 },
+  setup () {
+    return {}
+  }
+}
+</script>
+
+<style lang="sass" scoped>
+.bg
+  background: $BGOpacity
+  position: relative
+  &::before
+    content: ''
+    position: absolute
+    background: $BGOpacity
+    top: -30px
+    width: 100%
+    height: 30px
+.roundedLine
+  width: 100%
+  height: 30*$u
+  background-image: url('/public/img/wave.svg')
+  background-repeat: no-repeat
+  background-position: top center
+  background-size: 101%
+  filter: drop-shadow(0 -22px 10px black)
+  transform: translateY(-30px)
+  position: relative
+  opacity: .5
+  &.flipped
+    transform: rotate(180deg)
+    filter: drop-shadow(0 -22px 10px black)
+  &::before
+    content: ''
+    position: absolute
+    background: $BG
+    bottom: 0
+    width: 100%
+    height: 70px
+  @media screen and (max-width: $XXXLWidth)
+    background-size: inherit
+</style>

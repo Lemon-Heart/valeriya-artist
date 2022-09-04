@@ -1,0 +1,67 @@
+@import "fonts"
+
+html
+  scroll-behavior: smooth
+  scrollbar-width: thin
+  scrollbar-color: $thumb $track
+
+  &::-webkit-scrollbar
+    width: 3*$u
+    height: 3*$u
+
+  &::-webkit-scrollbar-button
+    display: none
+
+  &::-webkit-scrollbar-track
+    background-color: $track
+
+  &::-webkit-scrollbar-thumb
+    background-color: $headerBG
+    opacity: .5
+    transition: opacity .3s ease
+
+  &::-webkit-scrollbar-thumb:hover
+    opacity: 1
+
+body
+  font-family: $fontMain
+  font-weight: 500
+  font-style: normal
+  color: $cText
+  overflow-x: hidden
+  min-height: 100vh
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bg.webp')
+  background-repeat: no-repeat
+  background-position: center center
+  background-size: cover
+  background-attachment: fixed
+  @media screen and (max-width: $XXXLWidth)
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bgmobile.webp')
+
+.cont
+  max-width: $width
+  margin-left: auto
+  margin-right: auto
+  padding: 0 15*$u
+  @media screen and (max-width: $XSWidth)
+    padding: 0 10*$u
+  @media screen and (max-width: $XXSWidth)
+    padding: 0 5*$u
+
+div, button, input, textarea
+  box-sizing: border-box
+
+a
+  text-decoration: none
+  color: inherit
+  outline: none
+  &:focus
+    outline: none
+
+ul
+  padding-left: 5*$u
+  list-style: disc
+  li
+    color: $firstColor
+    span
+      color: $cText
