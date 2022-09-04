@@ -1,6 +1,7 @@
 <template lang="pug">
 section.section3
-  h1 Чему ты научишься?
+  h1
+    ui-text-anim Чему ты научишься?
   learn
 </template>
 

@@ -1,6 +1,7 @@
 <template lang="pug">
 section.section6
-  h1 Что вам потребуется для обучения?
+  h1
+    ui-text-anim Что вам потребуется для обучения?
   block-list(:items="items")
 </template>
 
@@ -19,17 +20,17 @@ export default {
       },
       {
         title: 'Карандаши',
-        icon: '/img/homepage/section6/pen.png',
+        icon: '/img/homepage/section6/pen.webp',
         text: 'Карандаш средней твердости НВ (ТМ) Карандаш мягкий 2В/4В (2М/4М) Я люблю использовать механический карандаш'
       },
       {
         title: 'Бумага',
-        icon: '/img/homepage/section6/paper.png',
+        icon: '/img/homepage/section6/paper.webp',
         text: 'Плотность ~200 г/м2 Формат А3 Продаётся в папках «Для черчения» Бумага для акварели или обычная для печати НЕ подойдёт'
       },
       {
         title: 'Ластик/клячка',
-        icon: '/img/homepage/section6/eraser.png',
+        icon: '/img/homepage/section6/eraser.webp',
         text: 'Ластик выбирайте мягкий белый Лучше использовать клячку, т.к. она не затирает бумагу, не оставляет крошек НЕ рекомендую использовать цветные ластики, т.к. они пачкают бумагу.'
       }
     ])
