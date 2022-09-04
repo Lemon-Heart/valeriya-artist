@@ -52,6 +52,8 @@ export default {
     @include font('h1')
     @media screen and (max-width: $padWidth)
       @include font('h2')
+      margin-bottom: 20*$u
     @media screen and (max-width: $mobileWidth)
       @include font('h3')
+      margin-bottom: 10*$u
 </style>
