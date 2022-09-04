@@ -1,7 +1,6 @@
 <template lang="pug">
 section.section4
-  h1
-    ui-text-anim О курсе
+  h1 О курсе
   .aboutCourse
     .left
       .title Программа курса охватывает все аспекты рисования:
