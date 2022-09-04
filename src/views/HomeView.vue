@@ -37,9 +37,12 @@ export default {
     content: ''
     position: absolute
     background: $BGOpacity
-    top: -30px
+    top: -7.5*$u
     width: 100%
-    height: 30px
+    height: 7.5*$u
+    @media screen and (max-width: $XXXLWidth)
+      height: 10*$u
+      top: -10*$u
 .roundedLine
   width: 100%
   height: 30*$u
@@ -51,6 +54,9 @@ export default {
   transform: translateY(-30px)
   position: relative
   opacity: .5
+  @media screen and (max-width: $XXXLWidth)
+    transform: translateY(-40px)
+    height: 30*$u
   &.flipped
     transform: rotate(180deg)
     filter: drop-shadow(0 -22px 10px black)
