@@ -1,6 +1,7 @@
 <template lang="pug">
 section.section6
-  h1 Что вам потребуется для обучения?
+  h1
+    ui-text-anim Что вам потребуется для обучения?
   block-list(:items="items")
 </template>
 
@@ -47,7 +48,7 @@ export default {
     color: $firstColor
     text-transform: uppercase
     text-align: center
-    margin-bottom: 10*$u
+    margin-bottom: 30*$u
     @include font('h1')
     @media screen and (max-width: $padWidth)
       @include font('h2')
