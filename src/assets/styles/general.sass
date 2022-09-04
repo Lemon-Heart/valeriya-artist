@@ -30,14 +30,21 @@ body
   color: $cText
   overflow-x: hidden
   min-height: 100vh
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bg.webp')
-  background-repeat: no-repeat
-  background-position: center center
-  background-size: auto 100%
-  // background-size: cover
-  background-attachment: fixed
+  &::after
+    content: ''
+    top: 0
+    bottom: 0
+    right: 0
+    left: 0
+    position: fixed
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bg.webp')
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: cover
+    z-index: -999
   @media screen and (max-width: $XXXLWidth)
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bgmobile.webp')
+    &::after
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bgmobile.webp')
 
 .cont
   max-width: $width
