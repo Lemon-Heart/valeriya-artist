@@ -35,7 +35,7 @@ export default {
         display: none
     h1
       text-transform: uppercase
-        color: $firstColor
+      color: $firstColor
       @include font('h1')
       @media screen and (max-width: $padWidth)
         @include font('h2')
