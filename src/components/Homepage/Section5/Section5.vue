@@ -30,6 +30,8 @@ export default {
     align-items: center
     &:deep(.tariff)
       margin-bottom: 20*$u
+  @media screen and (max-width: $XXSWidth)
+    margin-top: 25*$u
   h1
     color: $firstColor
     text-transform: uppercase

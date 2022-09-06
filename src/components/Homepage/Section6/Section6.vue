@@ -44,6 +44,8 @@ export default {
   display: flex
   flex-direction: column
   margin-top: 50*$u
+  @media screen and (max-width: $XXLWidth)
+    margin-top: 20*$u
   h1
     color: $firstColor
     text-transform: uppercase
