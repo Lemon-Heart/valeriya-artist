@@ -61,6 +61,7 @@ export default {
   display: grid
   grid-template-columns: 1fr 1fr
   grid-auto-rows: 1fr
+  grid-gap: 10*$u
   gap: 10*$u
   @media screen and (max-width: $padWidth)
     grid-template-columns: 1fr

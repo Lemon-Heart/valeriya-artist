@@ -23,10 +23,12 @@ export default {
   display: flex
   flex-direction: row
   margin-top: 50*$u
+  grid-gap: 5*$u
   gap: 5*$u
   @media screen and (max-width: $XXLWidth)
     flex-direction: column
     align-items: center
+    grid-gap: 20*$u
     gap: 20*$u
   h1
     color: $firstColor

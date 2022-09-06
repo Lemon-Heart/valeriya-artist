@@ -38,6 +38,7 @@ export default {
 <style lang="sass" scoped>
 .icons
   display: flex
+  grid-gap: 4*$u
   gap: 4*$u
   position: absolute
   align-items: center
@@ -97,6 +98,7 @@ h1
     .oldPrice
       text-decoration: line-through
       @include font('h3')
+      white-space: nowrap
       @media screen and (max-width: $padWidth)
         @include font('t18-demibold')
 </style>

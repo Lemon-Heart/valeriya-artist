@@ -55,6 +55,7 @@ export default {
       @include font('h3')
   .aboutCourse
     display: flex
+    grid-gap: 10*$u
     gap: 10*$u
     position: relative
     @media screen and (max-width: $XXLWidth)

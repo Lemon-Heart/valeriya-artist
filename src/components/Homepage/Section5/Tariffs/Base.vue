@@ -78,6 +78,7 @@ h1
     .oldPrice
       text-decoration: line-through
       @include font('h3')
+      white-space: nowrap
       @media screen and (max-width: $padWidth)
         @include font('t18-demibold')
 </style>

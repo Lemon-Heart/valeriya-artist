@@ -13,6 +13,7 @@
   display: flex
   justify-content: space-between
   align-items: center
+  grid-gap: 5*$u
   gap: 5*$u
   .headerIconWrapper
     display: flex

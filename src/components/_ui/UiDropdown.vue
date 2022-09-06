@@ -65,6 +65,8 @@ export default {
     transition: background-color 0.2s ease-out
     font-weight: bold
     background-color: $btnBGHover
+    @media screen and (max-width: $XXSWidth)
+      padding: 2.5*$u 5*$u
     &:hover
       background-color: $headerBG
     &::after
@@ -80,6 +82,8 @@ export default {
     .img
       height: 25*$u
       margin-right: 5*$u
+      @media screen and (max-width: $XXSWidth)
+        height: 15*$u
       img
         object-fit: contain
         object-position: center

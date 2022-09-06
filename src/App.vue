@@ -31,12 +31,14 @@ export default {
   width: 100%
   z-index: 100
   padding: 5*$u 0
+  @media screen and (max-width: $mobileWidth)
+    padding: 3*$u 0
 .content
   margin-top: 20*$u
   @media screen and (max-width: $padWidth)
-  margin-top: 30*$u
+    margin-top: 30*$u
   @media screen and (max-width: $mobileWidth)
-  margin-top: 22*$u
+    margin-top: 22*$u
 .footer
   margin-top: auto
 </style>

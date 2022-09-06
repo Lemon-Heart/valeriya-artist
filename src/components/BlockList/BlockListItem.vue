@@ -24,10 +24,13 @@ export default {
 .div
   display: flex
   flex-direction: column
+  grid-gap: 5*$u
   gap: 5*$u
   @media screen and (max-width: $padWidth)
+    grid-gap: 0
     gap: 0
   @media screen and (max-width: $XXSWidth)
+    grid-gap: 5*$u
     gap: 5*$u
   .title
     text-transform: uppercase
@@ -39,6 +42,10 @@ export default {
     object-fit: contain
     object-position: center
     height: 230px
+    @media screen and (max-width: $XXSWidth)
+      height: auto
+      width: 50%
+      margin: auto
   .iconWrapper
     &:deep(svg)
       width: 100%

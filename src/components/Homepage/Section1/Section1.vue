@@ -69,6 +69,7 @@ export default {
     .buttonMobile
       display: none
       @media screen and (max-width: $padWidth)
+        width: fit-content
         display: flex
         position: absolute
         bottom: 5*$u
