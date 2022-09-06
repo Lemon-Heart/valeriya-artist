@@ -23,6 +23,7 @@ export default {
   @media screen and (max-width: $padWidth)
     padding-bottom: 20*$u
   h1
+    color: $firstColor
     text-transform: uppercase
     text-align: center
     margin-bottom: 10*$u

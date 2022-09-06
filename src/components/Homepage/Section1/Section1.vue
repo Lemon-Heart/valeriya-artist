@@ -25,6 +25,8 @@ export default {
   overflow: hidden
   @media screen and (max-width: $padWidth)
     flex-direction: column
+  @media screen and (max-width: $mobileWidth)
+    height: auto
   .text
     display: flex
     flex-direction: column
@@ -34,24 +36,25 @@ export default {
       @media screen and (max-width: $padWidth)
         display: none
     h1
+      margin-bottom: 10*$u
       text-transform: uppercase
       color: $firstColor
       @include font('h1')
       @media screen and (max-width: $padWidth)
         @include font('h2')
+        margin-bottom: 5*$u
+        text-align: center
       @media screen and (max-width: $mobileWidth)
         @include font('h3')
     p
+      margin-bottom: 10*$u
       @include font('t18-demibold')
       @media screen and (max-width: $padWidth)
         @include font('t16-demibold')
+        margin-bottom: 0
+        text-align: center
       @media screen and (max-width: $mobileWidth)
         @include font('t16-regular')
-    h1, p
-      margin-bottom: 10*$u
-      @media screen and (max-width: $padWidth)
-        margin-bottom: 5*$u
-        text-align: center
   .img
     display: flex
     flex-direction: column
@@ -67,6 +70,7 @@ export default {
       object-fit: contain
       transform: scale(-1, 1)
       @media screen and (max-width: $padWidth)
+        object-fit: cover
         transform: none
     .buttonMobile
       display: none

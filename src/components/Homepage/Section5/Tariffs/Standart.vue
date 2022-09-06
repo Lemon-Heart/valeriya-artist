@@ -1,6 +1,7 @@
 <template lang="pug">
 .tariff
   .icons
+    //- img(src="/img/homepage/section5/diamond.PNG")
     ui-svg-icon(name="diamond" :size="60")
   .title
     span Тариф
@@ -44,9 +45,11 @@ export default {
   align-items: center
   top: 0
   left: 50%
-  // background: rgba(111, 111, 111, .7)
   transform: translate(-50%, -60%)
-  // filter: drop-shadow(0 0px 1px white)
+  img
+    width: 15*$u
+    height: 15*$u
+    object-fit: contain
 .button
   margin: 10*$u auto 0 auto
 .bold
