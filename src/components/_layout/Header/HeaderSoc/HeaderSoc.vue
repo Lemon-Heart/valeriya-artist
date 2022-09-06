@@ -13,8 +13,6 @@
   display: flex
   justify-content: space-between
   align-items: center
-  grid-gap: 5*$u
-  gap: 5*$u
   .headerIconWrapper
     display: flex
     justify-content: center
@@ -24,6 +22,8 @@
     border-radius: 50%
     background-color: $socIcon
     transition: .2s
+    &:not(:last-child)
+      margin-right: 5*$u
     &:hover
       background-color: $socIconHover
 </style>

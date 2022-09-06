@@ -40,6 +40,7 @@ export default {
         @include font('h2')
       @media screen and (max-width: $mobileWidth)
         @include font('h3')
+        color: $firstColor
     p
       color: $firstColor
       @include font('t18-demibold')
@@ -47,6 +48,7 @@ export default {
         @include font('t16-demibold')
       @media screen and (max-width: $mobileWidth)
         @include font('t16-regular')
+        color: $cText
     h1, p
       margin-bottom: 10*$u
       @media screen and (max-width: $padWidth)
@@ -69,9 +71,10 @@ export default {
     .buttonMobile
       display: none
       @media screen and (max-width: $padWidth)
-        width: fit-content
+        justify-content: center
         display: flex
         position: absolute
         bottom: 5*$u
         z-index: 10
+        min-width: 50*$u
 </style>

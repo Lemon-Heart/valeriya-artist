@@ -30,8 +30,7 @@ export default {
     grid-gap: 0
     gap: 0
   @media screen and (max-width: $XXSWidth)
-    grid-gap: 5*$u
-    gap: 5*$u
+    margin-bottom: 5*$u
   .title
     text-transform: uppercase
     text-align: center
@@ -61,4 +60,5 @@ export default {
       transform: translateY(-20px)
     @media screen and (max-width: $XXSWidth)
       transform: translateY(0px)
+      margin-top: 3*$u
 </style>

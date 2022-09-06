@@ -36,6 +36,4 @@ export default {
     grid-template-columns: repeat(auto-fit, 40%)
   @media screen and (max-width: $XXSWidth)
     grid-template-columns: repeat(auto-fit, 100%)
-    grid-gap: 20*$u
-    gap: 20*$u
 </style>

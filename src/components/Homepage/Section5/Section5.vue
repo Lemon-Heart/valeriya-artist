@@ -28,8 +28,8 @@ export default {
   @media screen and (max-width: $XXLWidth)
     flex-direction: column
     align-items: center
-    grid-gap: 20*$u
-    gap: 20*$u
+    &:deep(.tariff)
+      margin-bottom: 20*$u
   h1
     color: $firstColor
     text-transform: uppercase
