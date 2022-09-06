@@ -63,7 +63,10 @@ export default {
     width: 100%
     @media screen and (max-width: $padWidth)
       margin: 20*$u 0
+    @media screen and (max-width: $XXSWidth)
+      margin: 20*$u 0 0
   h1
+    text-transform: uppercase
     color: $firstColor
     text-align: center
     @include font('h1')

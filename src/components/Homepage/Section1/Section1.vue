@@ -63,6 +63,8 @@ export default {
       align-items: center
     img
       width: 100%
+      max-height: 100%
+      object-fit: contain
       transform: scale(-1, 1)
       @media screen and (max-width: $padWidth)
         transform: none

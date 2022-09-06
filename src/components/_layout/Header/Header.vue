@@ -23,6 +23,7 @@ export default {
   align-items: center
   .logo
     display: flex
+    color: $socIcon
     @include font('h3')
     .text1
       margin-right: 2*$u
