@@ -25,6 +25,7 @@ export default {
     display: flex
     @include font('h3')
     .text1
+      margin-right: 2*$u
       @media screen and (max-width: $XXSWidth)
         display: none
 </style>

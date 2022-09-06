@@ -32,8 +32,10 @@ export default {
   grid-gap: 5*$u 0
   gap: 5*$u 0
   justify-content: space-around
-  @media screen and (max-width: $padWidth)
-    grid-template-columns: repeat(auto-fit, 40%)
+  @media screen and (max-width: $XXLWidth)
+    grid-template-columns: repeat(auto-fit, 37%)
   @media screen and (max-width: $XXSWidth)
     grid-template-columns: repeat(auto-fit, 100%)
+    grid-gap: 0
+    gap: 0
 </style>

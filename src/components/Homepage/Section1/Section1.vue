@@ -35,20 +35,18 @@ export default {
         display: none
     h1
       text-transform: uppercase
+        color: $firstColor
       @include font('h1')
       @media screen and (max-width: $padWidth)
         @include font('h2')
       @media screen and (max-width: $mobileWidth)
         @include font('h3')
-        color: $firstColor
     p
-      color: $firstColor
       @include font('t18-demibold')
       @media screen and (max-width: $padWidth)
         @include font('t16-demibold')
       @media screen and (max-width: $mobileWidth)
         @include font('t16-regular')
-        color: $cText
     h1, p
       margin-bottom: 10*$u
       @media screen and (max-width: $padWidth)
@@ -57,7 +55,7 @@ export default {
   .img
     display: flex
     flex-direction: column
-    flex: 1.5
+    flex: 1
     justify-content: flex-end
     @media screen and (max-width: $XXXLWidth)
       flex: 1

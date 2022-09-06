@@ -30,13 +30,16 @@ export default {
     grid-gap: 0
     gap: 0
   @media screen and (max-width: $XXSWidth)
-    margin-bottom: 5*$u
+    margin-bottom: 15*$u
   .title
     text-transform: uppercase
     text-align: center
+    white-space: nowrap
     @include font('h2')
     @media screen and (max-width: $XXLWidth)
       @include font('h3')
+    @media screen and (max-width: $padWidth)
+      margin-bottom: 5*$u
   img
     object-fit: contain
     object-position: center

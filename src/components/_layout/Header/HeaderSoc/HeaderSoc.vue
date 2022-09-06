@@ -23,7 +23,7 @@
     background-color: $socIcon
     transition: .2s
     &:not(:last-child)
-      margin-right: 5*$u
+      margin-right: 3*$u
     &:hover
       background-color: $socIconHover
 </style>
