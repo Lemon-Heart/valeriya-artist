@@ -1,7 +1,6 @@
 <template lang="pug">
 .tariff
   .icons
-    //- img(src="/img/homepage/section5/diamond.PNG")
     ui-svg-icon(name="diamond" :size="60")
   .title
     span Тариф

@@ -17,7 +17,7 @@ export default {
     const advantage = ref([
       {
         icon: '/img/homepage/section2/molbertwhite.webp',
-        text: 'Рисовать профессионально как нравится: в digital, маслом на холсте или карандашом на бумаге'
+        text: 'Рисовать на чем нравится: в digital, маслом на холсте или карандашом на бумаге'
       },
       {
         icon: '/img/homepage/section2/brandwhite.webp',
@@ -32,12 +32,12 @@ export default {
         text: 'Создать портфолио'
       },
       {
-        icon: '/img/homepage/section2/earthWhite.webp',
-        text: 'Работать в любой точке мира'
+        icon: '/img/homepage/section2/earthWhite.png',
+        text: 'Работать из любой точки мира'
       },
       {
         icon: '/img/homepage/section2/timeWhite.webp',
-        text: 'Заменить годы обучения в худ.школе и вузе на 1,5 месяца'
+        text: 'Заменить годы обучения в художественной школе и вузе на 1,5 месяца'
       },
       {
         icon: '/img/homepage/section2/handswhite.webp',
