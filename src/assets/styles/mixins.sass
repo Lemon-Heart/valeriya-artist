@@ -46,10 +46,17 @@
     font-size: 3.75*$u
     line-height: 5*$u
 
-  @if $label == 't14-regular'
-    font-family: GolosTextWebRegular, serif
-    font-size: 3.5*$u
-    line-height: 5*$u
+// ***** Heading *****
+@mixin heading
+  margin-bottom: 10*$u
+  text-transform: uppercase
+  color: $firstColor
+  text-align: center
+  @include font('h1')
+  @media screen and (max-width: $padWidth)
+    @include font('h2')
+  @media screen and (max-width: $mobileWidth)
+    @include font('h3')
 
 // ***** Fix Browsers *****
 @mixin fix-old-browsers
@@ -84,28 +91,3 @@
 
   > *
     margin: calc( #{$gap} / 2 )
-
-@mixin aspect-ratio($width, $height)
-  position: relative
-  &:before
-    display: block
-    content: ""
-    width: 100%
-    padding-top: ($height / $width) * 100%
-
-  > .content
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-
-@mixin invisible-scrollbar
-  overflow-x: scroll
-  -ms-overflow-style: none
-  scrollbar-width: none
-  &::-webkit-scrollbar
-    -webkit-appearance: none
-    width: 0
-    height: 0
-    display: none

@@ -46,16 +46,4 @@ export default {
   margin-top: 50*$u
   @media screen and (max-width: $XXLWidth)
     margin-top: 20*$u
-  h1
-    color: $firstColor
-    text-transform: uppercase
-    text-align: center
-    margin-bottom: 30*$u
-    @include font('h1')
-    @media screen and (max-width: $padWidth)
-      @include font('h2')
-      margin-bottom: 20*$u
-    @media screen and (max-width: $mobileWidth)
-      @include font('h3')
-      margin-bottom: 10*$u
 </style>

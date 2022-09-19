@@ -59,21 +59,12 @@ export default {
   flex-direction: column
   align-items: center
   .advantage
-    margin: 10*$u 0
+    margin-bottom: 10*$u
     width: 100%
     @media screen and (max-width: $padWidth)
       margin: 20*$u 0
     @media screen and (max-width: $XXSWidth)
       margin: 20*$u 0 0
-  h1
-    text-transform: uppercase
-    color: $firstColor
-    text-align: center
-    @include font('h1')
-    @media screen and (max-width: $padWidth)
-      @include font('h2')
-    @media screen and (max-width: $mobileWidth)
-      @include font('h3')
   .button
     z-index: 10
 </style>

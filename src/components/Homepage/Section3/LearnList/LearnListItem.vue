@@ -1,7 +1,7 @@
 <template lang="pug">
 .item(v-observe)
-  .number {{ number }}
-  .head {{ title }}
+  .number(v-if="number") {{ number }}
+  .head(v-if="title") {{ title }}
   ul(v-if="list")
     li(
       v-for="(item, i) in list"
@@ -15,11 +15,11 @@ export default {
   props: {
     number: {
       type: Number,
-      required: true
+      default: null
     },
     title: {
       type: String,
-      required: true
+      default: null
     },
     list: {
       type: Array,
@@ -61,6 +61,9 @@ export default {
     @include font('t16-demibold')
   @media screen and (max-width: $mobileWidth)
     @include font('t16-regular')
+  @media screen and (max-width: $mobileWidth)
+    &:not(:last-child)
+      margin-bottom: 10*$u
   @media screen and (max-width: $XXSWidth)
     margin-left: 2.5*$u
   .number
@@ -79,6 +82,4 @@ export default {
     @include font('h2')
     margin-bottom: 4*$u
     color: $firstColor
-  .text
-    padding-left: 5*$u
 </style>

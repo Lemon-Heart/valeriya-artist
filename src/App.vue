@@ -35,10 +35,13 @@ export default {
     padding: 3*$u 0
 .content
   margin-top: 20*$u
+  padding-bottom: 100px
   @media screen and (max-width: $padWidth)
     margin-top: 30*$u
   @media screen and (max-width: $mobileWidth)
     margin-top: 22*$u
 .footer
   margin-top: auto
+  background-color: $headerBG
+  padding: 5*$u 0
 </style>

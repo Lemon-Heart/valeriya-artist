@@ -36,16 +36,7 @@ export default {
       @media screen and (max-width: $padWidth)
         display: none
     h1
-      margin-bottom: 10*$u
-      text-transform: uppercase
-      color: $firstColor
-      @include font('h1')
-      @media screen and (max-width: $padWidth)
-        @include font('h2')
-        margin-bottom: 5*$u
-        text-align: center
-      @media screen and (max-width: $mobileWidth)
-        @include font('h3')
+      text-align: start
     p
       margin-bottom: 10*$u
       @include font('t18-demibold')

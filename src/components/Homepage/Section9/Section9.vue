@@ -1,0 +1,92 @@
+<template lang="pug">
+section.section9
+  h1
+    ui-text-anim Работы Валерии
+  .galery
+    swiper(
+      :autoplay="false"
+      :loop="true"
+      :spaceBetween="30"
+      :slidesPerView="1"
+      :slidesPerGroup="1"
+      :grabCursor="true"
+      :navigation="true"
+      :pagination="pagination"
+      :modules="modules"
+      class="mySwiper"
+    )
+      swiper-slide(v-for="(slide, i) in slides" :key="i")
+        img(v-lazy="slide")
+</template>
+
+<script>
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+import { Pagination, Navigation, Autoplay } from 'swiper'
+import { ref } from 'vue'
+export default {
+  components: { Swiper, SwiperSlide },
+  setup () {
+    const slides = ref([
+      '/img/homepage/section9/1.jpg',
+      '/img/homepage/section9/2.png',
+      '/img/homepage/section9/3.png',
+      '/img/homepage/section9/4.png',
+      '/img/homepage/section9/5.png',
+      '/img/homepage/section9/6.png',
+      '/img/homepage/section9/9.jpg',
+      '/img/homepage/section9/10.jpg',
+      '/img/homepage/section9/7.jpg',
+      '/img/homepage/section9/8.jpg'
+    ])
+    return {
+      pagination: {
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '"></span>'
+        }
+      },
+      modules: [Pagination, Navigation, Autoplay],
+      slides
+    }
+  }
+}
+</script>
+
+<style lang="sass" scoped>
+.section9
+  display: flex
+  flex-direction: column
+  margin-top: 50*$u
+  @media screen and (max-width: $XXLWidth)
+    margin-top: 20*$u
+  .galery
+    display: block
+    margin-left: -50px
+    margin-right: -50px
+    @media screen and (max-width: $XXSWidth)
+      margin-left: -30px
+      margin-right: -30px
+    .swiper-slide
+      display: flex
+    img
+      margin: auto
+      height: 175*$u
+      object-fit: contain
+      width: 100%
+      max-width: calc(100% - 140px)
+      filter: drop-shadow(0px 9px 11px black)
+      @media screen and (max-width: $padWidth)
+        height: 125*$u
+      @media screen and (max-width: $XXSWidth)
+        height: 100*$u
+        max-width: calc(100% - 100px)
+      @media screen and (max-width: $mobileWidth)
+        height: 90*$u
+    .swiper-slide-active img
+      object-position: center
+    .swiper-slide-next img
+      object-position: center
+</style>

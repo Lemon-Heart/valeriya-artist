@@ -24,7 +24,7 @@ export default {
 .effect
   :deep(span)
     opacity: 0
-    @for $i from 1 to 40
+    @for $i from 1 to 100
       $td: $i * .03
       &:nth-child(#{$i})
         transition-delay: #{$td}s

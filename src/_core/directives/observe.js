@@ -5,8 +5,5 @@ exports = module.exports = {
       else el.classList.remove('observe')
     }, { threshold: 0.2 })
     window.observer.observe(el)
-  },
-  unmounted (el) {
-    window.oberver.disconnect(el)
   }
 }

@@ -43,16 +43,6 @@ export default {
 .section4
   display: flex
   flex-direction: column
-  h1
-    color: $firstColor
-    text-transform: uppercase
-    text-align: center
-    margin-bottom: 10*$u
-    @include font('h1')
-    @media screen and (max-width: $padWidth)
-      @include font('h2')
-    @media screen and (max-width: $mobileWidth)
-      @include font('h3')
   .aboutCourse
     display: flex
     grid-gap: 10*$u
