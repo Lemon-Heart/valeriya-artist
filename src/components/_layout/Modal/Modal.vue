@@ -152,7 +152,7 @@ export default {
     max-width: min(calc(100% - #{2*12.5*$u}), #{$XXXLWidth})
     position: relative
     z-index: 100
-    background: white
+    background: rgb(210, 210, 210)
     border-radius: $BR
     padding: 10*$u
     margin: auto
