@@ -5,7 +5,7 @@ section.section1
     p Научись рисовать профессиональные портреты, зарабатывай на любимом деле из любой точки мира, стань частью творческого сообщества и убедись, что все твои мечты гораздо ближе, чем кажется.
     ui-button.buttonDesktop(is-animated scroll-to="tariffs") Оформить заявку
   .img
-    img(v-lazy="'/img/homepage/section1/3.webp'")
+    img(:src="'/img/homepage/section1/3.webp'")
     ui-button.buttonMobile(is-animated scroll-to="tariffs") Оформить заявку
 </template>
 

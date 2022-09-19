@@ -1,7 +1,7 @@
 <template lang="pug">
 .div
   .title(v-if="item.title") {{ item.title }}
-  img(v-lazy="item.icon")
+  img(:src="item.icon")
   .text {{ item.text }}
 </template>
 

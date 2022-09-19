@@ -16,7 +16,7 @@ section.section9
       class="mySwiper"
     )
       swiper-slide(v-for="(slide, i) in slides" :key="i")
-        img(v-lazy="slide")
+        img(:src="slide")
 </template>
 
 <script>
@@ -64,11 +64,11 @@ export default {
     margin-top: 20*$u
   .galery
     display: block
-    margin-left: -50px
-    margin-right: -50px
+    margin-left: -40px
+    margin-right: -40px
     @media screen and (max-width: $XXSWidth)
-      margin-left: -30px
-      margin-right: -30px
+      margin-left: -20px
+      margin-right: -20px
     .swiper-slide
       display: flex
     img
@@ -76,7 +76,7 @@ export default {
       height: 175*$u
       object-fit: contain
       width: 100%
-      max-width: calc(100% - 140px)
+      max-width: calc(100% - 120px)
       filter: drop-shadow(0px 9px 11px black)
       @media screen and (max-width: $padWidth)
         height: 125*$u
