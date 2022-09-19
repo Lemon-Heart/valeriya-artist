@@ -133,7 +133,7 @@ export default {
   left: 0
   bottom: 0
   right: 0
-  background: rgba(#000, .7)
+  // background: rgba(#000, .7)
   display: flex
   overflow: auto
   z-index: 100
@@ -152,7 +152,7 @@ export default {
     max-width: min(calc(100% - #{2*12.5*$u}), #{$XXXLWidth})
     position: relative
     z-index: 100
-    background: rgb(210, 210, 210)
+    background: white
     border-radius: $BR
     padding: 10*$u
     margin: auto
