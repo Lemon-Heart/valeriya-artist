@@ -1,7 +1,7 @@
 <template lang="pug">
 .cont
   .headerComponent
-    .logo
+    router-link.logo(:to="{name: 'home'}")
       .text1 Авторский курс от
       .text2 Valeriya.Artist
     header-soc
@@ -9,10 +9,7 @@
 
 <script>
 import HeaderSoc from './HeaderSoc/HeaderSoc'
-
-export default {
-  components: { HeaderSoc }
-}
+export default { components: { HeaderSoc } }
 </script>
 
 <style lang="sass" scoped>

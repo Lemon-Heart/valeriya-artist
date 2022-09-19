@@ -28,13 +28,7 @@ import Section7 from '@/components/Homepage/Section7/Section7'
 import Section8 from '@/components/Homepage/Section8/Section8'
 import Section9 from '@/components/Homepage/Section9/Section9'
 import Section10 from '@/components/Homepage/Section10/Section10'
-
-export default {
-  components: { Section1, Section2, Section3, Section4, Section5, Section6, Section7, Section8, Section9, Section10 },
-  setup () {
-    return {}
-  }
-}
+export default { components: { Section1, Section2, Section3, Section4, Section5, Section6, Section7, Section8, Section9, Section10 } }
 </script>
 
 <style lang="sass" scoped>

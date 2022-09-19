@@ -1,5 +1,5 @@
 <template lang="pug">
-.tariff
+.tariff.base
   .tariff__title
     span Тариф
     h1 Базовый
@@ -17,11 +17,5 @@
   .tariff__priceWrapper
     .tariff__oldPrice 35 700 ₽
     h1.tariff__price 29 900 ₽
-  ui-button.tariff__button(is-animated) Оформить заказ
+  ui-button.tariff__button(is-animated @click="$emit('buy', 'base')") Оформить заказ
 </template>
-
-<style lang="sass" scoped>
-.tariff
-  &__body
-    margin-bottom: 16.75*$u
-</style>

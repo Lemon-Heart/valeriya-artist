@@ -5,6 +5,7 @@ ui-dropdown(
   :title="`МОДУЛЬ ${i+1}. ${item.title}`"
   :list="item.list"
   :icon="item.icon"
+  :alt-list-heading="item.altListHeading"
   style="margin-top: 20px"
 )
 </template>
@@ -35,6 +36,7 @@ export default {
       {
         icon: '/img/homepage/section4/module3.png',
         title: 'Обучение',
+        altListHeading: true,
         list: [
           'Урок 0. Введение в курс. Материалы',
           'Урок 1. Построение портрета в фас',

@@ -9,14 +9,6 @@ section.section1
     ui-button.buttonMobile(is-animated scroll-to="tariffs") Оформить заявку
 </template>
 
-<script>
-export default {
-  setup () {
-    return {}
-  }
-}
-</script>
-
 <style lang="sass" scoped>
 .section1
   display: flex

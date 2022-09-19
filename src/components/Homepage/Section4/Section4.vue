@@ -30,13 +30,7 @@ section.section4
 
 <script>
 import Modules from './Modules/Modules'
-
-export default {
-  components: { Modules },
-  setup () {
-    return {}
-  }
-}
+export default { components: { Modules } }
 </script>
 
 <style lang="sass" scoped>

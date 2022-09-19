@@ -17,9 +17,6 @@ export default {
       type: Array,
       default: null
     }
-  },
-  setup () {
-    return { }
   }
 }
 </script>

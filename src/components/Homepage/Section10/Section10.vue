@@ -4,14 +4,6 @@ section.section10
   p Пойдем, со мной не страшно. С любовью и максимальной заботой @valeriya.artist
 </template>
 
-<script>
-export default {
-  setup () {
-    return {}
-  }
-}
-</script>
-
 <style lang="sass" scoped>
 .section10
   display: flex

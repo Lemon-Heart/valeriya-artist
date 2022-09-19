@@ -23,5 +23,5 @@
   .tariff__priceWrapper
     .tariff__oldPrice 55 700 ₽
     h1.tariff__price 49 900 ₽
-  ui-button.tariff__button(is-animated) Оформить заказ
+  ui-button.tariff__button(is-animated @click="$emit('buy', 'premium')") Оформить заказ
 </template>

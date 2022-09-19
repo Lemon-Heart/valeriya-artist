@@ -3,17 +3,19 @@
   app-header
 .content
   app-content
-.footer
+.footer(@click="test")
   app-footer
+app-modal
 </template>
 
 <script>
 import AppHeader from '@/components/_layout/Header/Header'
 import AppFooter from '@/components/_layout/Footer/Footer'
 import AppContent from '@/components/_layout/Content/Content'
+import AppModal from '@/components/_layout/Modal/Modal'
 
 export default {
-  components: { AppHeader, AppFooter, AppContent },
+  components: { AppHeader, AppFooter, AppContent, AppModal },
   setup () {
     return {}
   }

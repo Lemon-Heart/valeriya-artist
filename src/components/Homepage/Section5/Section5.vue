@@ -1,19 +1,29 @@
 <template lang="pug">
 section.section5(id="tariffs")
-  base-tariff
-  standart-tariff
-  premium-tariff
+  base-tariff(@buy="buy")
+  standart-tariff(@buy="buy")
+  premium-tariff(@buy="buy")
 </template>
 
 <script>
 import BaseTariff from './Tariffs/Base'
 import StandartTariff from './Tariffs/Standart'
 import PremiumTariff from './Tariffs/Premium'
+import Modal from './/Modal'
+import { inject } from 'vue'
 
 export default {
   components: { BaseTariff, StandartTariff, PremiumTariff },
   setup () {
-    return {}
+    const store = inject('store')
+    const buy = (param) => {
+      console.log(param)
+      store.modalQueue.push({
+        key: 'Modal',
+        component: Modal
+      })
+    }
+    return { buy }
   }
 }
 </script>
@@ -45,6 +55,9 @@ export default {
         box-shadow: 0 0 10px 10px $btnBGDarkHover
         border: none
         background: $BGOpacity
+      &.base
+        .tariff__body
+          margin-bottom: 16.75*$u
       @media screen and (max-width: $XXLWidth)
         max-width: 100*$u
         margin-bottom: 20*$u

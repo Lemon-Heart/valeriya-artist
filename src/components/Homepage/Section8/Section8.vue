@@ -25,14 +25,6 @@ section.section8
           span Сотрудничала с проектом для участия в фестивале Burning Man в 2022 году.
 </template>
 
-<script>
-export default {
-  setup () {
-    return { }
-  }
-}
-</script>
-
 <style lang="sass" scoped>
 .section8
   display: flex

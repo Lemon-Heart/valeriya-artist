@@ -7,7 +7,7 @@
   .accordion__body(ref="body")
     .accordion__content
       ul(v-if="list")
-        li(v-for="(item, i) in list" :key="i" style="padding: 8px 0")
+        li(v-for="(item, i) in list" :key="i" :class="{'altListHeading': altListHeading}")
           ul(v-if="Array.isArray(item)")
             li(v-for="(nestedItem, i) in item" :key="i")
               span {{ nestedItem }}
@@ -30,6 +30,10 @@ export default {
     icon: {
       type: String,
       default: null
+    },
+    altListHeading: {
+      type: Boolean,
+      default: false
     }
   },
   setup () {
@@ -101,4 +105,9 @@ export default {
     background: $headerBG
     padding: 5*$u
     @include font('t16-regular')
+    & > ul > li
+      padding: 2*$u 0
+    .altListHeading > span
+      @include font('t16-demibold')
+      color: $firstColor
 </style>
