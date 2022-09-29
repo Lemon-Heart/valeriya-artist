@@ -15,7 +15,7 @@
     .tariff__text <span class="bold">Сертификат</span> о прохождении курса.
     .tariff__text Доступ к урокам на <span class="bold">12 месяцев</span>.
   .tariff__priceWrapper
-    .tariff__oldPrice 35 700 ₽
+    .tariff__oldPrice 102 000 ₽
     h1.tariff__price 29 900 ₽
-  ui-button.tariff__button(is-animated @click="$emit('buy', 'base')") Оформить заказ
+  ui-button.tariff__button(is-animated @click="$emit('buy', 'Базовый')") Оформить заказ
 </template>

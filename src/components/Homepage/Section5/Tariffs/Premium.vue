@@ -21,7 +21,7 @@
   .tariff__footer
     .tariff__text <span class="bold">Индивидуальный разбор</span> от Валерии после каждого урока.
   .tariff__priceWrapper
-    .tariff__oldPrice 55 700 ₽
+    .tariff__oldPrice 181 000 ₽
     h1.tariff__price 49 900 ₽
-  ui-button.tariff__button(is-animated @click="$emit('buy', 'premium')") Оформить заказ
+  ui-button.tariff__button(is-animated @click="$emit('buy', 'Премиум')") Оформить заказ
 </template>

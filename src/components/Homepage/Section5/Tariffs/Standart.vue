@@ -21,7 +21,7 @@
     .tariff__text Чат с другими учениками курса.
     .tariff__text Возможность приобретения <span class="bold">новых знакомств и поддержки</span> от других художников.
   .tariff__priceWrapper
-    .tariff__oldPrice 45 700 ₽
+    .tariff__oldPrice 131 000 ₽
     h1.tariff__price 39 900 ₽
-  ui-button.tariff__button(is-animated variant="dark" @click="$emit('buy', 'standart')") Оформить заказ
+  ui-button.tariff__button(is-animated variant="dark" @click="$emit('buy', 'Стандарт')") Оформить заказ
 </template>

@@ -24,7 +24,7 @@ export default {
         text: 'Развить свой личный бренд и стать востребованным художником'
       },
       {
-        icon: '/img/homepage/section2/moneyWhite.webp',
+        icon: '/img/homepage/section2/moneywhite.webp',
         text: 'Зарабатывать на любимом деле в кратчайшие сроки'
       },
       {
@@ -32,11 +32,11 @@ export default {
         text: 'Создать портфолио'
       },
       {
-        icon: '/img/homepage/section2/earthWhite.png',
+        icon: '/img/homepage/section2/earthwhite.png',
         text: 'Работать из любой точки мира'
       },
       {
-        icon: '/img/homepage/section2/timeWhite.webp',
+        icon: '/img/homepage/section2/timewhite.webp',
         text: 'Заменить годы обучения в художественной школе и вузе на 1,5 месяца'
       },
       {

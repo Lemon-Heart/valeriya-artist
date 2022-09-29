@@ -30,16 +30,16 @@ export default {
   components: { Swiper, SwiperSlide },
   setup () {
     const slides = ref([
-      '/img/homepage/section9/1.jpg',
-      '/img/homepage/section9/2.png',
-      '/img/homepage/section9/3.png',
-      '/img/homepage/section9/4.png',
-      '/img/homepage/section9/5.png',
-      '/img/homepage/section9/6.png',
-      '/img/homepage/section9/9.jpg',
-      '/img/homepage/section9/10.jpg',
-      '/img/homepage/section9/7.jpg',
-      '/img/homepage/section9/8.jpg'
+      '/img/homepage/section9/1.JPG',
+      '/img/homepage/section9/2.PNG',
+      '/img/homepage/section9/3.PNG',
+      '/img/homepage/section9/4.PNG',
+      '/img/homepage/section9/5.PNG',
+      '/img/homepage/section9/6.PNG',
+      '/img/homepage/section9/9.JPG',
+      '/img/homepage/section9/10.JPG',
+      '/img/homepage/section9/7.JPG',
+      '/img/homepage/section9/8.JPG'
     ])
     return {
       pagination: {

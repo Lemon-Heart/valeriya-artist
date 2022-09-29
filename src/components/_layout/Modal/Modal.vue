@@ -138,25 +138,19 @@ export default {
   overflow: auto
   z-index: 100
   padding: 7*$u
-
-  &._fullscreen
-    padding: 0
-    > .inner
-      max-width: 100%
-      width: 100%
-      border-radius: 0
-      padding: 0
-      margin: 0
+  @media screen and (max-width: $XXSWidth)
+    padding: 2*$u
 
   > .inner
     max-width: min(calc(100% - #{2*12.5*$u}), #{$XXXLWidth})
     position: relative
     z-index: 100
-    background: white
+    background: black
     border-radius: $BR
     padding: 10*$u
     margin: auto
     color: $gray
+    border: 1px solid white
 
     @media screen and (max-width: 765px)
       max-width: calc(100% - #{2*7.5*$u})
