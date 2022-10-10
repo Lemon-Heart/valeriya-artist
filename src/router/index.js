@@ -7,12 +7,12 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/offer',
+    path: '/offer/',
     name: 'offer',
     component: () => import('../views/OfferView.vue')
   },
   {
-    path: '/payment',
+    path: '/payment/',
     name: 'payment',
     component: () => import('../views/PaymentView.vue')
   }
@@ -20,7 +20,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior () {
+    document.getElementById('app').scrollIntoView()
+  }
 })
 
 export default router

@@ -42,7 +42,7 @@ export default {
     }
 
     function validateForm () {
-      if (name.value !== '') {
+      if (name.value !== '' && mail.value !== '' && phone.value !== '') {
         return true
       }
     }
@@ -52,7 +52,7 @@ export default {
       return data
     }
     async function sendData (data) {
-      return await fetch('/api/apply/', {
+      return await fetch('/api/payment/index.php', {
         method: 'POST',
         body: data
       })

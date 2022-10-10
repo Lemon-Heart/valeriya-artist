@@ -55,7 +55,12 @@ export default {
   },
   methods: {
     click () {
-      if (this.scrollTo) window.location.href = `#${this.scrollTo}`
+      if (this.scrollTo) {
+        document.getElementById(this.scrollTo).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
     }
   }
 }
