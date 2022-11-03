@@ -34,9 +34,6 @@ export default {
     const toggleLoader = () => {
       console.log(1)
     }
-    const onSuccess = () => {
-      console.log('succes')
-    }
     const onError = () => {
       console.log('error')
     }
@@ -52,21 +49,26 @@ export default {
       return data
     }
     async function sendData (data) {
-      return await fetch('/api/payment/index.php', {
+      const res = await fetch('/api/payment/payment.php', {
         method: 'POST',
         body: data
       })
+      return res
     }
+
     async function handleFormSubmit () {
       if (validateForm()) {
         const data = serializeForm()
         toggleLoader()
-        const { status } = await sendData(data)
-        toggleLoader()
 
-        if (status === 200) {
-          onSuccess()
+        const response = await sendData(data)
+
+        if (response.ok) {
+          toggleLoader()
+          const res = await response.json()
+          window.location.href = res.url
         } else {
+          toggleLoader()
           onError()
         }
       }

@@ -10,11 +10,6 @@ const routes = [
     path: '/offer/',
     name: 'offer',
     component: () => import('../views/OfferView.vue')
-  },
-  {
-    path: '/payment/',
-    name: 'payment',
-    component: () => import('../views/PaymentView.vue')
   }
 ]
 
