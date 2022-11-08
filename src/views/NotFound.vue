@@ -1,8 +1,7 @@
 <template lang="pug">
 .cont
   .notFoundPage
-    h1
-      ui-text-anim Страница не найдена
+    h1 Страница не найдена
     .error 404
     ui-button.button(is-animated @click="$router.back()") Назад
 </template>

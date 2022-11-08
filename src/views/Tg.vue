@@ -1,7 +1,6 @@
 <template lang="pug">
 .cont
-  h1
-    ui-text-anim Тут можно купить мини-урок
+  h1 Тут можно купить мини-урок
   ui-button.tariff__button(is-animated variant="dark" @click="buy") Оформить заказ
 </template>
 
