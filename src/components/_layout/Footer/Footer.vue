@@ -1,7 +1,7 @@
 <template lang="pug">
 .cont
   .footerComponent
-    router-link(:to="{name: 'offer'}") Публичная оферта
+    router-link(:to="{name: 'Offer'}") Публичная оферта
 </template>
 
 <style lang="sass">

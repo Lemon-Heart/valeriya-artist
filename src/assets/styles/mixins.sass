@@ -57,37 +57,3 @@
     @include font('h2')
   @media screen and (max-width: $mobileWidth)
     @include font('h3')
-
-// ***** Fix Browsers *****
-@mixin fix-old-browsers
-  @media not all and (min-resolution: .001dpcm)
-    @supports (-webkit-appearance: none) and (display: flow-root)
-      @content
-  @supports (-webkit-touch-callout: none)
-    @content
-
-// for only one direction in Safari
-@mixin gap($gap, $direction: "row")
-  gap: $gap
-
-  @include fix-old-browsers
-    gap: initial
-    > *
-      &:not(:last-child)
-        @if $direction == "row"
-          margin-right: $gap
-        @else if $direction == "column"
-          margin-bottom: $gap
-
-// for both directions with margins
-@mixin gap2d($gap, $clearVerticalMargins: false, $clearHorizontalMargins: false)
-  margin: calc( -#{$gap} / 2 )
-  @if $clearVerticalMargins
-    margin-top: 0
-    margin-bottom: 0
-  @if $clearHorizontalMargins
-    margin-right: 0
-    margin-left: 0
-
-  > *
-    margin: calc( #{$gap} / 2 )

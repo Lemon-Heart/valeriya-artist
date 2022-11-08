@@ -1,5 +1,5 @@
 <template lang="pug">
-label.uiInputComponent(:class="classed")
+label.uiInputComponent(v-show="type !== 'hidden'" :class="classed")
   input.input(
     ref="input"
     :class="{_withBorder: withBorder}"
@@ -10,14 +10,8 @@ label.uiInputComponent(:class="classed")
     :data-mask="phoneMask"
     :placeholder="phoneMask"
   )
-  .icon(
-    v-if="iconName"
-    @click="onIconClick"
-  )
-    ui-svg-icon(
-      :name="iconName"
-      :size="15"
-    )
+  .icon(v-if="iconName" @click="onIconClick")
+    ui-svg-icon(:name="iconName" :size="15")
   span {{ placeholder }}
 </template>
 

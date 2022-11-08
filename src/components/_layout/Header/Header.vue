@@ -1,7 +1,7 @@
 <template lang="pug">
 .cont
   .headerComponent
-    router-link.logo(:to="{name: 'home'}")
+    router-link.logo(:to="{name: 'Home'}")
       .text1 Авторский курс от
       .text2 Valeriya.Artist
     header-soc

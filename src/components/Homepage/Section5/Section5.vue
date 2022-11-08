@@ -9,7 +9,7 @@ section.section5(id="tariffs")
 import BaseTariff from './Tariffs/Base'
 import StandartTariff from './Tariffs/Standart'
 import PremiumTariff from './Tariffs/Premium'
-import Modal from './Modal'
+import PaymentForm from '@/components/PaymentForm'
 import { inject } from 'vue'
 
 export default {
@@ -18,11 +18,9 @@ export default {
     const store = inject('store')
     const buy = (tariffProps) => {
       store.modalQueue.push({
-        key: 'Modal',
-        component: Modal,
-        props: {
-          tariffProps
-        }
+        key: 'PaymentForm',
+        component: PaymentForm,
+        props: { tariffProps }
       })
     }
     return { buy }

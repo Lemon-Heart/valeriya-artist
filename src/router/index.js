@@ -3,13 +3,28 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('../views/HomeView.vue')
+    name: 'Home',
+    component: () => import('@/views/HomeView.vue')
   },
   {
-    path: '/offer/',
-    name: 'offer',
-    component: () => import('../views/OfferView.vue')
+    path: '/offer',
+    name: 'Offer',
+    component: () => import('@/views/OfferView.vue')
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: () => import('@/views/Payment.vue')
+  },
+  {
+    path: '/tg',
+    name: 'Tg',
+    component: () => import('@/views/Tg.vue')
+  },
+  {
+    path: '/:notFound(.*)',
+    name: 'NotFound',
+    component: () => import(/* webpackChunkName: "core" */ '@/views/NotFound')
   }
 ]
 
