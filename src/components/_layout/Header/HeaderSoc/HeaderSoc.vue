@@ -22,8 +22,13 @@
     border-radius: 50%
     background-color: $socIcon
     transition: .2s
+    @media screen and (max-width: $XXSWidth)
+      height: 9*$u
+      width: 9*$u
     &:not(:last-child)
       margin-right: 3*$u
+      @media screen and (max-width: $XXSWidth)
+        margin-right: $u
     &:hover
       background-color: $socIconHover
 </style>

@@ -4,12 +4,17 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/HomeView.vue')
+    component: () => import('@/views/Home.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('@/views/Profile.vue')
   },
   {
     path: '/offer',
     name: 'Offer',
-    component: () => import('@/views/OfferView.vue')
+    component: () => import('@/views/Offer.vue')
   },
   {
     path: '/payment',
@@ -24,7 +29,7 @@ const routes = [
   {
     path: '/:notFound(.*)',
     name: 'NotFound',
-    component: () => import(/* webpackChunkName: "core" */ '@/views/NotFound')
+    component: () => import('@/views/NotFound')
   }
 ]
 

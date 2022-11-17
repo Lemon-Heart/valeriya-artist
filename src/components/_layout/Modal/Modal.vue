@@ -143,6 +143,7 @@ export default {
 
   > .inner
     max-width: min(calc(100% - #{2*12.5*$u}), #{$XXXLWidth})
+    min-width: 120*$u
     position: relative
     z-index: 100
     background: black
@@ -156,6 +157,9 @@ export default {
       max-width: calc(100% - #{2*7.5*$u})
     @media screen and (max-width: 500px)
       max-width: calc(100% - #{2*2.5*$u})
+      padding: 10*$u 5*$u
+      width: 100%
+      min-width: auto
 
     &._responsive
       width: 100%

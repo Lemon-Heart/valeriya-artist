@@ -21,7 +21,7 @@ body
   font-family: $fontMain
   font-weight: 500
   font-style: normal
-  color: $cText
+  color: $white
   overflow-x: hidden
   min-height: 100vh
   &.fixed
@@ -47,10 +47,12 @@ body
   margin-left: auto
   margin-right: auto
   padding: 0 15*$u
+  @media screen and (max-width: $padWidth)
+    padding: 0 8*$u
   @media screen and (max-width: $XSWidth)
-    padding: 0 10*$u
-  @media screen and (max-width: $XXSWidth)
     padding: 0 5*$u
+  @media screen and (max-width: $XXSWidth)
+    padding: 0 3*$u
 
 div, button, input, textarea
   box-sizing: border-box
@@ -74,7 +76,7 @@ ul
   li
     color: $firstColor
     span
-      color: $cText
+      color: $white
 
 .swiper-button-prev, .swiper-button-next
   top: 0!important
@@ -89,7 +91,7 @@ ul
   &:hover
     background: $BGOpacity
   &::after
-    color: $cText
+    color: $white
     content: '❯'!important
     width: 40px
     height: 40px

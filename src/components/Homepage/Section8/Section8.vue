@@ -34,7 +34,7 @@ section.section8
     margin-top: 20*$u
   .about
     display: flex
-    border: 1px solid $cText
+    border: 1px solid $white
     border-radius: $BR
     box-shadow: 0 0 10px 10px $btnBGDarkHover
     position: relative
@@ -94,7 +94,7 @@ section.section8
       @media screen and (max-width: 1390px)
         padding: 5*$u 10*$u 5*$u 0
       @media screen and (max-width: $XXXLWidth)
-        border: 1px solid $cText
+        border: 1px solid $white
         padding: 10*$u
         border-radius: $BR
         box-shadow: 0 -10px 20px 10px black

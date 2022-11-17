@@ -98,13 +98,13 @@ export default {
   transition: .2s linear
   border-radius: $BR
   background-color: $btnBG
-  color: $cText
+  color: $white
   &:hover
     background-color: $btnBGHover
-    color: $cText
+    color: $white
   &:active
     background-color: $btnBGActive
-    color: $cText
+    color: $white
 
   > .text
     white-space: nowrap

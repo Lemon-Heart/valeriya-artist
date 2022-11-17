@@ -1,6 +1,6 @@
 export const payment = async payload => {
   if (!payload) return
-  const res = await fetch('https://valeriya-artist.ru/api/payment/payment', {
+  const res = await fetch('/api/payment', {
     method: 'POST',
     body: payload
   })

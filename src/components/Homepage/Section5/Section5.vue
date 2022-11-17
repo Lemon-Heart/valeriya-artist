@@ -47,7 +47,7 @@ export default {
       display: flex
       flex-direction: column
       padding: 10*$u 5*$u
-      border: 1px solid $cText
+      border: 1px solid $white
       border-radius: $BR
       box-shadow: 0 0 10px 10px $btnBGDarkHover
       height: fit-content
