@@ -32,6 +32,7 @@ export default function ModalQueueController (debugMode = false) {
   // Удалание всех модалок из очереди
   const removeAllModals = () => {
     queue.value = []
+    document.querySelector('body').classList.remove('fixed')
   }
 
   // Возвращаемый объект

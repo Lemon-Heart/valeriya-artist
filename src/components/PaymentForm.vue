@@ -41,8 +41,8 @@ export default {
       const response = await payment(data)
 
       if (response.ok) {
-        const res = await response.json()
-        window.location.href = res.url
+        // const res = await response.json()
+        // window.location.href = res.url
       }
     }
 

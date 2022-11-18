@@ -9,19 +9,28 @@ section.section5(id="tariffs")
 import BaseTariff from './Tariffs/Base'
 import StandartTariff from './Tariffs/Standart'
 import PremiumTariff from './Tariffs/Premium'
-import PaymentForm from '@/components/PaymentForm'
 import { inject } from 'vue'
+import LoginAndAuthComponent from '@/components/LoginAndAuthComponent'
+import { payment } from '@/services/payment'
+import { useRouter } from 'vue-router'
 
 export default {
   components: { BaseTariff, StandartTariff, PremiumTariff },
   setup () {
+    const router = useRouter()
     const store = inject('store')
-    const buy = (tariffProps) => {
-      store.modalQueue.push({
-        key: 'PaymentForm',
-        component: PaymentForm,
-        props: { tariffProps }
-      })
+    const buy = async (tariffProps) => {
+      if (store.user.isAuth) {
+        const data = new FormData()
+        data.append('tariff', tariffProps)
+        await payment(data)
+      } else {
+        router.push({ query: { checkout: tariffProps } })
+        store.modalQueue.push({
+          key: 'LoginAndAuthComponent',
+          component: LoginAndAuthComponent
+        })
+      }
     }
     return { buy }
   }

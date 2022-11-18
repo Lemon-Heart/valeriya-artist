@@ -42,8 +42,8 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior () {
-    document.getElementById('app').scrollIntoView()
+  scrollBehavior (to, from) {
+    if (to.name !== from.name) document.getElementById('app').scrollIntoView()
   }
 })
 

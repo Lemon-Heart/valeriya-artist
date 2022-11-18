@@ -5,6 +5,7 @@
     .profile__name {{ profile.name }}
     .profile__phone {{ profile.phone }}
     .profile__email {{ profile.email }}
+    .profile__tariff(v-if="profile.tariff") Действующий тариф: {{ profile.tariff }}
 </template>
 
 <script>
@@ -40,7 +41,7 @@ export default {
     @include font('h1')
     @media screen and (max-width: $XSWidth)
       @include font('h2')
-  &__phone, &__email
+  &__phone, &__email, &__tariff
     @include font('h2')
     @media screen and (max-width: $XSWidth)
       @include font('h3')

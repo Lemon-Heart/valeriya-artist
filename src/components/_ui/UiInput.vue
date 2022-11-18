@@ -11,7 +11,7 @@ label.uiInputComponent(v-show="type !== 'hidden'" :class="classed")
     :placeholder="phoneMask"
   )
   .icon(v-if="iconName" @click="onIconClick")
-    ui-svg-icon(:name="iconName" :size="15")
+    ui-svg-icon(:name="iconName" :size="30")
   span {{ placeholder }}
 </template>
 
@@ -94,7 +94,8 @@ export default {
   },
   methods: {
     onIconClick () {
-      this.$refs.input.focus()
+      // this.$refs.input.focus()
+      this.$emit('onIconClick')
     }
   }
 }
@@ -159,12 +160,9 @@ export default {
       border-color: $btnBGDarkHover
 
   > .icon
-    width: 4*$u
-    height: 4*$u
-    position: absolute
-    left: 5*$u
-    top: 50%
-    transform: translateY(-50%)
-    color: $btnBGDarkHover
     cursor: pointer
+    position: absolute
+    transform: translate(0, -50%)
+    top: 50%
+    right: 10px
 </style>

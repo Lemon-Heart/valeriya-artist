@@ -9,15 +9,27 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onUnmounted, inject } from 'vue'
 import AuthForm from '@/components/AuthForm'
 import LoginForm from '@/components/LoginForm'
+import { useRouter } from 'vue-router'
 
 export default {
   components: { AuthForm, LoginForm },
   setup () {
+    const store = inject('store')
+    const router = useRouter()
+
     const currentTab = ref(0)
-    const toggleTab = () => (currentTab.value = Number(!currentTab.value))
+    const toggleTab = () => {
+      store.user.errMess = ''
+      currentTab.value = Number(!currentTab.value)
+    }
+
+    onUnmounted(() => {
+      router.push({ query: {} })
+    })
+
     return { toggleTab, currentTab }
   }
 }

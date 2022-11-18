@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import router from '@/router'
 import UserProfile from '@/models/UserProfile'
 import store from '@/store'
+import { payment } from '@/services/payment'
 
 export default function UserController () {
   const authToken = ref(localStorage.getItem('auth_token') || '')
@@ -34,8 +35,12 @@ export default function UserController () {
       errMess.value = ''
       localStorage.setItem('auth_token', res.auth_token)
       authToken.value = localStorage.getItem('auth_token')
+      if (router.currentRoute.value.query.checkout) {
+        const data = new FormData()
+        data.append('tariff', router.currentRoute.value.query.checkout)
+        await payment(data)
+      } else router.push({ name: 'Profile' })
       store.modalQueue.removeAll()
-      router.push({ name: 'Profile' })
     } else errMess.value = res.err
   }
 
