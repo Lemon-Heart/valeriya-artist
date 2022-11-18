@@ -2,9 +2,9 @@
 .cont
   UiFullScreenLoader(v-if="loading" mt)
   .profile(v-else)
-    .profile__name {{ name }}
-    .profile__phone {{ phone }}
-    .profile__email {{ email }}
+    .profile__name {{ profile.name }}
+    .profile__phone {{ profile.phone }}
+    .profile__email {{ profile.email }}
 </template>
 
 <script>
@@ -17,13 +17,12 @@ export default {
     const { loading, loadingOn, loadingOff } = useLoading()
 
     loadingOn()
-    store.user.getProfile().then(() => {
-      loadingOff()
-    })
-    const name = computed(() => store.user.profile.name)
-    const phone = computed(() => store.user.profile.phone)
-    const email = computed(() => store.user.profile.email)
-    return { name, phone, email, loading }
+    store.user.getProfile()
+      .then(() => {
+        loadingOff()
+      })
+    const profile = computed(() => store.user.profile)
+    return { profile, loading }
   }
 }
 </script>

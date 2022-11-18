@@ -35,14 +35,12 @@ export default function ModalQueueController (debugMode = false) {
   }
 
   // Возвращаемый объект
-  const output = {
+  return {
     activeModal,
     push: addModal,
     remove: removeModal,
     removeAll: removeAllModals
   }
-
-  return output
 }
 
 class ModalData {

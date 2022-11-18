@@ -1,64 +1,69 @@
-import { ref } from 'vue'
-import getCookie from '@/_core/helpers/getCookie'
+import { ref, computed } from 'vue'
+import router from '@/router'
 import UserProfile from '@/models/UserProfile'
+import store from '@/store'
 
 export default function UserController () {
-  const authToken = getCookie('auth_token') || ''
+  const authToken = ref(localStorage.getItem('auth_token') || '')
   const profile = ref(null)
   const errMess = ref('')
 
+  const isAuth = computed(() => authToken.value)
+
   const getProfile = async () => {
-    const response = await fetch('/api/profile', {
+    const response = await fetch('https://valeriya-artist.ru/api/profile', {
       method: 'GET',
       headers: {
-        Authorization: authToken
+        Authorization: authToken.value
       }
     })
-    const res = await response.json()
-    profile.value = new UserProfile(res)
+    if (response.ok) {
+      const res = await response.json()
+      profile.value = new UserProfile(res)
+    }
   }
 
   const auth = async payload => {
     if (!payload) return
-    const response = await fetch('/api/auth', {
+    const response = await fetch('https://valeriya-artist.ru/api/auth', {
       method: 'POST',
       body: payload
     })
+    const res = await response.json()
     if (response.ok) {
-      const res = await response.json()
-      if (res?.err) errMess.value = res.err
-      else {
-        errMess.value = ''
-        window.location.href = '/profile'
-      }
-    }
+      errMess.value = ''
+      localStorage.setItem('auth_token', res.auth_token)
+      authToken.value = localStorage.getItem('auth_token')
+      store.modalQueue.removeAll()
+      router.push({ name: 'Profile' })
+    } else errMess.value = res.err
   }
 
   const login = async payload => {
     if (!payload) return
-    const response = await fetch('/api/login', {
+    const response = await fetch('https://valeriya-artist.ru/api/login', {
       method: 'POST',
       body: payload
     })
-    if (response.ok) {
-      const res = await response.json()
-      if (res?.err) errMess.value = res.err
-      else auth(payload)
-    }
+    const res = await response.json()
+    if (response.ok) auth(payload)
+    else errMess.value = res.err
   }
 
   const logout = async () => {
-    await fetch('/api/logout')
-    window.location.href = '/'
+    localStorage.removeItem('auth_token')
+    authToken.value = ''
+    profile.value = new UserProfile(null)
+    router.push({ name: 'Home' })
   }
 
   return {
     auth,
+    isAuth,
     login,
     logout,
     profile,
     getProfile,
-    authToken,
     errMess
   }
 }

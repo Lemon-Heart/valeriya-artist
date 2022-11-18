@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import isAuthenticated from './middleware/isAuthenticated'
+import store from '@/store'
+import middlewarePipeline from '@/_core/router/middlewarePipeline'
 
 const routes = [
   {
@@ -9,7 +12,10 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import('@/views/Profile.vue')
+    component: () => import('@/views/Profile.vue'),
+    meta: {
+      middleware: [isAuthenticated]
+    }
   },
   {
     path: '/offer',
@@ -39,6 +45,24 @@ const router = createRouter({
   scrollBehavior () {
     document.getElementById('app').scrollIntoView()
   }
+})
+
+router.beforeEach((to, from, next) => {
+  let middleware = []
+  if (to.meta.middleware) middleware = middleware.concat(Array.isArray(to.meta.middleware) ? to.meta.middleware : [to.meta.middleware])
+  if (!middleware.length) return next()
+
+  const context = {
+    to,
+    from,
+    next,
+    store
+  }
+
+  return middleware[0]({
+    ...context,
+    nextMiddleware: middlewarePipeline(context, middleware, 1)
+  })
 })
 
 export default router
