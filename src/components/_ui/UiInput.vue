@@ -3,19 +3,25 @@ label.uiInputComponent(v-show="type !== 'hidden'" :class="classed")
   input.input(
     ref="input"
     :class="{_withBorder: withBorder}"
-    :type="type"
+    :type="type === 'password' ? viewPass : type"
     :value="modelValue"
     @input="update"
     :name="name"
     :data-mask="phoneMask"
     :placeholder="phoneMask"
   )
-  .icon(v-if="iconName" @click="onIconClick")
-    ui-svg-icon(:name="iconName" :size="30")
   span {{ placeholder }}
+  template(v-if="type === 'password'")
+    .icon(v-if="iconName" @click="toggleViewPass")
+      ui-svg-icon(:name="iconName" :size="30")
+  template(v-else)
+    .icon(v-if="iconName" @click="onIconClick")
+      ui-svg-icon(:name="iconName" :size="30")
 </template>
 
 <script>
+import { ref, computed } from 'vue'
+
 export default {
   props: {
     modelValue: {
@@ -82,21 +88,25 @@ export default {
       }
       emit('update:modelValue', e.target.value)
     }
-    return { update }
-  },
-  computed: {
-    classed () {
+
+    const viewPass = ref('password')
+    const toggleViewPass = () => {
+      viewPass.value === 'password' ? viewPass.value = 'text' : viewPass.value = 'password'
+    }
+
+    const onIconClick = () => {
+      emit('onIconClick')
+    }
+
+    const classed = computed(() => {
       const className = []
-      this.error ? className.push('error') : className.filter(function (f) { return f !== 'error' })
-      this.modelValue === '' ? className.filter(function (f) { return f !== 'notEmpty' }) : className.push('notEmpty')
+      props.error ? className.push('error') : className.filter(function (f) { return f !== 'error' })
+      props.modelValue === '' ? className.filter(function (f) { return f !== 'notEmpty' }) : className.push('notEmpty')
+      viewPass.value === 'text' ? className.filter(function (f) { return f !== 'show' }) : className.push('show')
       return className
-    }
-  },
-  methods: {
-    onIconClick () {
-      // this.$refs.input.focus()
-      this.$emit('onIconClick')
-    }
+    })
+
+    return { update, onIconClick, viewPass, toggleViewPass, classed }
   }
 }
 </script>
@@ -113,6 +123,15 @@ export default {
     color: white
     top: -40%
     left: 0
+  &.show .icon:before
+    content: ''
+    position: absolute
+    width: 7.5*$u
+    height: .5*$u
+    background: $gray
+    transform: rotate(-45deg)
+    top: 3.5*$u
+    right: 0
   > span
     position: absolute
     top: 50%

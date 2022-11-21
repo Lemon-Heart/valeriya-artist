@@ -34,12 +34,12 @@ export default function UserController () {
     if (response.ok) {
       errMess.value = ''
       localStorage.setItem('auth_token', res.auth_token)
-      authToken.value = localStorage.getItem('auth_token')
+      authToken.value = res.auth_token
       if (router.currentRoute.value.query.checkout) {
         const data = new FormData()
         data.append('tariff', router.currentRoute.value.query.checkout)
         await payment(data)
-      } else router.push({ name: 'Profile' })
+      } else await router.push({ name: 'Profile' })
       store.modalQueue.removeAll()
     } else errMess.value = res.err
   }

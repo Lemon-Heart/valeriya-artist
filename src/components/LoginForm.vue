@@ -3,7 +3,13 @@ form.loginForm(ref="form")
   ui-input(v-model="name" name="name" placeholder="Введите ваше имя")
   ui-input(v-model="mail" name="mail" placeholder="Введите ваш email")
   ui-input(v-model="phone" phone-mask="+7 (000) 000-00-00" name="phone" placeholder="Введите ваш телефон")
-  ui-input(v-model="pass" name="pass" type="password" placeholder="Придумайте пароль (минимум 8 символов)")
+  ui-input(
+    v-model="pass"
+    type="password"
+    name="pass"
+    placeholder="Придумайте пароль (минимум 8 символов)"
+    iconName="eye"
+  )
   ui-button.button(:is-animated="!error" :is-disabled="error" :title="error ? 'Заполните все поля' : ''" @click="handleFormSubmit") Зарегистрироваться
   .error(v-if="errMess") {{ errMess }}
 </template>

@@ -26,9 +26,7 @@ export default {
       currentTab.value = Number(!currentTab.value)
     }
 
-    onUnmounted(() => {
-      router.push({ query: {} })
-    })
+    onUnmounted(() => router.push({ query: {} }))
 
     return { toggleTab, currentTab }
   }

@@ -1,14 +1,12 @@
 <template lang="pug">
 form.signinForm(ref="form")
   ui-input(v-model="mail" name="mail" placeholder="Введите ваш email")
-  ui-input.password(
+  ui-input(
     v-model="pass"
-    :type="viewPass ? 'text' : 'password'"
-    :class="{'show': viewPass}"
+    type="password"
     name="pass"
     placeholder="Введите пароль"
     iconName="eye"
-    @onIconClick="toggleViewPass"
   )
   ui-button.button(:is-animated="!error" :is-disabled="error" :title="error ? 'Заполните все поля' : ''" @click="handleFormSubmit") Войти
   .error(v-if="errMess") {{ errMess }}
@@ -35,27 +33,12 @@ export default {
       store.user.auth(data)
     }
 
-    const viewPass = ref(false)
-    const toggleViewPass = () => (viewPass.value = !viewPass.value)
-
-    return { form, mail, pass, error, errMess, handleFormSubmit, toggleViewPass, viewPass }
+    return { form, mail, pass, error, errMess, handleFormSubmit }
   }
 }
 </script>
 
 <style lang="sass" scoped>
-.password.show
-  position: relative
-  &:deep
-    .icon:before
-      content: ''
-      position: absolute
-      width: 7.5*$u
-      height: .5*$u
-      background: $gray
-      transform: rotate(-45deg)
-      top: 3.5*$u
-      right: 0
 .signinForm
   display: flex
   flex-direction: column
