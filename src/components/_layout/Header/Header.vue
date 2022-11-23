@@ -1,13 +1,13 @@
 <template lang="pug">
 .cont
   .headerComponent
-    router-link.logo(:to="{name: 'Home'}")
-      .text1 Авторский курс от
-      .text2 Valeriya.Artist
+    .left
+      ui-burger-menu-icon
+      ui-logo
     .right
       header-soc
-      ui-button.button(v-if="user.isAuth" size="M" @click="user.logout") Выйти
-      ui-button.button(v-else size="M" @click="onButtonClick") Войти
+      //- ui-button.button(v-if="user.isAuth" size="M" @click="user.logout") Выйти
+      //- ui-button.button(v-else size="M" @click="onButtonClick") Войти
 </template>
 
 <script>
@@ -26,6 +26,7 @@ export default {
         component: LoginAndAuthComponent
       })
     }
+
     return { onButtonClick, user }
   }
 }
@@ -37,18 +38,14 @@ export default {
   display: flex
   justify-content: space-between
   align-items: center
+  .left
+    display: flex
+    & > *
+      margin-right: 10*$u
+      @media screen and (max-width: $mobileWidth)
+        margin-right: 5*$u
   .right
     display: flex
-  .logo
-    display: flex
-    color: $socIcon
-    @include font('h3')
-    @media screen and (max-width: $mobileWidth)
-      font-size: 4.5*$u
-    .text1
-      margin-right: 2*$u
-      @media screen and (max-width: $XSWidth)
-        display: none
   .button
     margin-left: 4*$u
     @media screen and (max-width: $mobileWidth)

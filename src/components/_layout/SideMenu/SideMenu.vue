@@ -1,0 +1,82 @@
+<template lang="pug">
+.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close")
+  .sideMenu(@click.stop)
+    .top
+      ui-logo(clipped color="#f8d4ac")
+      ui-close(:size="40" @onClick="sideMenu.toggle")
+    .menu
+      .mainMenu
+        router-link(:to="{ name: 'Home'}") Главная
+        router-link(:to="{ name: 'Profile'}") Профиль
+      .footerMenu
+        router-link.exit(v-if="user.isAuth" :to="{ name: 'Offer'}") Выход
+          ui-svg-icon(name="exit" :size="24")
+        router-link(:to="{ name: 'Offer'}") Публичная оферта
+        router-link(:to="{ name: 'Payment'}") Способы оплаты
+</template>
+
+<script>
+import { inject } from 'vue'
+
+export default {
+  setup () {
+    const store = inject('store')
+    const user = store.user
+    const sideMenu = store.sideMenu
+    return { sideMenu, user }
+  }
+}
+</script>
+
+<style lang="sass" scoped>
+.sideMenuWrapper
+  position: fixed
+  width: 100%
+  height: 100%
+  background: $btnBGDarkHover
+  top: 0
+  transition: .5s
+  opacity: 0
+  visibility: hidden
+  &.open
+    visibility: visible
+    z-index: 100
+    opacity: 1
+    .sideMenu
+      transform: translateX(0)
+.sideMenu
+  position: relative
+  display: flex
+  flex-direction: column
+  max-width: 75*$u
+  height: 100%
+  padding: 6*$u 10*$u 10*$u 10*$u
+  background: $headerBG
+  box-shadow: 0px 0px 10px 10px black
+  transform: translateX(-100%)
+  transition: .5s
+.top
+  display: flex
+  & > *:first-child
+    margin-right: 11*$u
+.menu
+  margin-top: 10*$u
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  height: 100%
+  & > *
+    display: flex
+    flex-direction: column
+.mainMenu, .exit
+  @include font('h3')
+.exit
+  display: flex
+  align-items: center
+  margin-bottom: 5*$u
+  & > *
+    margin-left: $u
+    margin-top: $u
+.footerMenu
+  @include font('t16-regular')
+</style>

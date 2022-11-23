@@ -102,7 +102,7 @@ export default {
       const className = []
       props.error ? className.push('error') : className.filter(function (f) { return f !== 'error' })
       props.modelValue === '' ? className.filter(function (f) { return f !== 'notEmpty' }) : className.push('notEmpty')
-      viewPass.value === 'text' ? className.filter(function (f) { return f !== 'show' }) : className.push('show')
+      viewPass.value === 'password' ? className.filter(function (f) { return f !== 'show' }) : className.push('show')
       return className
     })
 

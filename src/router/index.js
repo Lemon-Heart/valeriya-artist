@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import isAuthenticated from './middleware/isAuthenticated'
+import closeSideMenu from './middleware/closeSideMenu'
 import store from '@/store'
 import middlewarePipeline from '@/_core/router/middlewarePipeline'
 
@@ -48,7 +49,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  let middleware = []
+  let middleware = [closeSideMenu]
   if (to.meta.middleware) middleware = middleware.concat(Array.isArray(to.meta.middleware) ? to.meta.middleware : [to.meta.middleware])
   if (!middleware.length) return next()
 

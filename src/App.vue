@@ -1,9 +1,10 @@
 <template lang="pug">
 .header
   app-header
+  side-menu
 .content
   app-content
-.footer(@click="test")
+.footer
   app-footer
 app-modal
 </template>
@@ -13,9 +14,10 @@ import AppHeader from '@/components/_layout/Header/Header'
 import AppFooter from '@/components/_layout/Footer/Footer'
 import AppContent from '@/components/_layout/Content/Content'
 import AppModal from '@/components/_layout/Modal/Modal'
+import SideMenu from '@/components/_layout/SideMenu/SideMenu'
 
 export default {
-  components: { AppHeader, AppFooter, AppContent, AppModal },
+  components: { AppHeader, AppFooter, AppContent, AppModal, SideMenu },
   setup () {
     return {}
   }
@@ -27,6 +29,7 @@ export default {
   display: flex
   flex-direction: column
   min-height: 99.9vh
+  overflow-x: hidden
 .header
   background-color: $headerBG
   position: fixed

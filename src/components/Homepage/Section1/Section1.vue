@@ -29,6 +29,8 @@ section.section1
         display: none
     h1
       text-align: start
+      @media screen and (max-width: $padWidth)
+        text-align: center
     p
       margin-bottom: 10*$u
       @include font('t18-demibold')

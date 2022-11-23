@@ -40,14 +40,15 @@ export default {
 
 <style lang="sass" scoped>
 .profile
-  background: $white
+  background: $BGOpacity
   padding: 10*$u
   border-radius: $BR
-  color: $gray
+  color: $white
   margin-top: 10*$u
   @media screen and (max-width: $XSWidth)
     padding: 5*$u
   &__name
+    color: $firstColor
     @include font('h1')
     @media screen and (max-width: $XSWidth)
       @include font('h2')
@@ -56,12 +57,13 @@ export default {
     @media screen and (max-width: $XSWidth)
       @include font('h3')
 .videos
-  background: $white
+  background: $BGOpacity
   padding: 10*$u
   border-radius: $BR
-  color: $gray
+  color: $white
   margin-top: 10*$u
   &__head
+    color: $firstColor
     @include font('h1')
     @media screen and (max-width: $XSWidth)
       @include font('h2')

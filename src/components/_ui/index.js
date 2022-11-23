@@ -6,6 +6,9 @@ import UiInput from './UiInput'
 import UiSelect from './UiSelect'
 import UiFullScreenLoader from './UiFullScreenLoader'
 import UiBaseLoader from './UiBaseLoader'
+import UiClose from './UiClose'
+import UiLogo from './UiLogo'
+import UiBurgerMenuIcon from './UiBurgerMenuIcon'
 
 export default function initializeUiKit (app) {
   app.component('UiSvgIcon', UiSvgIcon)
@@ -16,4 +19,7 @@ export default function initializeUiKit (app) {
   app.component('UiSelect', UiSelect)
   app.component('UiFullScreenLoader', UiFullScreenLoader)
   app.component('UiBaseLoader', UiBaseLoader)
+  app.component('UiClose', UiClose)
+  app.component('UiLogo', UiLogo)
+  app.component('UiBurgerMenuIcon', UiBurgerMenuIcon)
 }

@@ -10,14 +10,7 @@ transition(name="modal")
       :class="[{_responsive: isResponsive}]"
       @click.stop
     )
-      .closeButton(
-        v-if="isClosable"
-        @click="onCloseButtonClick"
-      )
-        ui-svg-icon(
-          name="close"
-          :size="24"
-        )
+      ui-close(v-if="isClosable" @onClick="onCloseButtonClick")
       component(
         :is="activeModal.component"
         @close="onClose"
@@ -163,15 +156,4 @@ export default {
 
     &._responsive
       width: 100%
-
-    > .closeButton
-      width: 6*$u
-      height: 6*$u
-      position: absolute
-      top: 5*$u
-      right: 5*$u
-      background-color: transparent
-      padding: 0.5*$u
-      box-shadow: none
-      cursor: pointer
 </style>
