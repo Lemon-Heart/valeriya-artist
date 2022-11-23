@@ -9,7 +9,7 @@
         router-link(:to="{ name: 'Home'}") Главная
         router-link(:to="{ name: 'Profile'}") Профиль
       .footerMenu
-        router-link.exit(v-if="user.isAuth" :to="{ name: 'Offer'}") Выход
+        .exit(v-if="user.isAuth" @click="user.logout") Выход
           ui-svg-icon(name="exit" :size="24")
         router-link(:to="{ name: 'Offer'}") Публичная оферта
         router-link(:to="{ name: 'Payment'}") Способы оплаты
@@ -71,6 +71,7 @@ export default {
 .mainMenu, .exit
   @include font('h3')
 .exit
+  cursor: pointer
   display: flex
   align-items: center
   margin-bottom: 5*$u

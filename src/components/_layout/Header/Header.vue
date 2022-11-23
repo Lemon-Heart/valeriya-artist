@@ -6,29 +6,14 @@
       ui-logo
     .right
       header-soc
-      //- ui-button.button(v-if="user.isAuth" size="M" @click="user.logout") Выйти
-      //- ui-button.button(v-else size="M" @click="onButtonClick") Войти
 </template>
 
 <script>
-import { inject } from 'vue'
 import HeaderSoc from './HeaderSoc/HeaderSoc'
 import LoginAndAuthComponent from '@/components/LoginAndAuthComponent'
 
 export default {
-  components: { HeaderSoc, LoginAndAuthComponent },
-  setup () {
-    const store = inject('store')
-    const user = store.user
-    const onButtonClick = () => {
-      store.modalQueue.push({
-        key: 'LoginAndAuthComponent',
-        component: LoginAndAuthComponent
-      })
-    }
-
-    return { onButtonClick, user }
-  }
+  components: { HeaderSoc, LoginAndAuthComponent }
 }
 </script>
 
