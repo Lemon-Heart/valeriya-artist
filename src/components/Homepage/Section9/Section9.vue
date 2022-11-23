@@ -30,6 +30,8 @@ export default {
   components: { Swiper, SwiperSlide },
   setup () {
     const slides = ref([
+      '/img/homepage/section9/11.JPG',
+      '/img/homepage/section9/12.PNG',
       '/img/homepage/section9/1.JPG',
       '/img/homepage/section9/2.PNG',
       '/img/homepage/section9/3.PNG',
