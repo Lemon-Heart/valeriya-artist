@@ -1,6 +1,6 @@
 <template lang="pug">
 .cont
-  UiFullScreenLoader(v-if="loading" mt)
+  UiFullScreenLoader.loader(v-if="loading")
   template(v-else)
     .profile
       .profile__name {{ profile.name }}
@@ -42,6 +42,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.loader
+  height: calc(100vh - 45*$u)
 .profile
   background: $BGOpacity
   padding: 10*$u

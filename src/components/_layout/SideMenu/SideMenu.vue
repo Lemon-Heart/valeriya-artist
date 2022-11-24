@@ -14,12 +14,15 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
           ui-svg-icon(name="exit" :size="24")
         router-link(:to="{ name: 'Offer'}") Публичная оферта
         router-link(:to="{ name: 'Payment'}") Способы оплаты
+        header-soc.soc
 </template>
 
 <script>
 import { inject } from 'vue'
+import HeaderSoc from '@/components/_layout/Header/HeaderSoc/HeaderSoc'
 
 export default {
+  components: { HeaderSoc },
   setup () {
     const store = inject('store')
     const user = store.user
@@ -77,8 +80,10 @@ export default {
   align-items: center
   margin-bottom: 5*$u
   & > *
-    margin-left: $u
+    margin-left: 2*$u
     margin-top: $u
 .footerMenu
   @include font('t16-regular')
+  .soc
+    margin-top: 10*$u
 </style>

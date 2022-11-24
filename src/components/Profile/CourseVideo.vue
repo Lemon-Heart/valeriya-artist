@@ -2,10 +2,10 @@
 .video
   .video__name {{ name }}
   .video__img(v-if="!isFrameVisible")
-    ui-svg-icon.video__icon(name="youtube" :size="60" @click="isFrameVisible = true")
     img(v-lazy="`//img.youtube.com/vi/${video}/hqdefault.jpg`" @click="isFrameVisible = true")
   iframe(v-if="isFrameVisible" :src="`https://www.youtube.com/embed/${video}?autoplay=1&amp`" allow="autoplay" allowfullscreen)
-  a.video__link(:href="link" target="blank") Дополнительные материалы
+  a.video__link(v-if="link" :href="link" target="blank") Дополнительные материалы
+    ui-svg-icon(name="link" :size="20")
 </template>
 
 <script>
@@ -50,9 +50,17 @@ export default {
     transform: translate(-50%, -50%)
     cursor: pointer
   &__name
-    @include font('h3')
-    line-height: 100%
+    @include font('t16-regular')
+    line-height: 130%
     margin-bottom: 3*$u
   &__link
+    @include font('t14-regular')
     margin-top: 3*$u
+    display: flex
+    color: $firstColor
+    &:deep
+      .svgIconComponent
+        margin-left: $u
+      svg
+        fill: $firstColor
 </style>

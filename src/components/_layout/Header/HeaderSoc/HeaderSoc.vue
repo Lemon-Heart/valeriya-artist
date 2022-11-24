@@ -11,7 +11,6 @@
 <style lang="sass">
 .headerSocComponent
   display: flex
-  justify-content: space-between
   align-items: center
   .headerIconWrapper
     display: flex

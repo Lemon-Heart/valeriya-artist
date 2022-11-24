@@ -4,8 +4,8 @@
   side-menu
 .content
   app-content
-.footer
-  app-footer
+//- .footer
+//-   app-footer
 app-modal
 </template>
 
