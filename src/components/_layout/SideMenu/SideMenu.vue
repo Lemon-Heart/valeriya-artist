@@ -1,5 +1,5 @@
 <template lang="pug">
-.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close")
+aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close")
   .sideMenu(@click.stop)
     .top
       ui-logo(clipped color="#f8d4ac")
@@ -8,6 +8,7 @@
       .mainMenu
         router-link(:to="{ name: 'Home'}") Главная
         router-link(:to="{ name: 'Profile'}") Профиль
+        //- router-link(:to="{ name: 'Catalog'}") Каталог
       .footerMenu
         .exit(v-if="user.isAuth" @click="user.logout") Выход
           ui-svg-icon(name="exit" :size="24")

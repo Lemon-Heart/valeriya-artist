@@ -10,17 +10,16 @@
     .videos(v-for="course in courses" :key="course.id")
       .videos__head {{ course.name }}
       .videos__wrapper
-        .videos__item(v-for="lesson in course.lessons" :key="lesson.id")
-          .videos__name {{ lesson.name }}
-          iframe(:src="`https://www.youtube.com/embed/${lesson.video}`" allowfullscreen)
-          a.videos__link(:href="lesson.link" target="blank") Дополнительные материалы
+        course-video(v-for="lesson in course.lessons" :key="lesson.id" :name="lesson.name" :video="lesson.video" :link="lesson.link")
 </template>
 
 <script>
 import { inject, computed } from 'vue'
 import { useLoading } from '@/composables/useLoading'
+import CourseVideo from '@/components/Profile/CourseVideo'
 
 export default {
+  components: { CourseVideo },
   setup () {
     const store = inject('store')
     const { loading, loadingOn, loadingOff } = useLoading()
@@ -33,7 +32,11 @@ export default {
     const profile = computed(() => store.user.profile)
     const courses = computed(() => store.user.courses)
 
-    return { profile, loading, courses }
+    const insertFrame = () => {
+
+    }
+
+    return { profile, loading, courses, insertFrame }
   }
 }
 </script>
@@ -62,6 +65,8 @@ export default {
   border-radius: $BR
   color: $white
   margin-top: 10*$u
+  @media screen and (max-width: $XXSWidth)
+    padding: 5*$u
   &__head
     color: $firstColor
     @include font('h1')
@@ -71,20 +76,5 @@ export default {
     margin-top: 20px
     display: grid
     grid-template-columns: repeat( auto-fit, minmax(75*$u, 1fr))
-    grid-auto-rows: 250px
     gap: 10*$u 7.5*$u
-  &__item
-    width: 100%
-    height: 100%
-    display: flex
-    flex-direction: column
-    iframe
-      max-width: 95*$u
-      border-radius: 20px
-      width: 100%
-      margin: 3*$u 0
-      height: calc(100% - 30px)
-  &__name
-    @include font('h3')
-    line-height: 100%
 </style>

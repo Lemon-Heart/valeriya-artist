@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import isAuthenticated from './middleware/isAuthenticated'
 import closeSideMenu from './middleware/closeSideMenu'
+import yametrika from './middleware/yametrika'
 import store from '@/store'
 import middlewarePipeline from '@/_core/router/middlewarePipeline'
 
@@ -17,6 +18,17 @@ const routes = [
     meta: {
       middleware: [isAuthenticated]
     }
+  },
+  {
+    path: '/catalog',
+    name: 'Catalog',
+    component: () => import('@/views/Catalog.vue')
+  },
+  {
+    path: '/catalog/:id',
+    name: 'Product',
+    props: route => ({ productId: Number(route.params.id) }),
+    component: () => import('@/views/Product')
   },
   {
     path: '/offer',
@@ -49,7 +61,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  let middleware = [closeSideMenu]
+  let middleware = [closeSideMenu, yametrika]
   if (to.meta.middleware) middleware = middleware.concat(Array.isArray(to.meta.middleware) ? to.meta.middleware : [to.meta.middleware])
   if (!middleware.length) return next()
 
