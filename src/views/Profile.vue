@@ -10,7 +10,7 @@
     .videos(v-for="course in courses" :key="course.id")
       .videos__head {{ course.name }}
       .videos__wrapper
-        course-video(v-for="lesson in course.lessons" :key="lesson.id" :name="lesson.name" :video="lesson.video" :link="lesson.link")
+        course-video(v-for="lesson in course.lessons" :key="lesson.id" :name="lesson.name" :video="lesson.video" :link="lesson.link" :available="lesson.available")
 </template>
 
 <script>

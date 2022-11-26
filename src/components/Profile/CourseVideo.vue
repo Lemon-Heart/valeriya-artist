@@ -1,10 +1,10 @@
 <template lang="pug">
-.video
+.video(:class="{'notAvailable': !available}")
   .video__name {{ name }}
   .video__img(v-if="!isFrameVisible")
-    img(v-lazy="`//img.youtube.com/vi/${video}/hqdefault.jpg`" @click="isFrameVisible = true")
-  iframe(v-if="isFrameVisible" :src="`https://www.youtube.com/embed/${video}?autoplay=1&amp`" allow="autoplay" allowfullscreen)
-  a.video__link(v-if="link" :href="link" target="blank") Дополнительные материалы
+    img(v-lazy="`//img.youtube.com/vi/${video}/hqdefault.jpg`" @click="available ? isFrameVisible = true : isFrameVisible = false")
+  iframe(v-if="isFrameVisible && available" :src="`https://www.youtube.com/embed/${video}?autoplay=1&amp`" allow="autoplay" allowfullscreen)
+  a.video__link(v-if="link && available" :href="link" target="blank") Дополнительные материалы
     ui-svg-icon(name="link" :size="20")
 </template>
 
@@ -15,7 +15,8 @@ export default {
   props: {
     name: String,
     video: String,
-    link: String
+    link: String,
+    available: Boolean
   },
   setup () {
     const isFrameVisible = ref(false)
@@ -30,6 +31,8 @@ export default {
   height: 100%
   display: flex
   flex-direction: column
+  &.notAvailable
+    filter: brightness(0.5)
   iframe, &__img
     max-width: 95*$u
     border-radius: 20px

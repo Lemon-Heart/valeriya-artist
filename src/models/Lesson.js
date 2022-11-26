@@ -5,5 +5,6 @@ export default class Lesson {
     this.moduleId = data?.module_id ?? null
     this.name = data?.name ?? null
     this.video = data?.video ?? null
+    this.available = data?.available ?? false
   }
 }
