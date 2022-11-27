@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import isAuthenticated from './middleware/isAuthenticated'
 import closeSideMenu from './middleware/closeSideMenu'
@@ -16,13 +17,17 @@ const routes = [
     name: 'Profile',
     component: () => import('@/views/Profile.vue'),
     meta: {
-      middleware: [isAuthenticated]
+      middleware: [isAuthenticated],
+      title: 'Профиль'
     }
   },
   {
     path: '/catalog',
     name: 'Catalog',
-    component: () => import('@/views/Catalog.vue')
+    component: () => import('@/views/Catalog.vue'),
+    meta: {
+      title: 'Каталог'
+    }
   },
   {
     path: '/catalog/:id',
@@ -33,12 +38,18 @@ const routes = [
   {
     path: '/offer',
     name: 'Offer',
-    component: () => import('@/views/Offer.vue')
+    component: () => import('@/views/Offer.vue'),
+    meta: {
+      title: 'Публичная оферта'
+    }
   },
   {
     path: '/payment',
     name: 'Payment',
-    component: () => import('@/views/Payment.vue')
+    component: () => import('@/views/Payment.vue'),
+    meta: {
+      title: 'Способы оплаты'
+    }
   },
   {
     path: '/tg',
@@ -48,7 +59,10 @@ const routes = [
   {
     path: '/:notFound(.*)',
     name: 'NotFound',
-    component: () => import('@/views/NotFound')
+    component: () => import('@/views/NotFound'),
+    meta: {
+      title: '404'
+    }
   }
 ]
 
@@ -58,6 +72,15 @@ const router = createRouter({
   scrollBehavior (to, from) {
     if (to.name !== from.name) document.getElementById('app').scrollIntoView()
   }
+})
+
+const DEFAULT_TITLE = 'Valeriya.Artist'
+const DEFAULT_DESCRIPTION = 'Valeriya.Artist'
+router.afterEach((to, from) => {
+  nextTick(() => {
+    document.title = to.meta.title || DEFAULT_TITLE
+    document.querySelector('meta[name="description"]').setAttribute('content', to.meta.description || DEFAULT_DESCRIPTION)
+  })
 })
 
 router.beforeEach((to, from, next) => {

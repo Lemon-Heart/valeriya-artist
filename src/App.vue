@@ -3,24 +3,17 @@
   app-header
   side-menu
 .content
-  app-content
-//- .footer
-//-   app-footer
+  router-view
 app-modal
 </template>
 
 <script>
 import AppHeader from '@/components/_layout/Header/Header'
-import AppFooter from '@/components/_layout/Footer/Footer'
-import AppContent from '@/components/_layout/Content/Content'
 import AppModal from '@/components/_layout/Modal/Modal'
 import SideMenu from '@/components/_layout/SideMenu/SideMenu'
 
 export default {
-  components: { AppHeader, AppFooter, AppContent, AppModal, SideMenu },
-  setup () {
-    return {}
-  }
+  components: { AppHeader, AppModal, SideMenu }
 }
 </script>
 
@@ -41,8 +34,4 @@ export default {
 .content
   margin-top: 20*$u
   padding-bottom: 100px
-.footer
-  margin-top: auto
-  background-color: $headerBG
-  padding: 5*$u 0
 </style>

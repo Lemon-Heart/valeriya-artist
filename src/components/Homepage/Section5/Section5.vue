@@ -10,7 +10,7 @@ import BaseTariff from './Tariffs/Base'
 import StandartTariff from './Tariffs/Standart'
 import PremiumTariff from './Tariffs/Premium'
 import { inject } from 'vue'
-import LoginAndAuthComponent from '@/components/LoginAndAuthComponent'
+import LoginAndAuthComponent from '@/components/Forms/LoginAndAuthComponent'
 import { payment } from '@/services/payment'
 import { useRouter } from 'vue-router'
 

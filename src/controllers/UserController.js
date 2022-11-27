@@ -75,6 +75,7 @@ export default function UserController () {
     authToken.value = ''
     profile.value = new UserProfile(null)
     router.push({ name: 'Home' })
+    store.sideMenu.close()
   }
 
   return {

@@ -10,8 +10,8 @@
 
 <script>
 import { ref, onUnmounted, inject } from 'vue'
-import AuthForm from '@/components/AuthForm'
-import LoginForm from '@/components/LoginForm'
+import AuthForm from './AuthForm'
+import LoginForm from './LoginForm'
 import { useRouter } from 'vue-router'
 
 export default {

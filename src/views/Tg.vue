@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PaymentForm from '@/components/PaymentForm'
+import PaymentForm from '@/components/Forms/PaymentForm'
 import { inject } from 'vue'
 
 export default {

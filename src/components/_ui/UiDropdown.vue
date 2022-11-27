@@ -1,5 +1,8 @@
 <template lang="pug">
-.accordion(ref="item")
+.accordion(
+  ref="item"
+  :class="{'text': text}"
+)
   .accordion__header(@click="click")
     .img(v-if="icon")
       img(:src="icon")
@@ -12,6 +15,7 @@
             li(v-for="(nestedItem, i) in item" :key="i")
               span {{ nestedItem }}
           span(v-else) {{ item }}
+      span(v-if="text") {{ text }}
 </template>
 
 <script>
@@ -19,6 +23,11 @@ import { ref, onMounted } from 'vue'
 
 export default {
   props: {
+    variant: {
+      // text
+      type: String,
+      default: 'default'
+    },
     title: {
       type: String,
       required: true
@@ -34,6 +43,10 @@ export default {
     altListHeading: {
       type: Boolean,
       default: false
+    },
+    text: {
+      type: String,
+      default: null
     }
   },
   setup () {
@@ -60,6 +73,17 @@ export default {
 .accordion
   overflow: hidden
   border-radius: $BR
+  &.text
+    .accordion__header
+      width: fit-content
+      padding: 0
+      background: transparent
+      span
+        color: $firstColor
+        margin-right: 3*$u
+    .accordion__content
+      padding: 4*$u 0 0 0
+      background: transparent
   &__header
     display: flex
     justify-content: space-between

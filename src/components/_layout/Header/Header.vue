@@ -10,10 +10,9 @@
 
 <script>
 import HeaderSoc from './HeaderSoc/HeaderSoc'
-import LoginAndAuthComponent from '@/components/LoginAndAuthComponent'
 
 export default {
-  components: { HeaderSoc, LoginAndAuthComponent }
+  components: { HeaderSoc }
 }
 </script>
 
