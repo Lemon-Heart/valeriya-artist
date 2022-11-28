@@ -1,89 +1,94 @@
 <template lang="pug">
 .cont
-  router-link.back(:to="{ name: 'Catalog' }")
-    ui-svg-icon(name="back" :size="20")
-    | Назад в каталог
-  h1 Картина {{ productId }}
-  .product
-    .product__img
-      swiper(
-        @swiper="setThumbsSwiper"
-        :direction="'vertical'"
-        :spaceBetween="20"
-        :slidesPerView="slides.length"
-        :grabCursor="true"
-        :freeMode="true"
-        :watchSlidesProgress="true"
-        :modules="modules"
-        class="product__galeryThumbs"
-      )
-        swiper-slide(v-for="(slide, i) in slides" :key="i")
-          img(:src="slide")
-      swiper(
-        :thumbs="{ swiper: thumbsSwiper }"
-        :loop="true"
-        :slidesPerView="1"
-        :slidesPerGroup="1"
-        :grabCursor="true"
-        :modules="modules"
-        class="product__galery"
-      )
-        swiper-slide(v-for="(slide, i) in slides" :key="i")
-          img(:src="slide")
-    .product__card
-      .product__price 30 000 ₽
-      ui-button Купить
-      .product__description
-        .p
-          .bold Материалы:
-          |  холст на подрамнике, акрил, лак защитный
-        .p
-          .bold Размер:
-          |  46*55 см
-        .p
-          .bold Рекомендации по уходу:
-          |  холст рекомендуется протирать влажной салфеткой от пыли
-        .p
-          .bold Доставка:
-          ul
-            li
-              span Самовывоз (Иваново)
-            li
-              span Boxberry (Россия)
-            li
-              span Почтовые службы по миру
-        ui-dropdown(
-          variant="text"
-          title="Описание"
-          text="Яркий теплый свет легко подчеркивает нежный изгиб обнаженного женского тела"
+  UiFullScreenLoader.loader(v-if="loading")
+  template(v-else)
+    router-link.back(:to="{ name: 'Catalog' }")
+      ui-svg-icon(name="back" :size="20")
+      | Назад в каталог
+    h1 {{ paint.name }}
+    .product
+      .product__img
+        swiper(
+          @swiper="setThumbsSwiper"
+          :direction="'vertical'"
+          :spaceBetween="20"
+          :slidesPerView="paint.images.length"
+          :grabCursor="true"
+          :freeMode="true"
+          :watchSlidesProgress="true"
+          :modules="modules"
+          class="product__galeryThumbs"
         )
+          swiper-slide(v-for="(slide, i) in paint.images" :key="i")
+            img(:src="slide")
+        swiper(
+          :thumbs="{ swiper: thumbsSwiper }"
+          :loop="true"
+          :slidesPerView="1"
+          :spaceBetween="1"
+          :grabCursor="true"
+          :modules="modules"
+          class="product__galery"
+        )
+          swiper-slide(v-for="(slide, i) in paint.images" :key="i")
+            img(:src="slide")
+      .product__card
+        .product__price {{ paint.price }} ₽
+        ui-button Купить
+        .product__description
+          .p
+            .bold Материалы:
+            |  {{ paint.materials }}
+          .p
+            .bold Размер:
+            |  {{ paint.size }}
+          .p
+            .bold Рекомендации по уходу:
+            |  {{ paint.recomendation }}
+          .p
+            .bold Доставка:
+            ul
+              li
+                span Самовывоз (Иваново)
+              li
+                span Boxberry (Россия)
+              li
+                span Почтовые службы по миру
+          ui-dropdown(
+            variant="text"
+            title="Описание"
+            :text="paint.description"
+          )
 </template>
 
 <script>
+import { useLoading } from '@/composables/useLoading'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode, Thumbs } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/thumbs'
-import { ref } from 'vue'
+import { ref, inject, computed } from 'vue'
 
 export default {
   components: { Swiper, SwiperSlide },
   props: {
     productId: Number
   },
-  setup () {
-    const slides = ref([
-      '/img/catalog/1.jpg',
-      '/img/catalog/2.jpg'
-    ])
-    const thumbsSwiper = ref(null)
+  setup (props) {
+    const { loading, loadingOn, loadingOff } = useLoading()
+    loadingOn()
 
+    const store = inject('store')
+    store.catalog.getProduct(props.productId).then(() => loadingOff())
+    const paint = computed(() => store.catalog.currentPaint)
+
+    const thumbsSwiper = ref(null)
     const setThumbsSwiper = (swiper) => {
       thumbsSwiper.value = swiper
     }
 
-    return { thumbsSwiper, setThumbsSwiper, modules: [FreeMode, Thumbs], slides }
+    return { thumbsSwiper, setThumbsSwiper, modules: [FreeMode, Thumbs], paint, loading }
   }
 }
 </script>
@@ -95,6 +100,7 @@ export default {
   display: flex
   align-items: center
   transition: .1s
+  margin-bottom: 5*$u
   &:hover
     color: $firstColor
     &:deep

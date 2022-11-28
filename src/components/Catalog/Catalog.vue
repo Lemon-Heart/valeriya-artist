@@ -1,17 +1,28 @@
 <template lang="pug">
 .catalog
-  h1 Каталог
-  .products
-    product(v-for="(product, i) in 5" :key="i" :id="i + 1")
+  UiFullScreenLoader.loader(v-if="loading")
+  template(v-else)
+    h1 Каталог
+    .products
+      product(v-for="product in catalog" :key="product.id" :paint="product")
 </template>
 
 <script>
+import { useLoading } from '@/composables/useLoading'
 import Product from '@/components/Catalog/Product'
+import { inject, computed } from 'vue'
 
 export default {
   components: { Product },
   setup () {
-    return { }
+    const { loading, loadingOn, loadingOff } = useLoading()
+    loadingOn()
+
+    const store = inject('store')
+    store.catalog.getCatalog().then(() => loadingOff())
+    const catalog = computed(() => store.catalog.paintings)
+
+    return { catalog, loading }
   }
 }
 </script>
@@ -19,6 +30,19 @@ export default {
 <style lang="sass" scoped>
 .products
   display: grid
-  grid-template-columns: repeat( auto-fit, minmax(75*$u, 1fr))
+  grid-template-columns: repeat( auto-fit, 100*$u)
+  justify-content: center
   gap: 10*$u 7.5*$u
+  @media screen and (max-width: 1400px)
+    grid-template-columns: repeat( auto-fit, 80*$u)
+  @media screen and (max-width: $padWidth)
+    grid-template-columns: repeat( auto-fit, 70*$u)
+  @media screen and (max-width: $XSWidth)
+    grid-template-columns: repeat( auto-fit, 60*$u)
+    gap: 5*$u
+  @media screen and (max-width: $XXSWidth)
+    gap: 3*$u
+    grid-template-columns: repeat( auto-fit, 50*$u)
+  @media screen and (max-width: 440px)
+    grid-template-columns: repeat( auto-fit, 40*$u)
 </style>

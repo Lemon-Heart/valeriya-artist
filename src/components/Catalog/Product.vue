@@ -1,8 +1,8 @@
 <template lang="pug">
-router-link.product(:to="`/catalog/${id}`")
+router-link.product(:to="`/catalog/${paint.id}`")
   .product__img(ref="sw")
-    img.noFoto(v-if="!slides.length" src="/img/noFoto.png")
-    img(v-if="!init" :src="slides[0]")
+    img.noFoto(v-if="!paint.images.length" src="/img/noFoto.png")
+    img(v-if="!init" :src="paint.images[0]")
     swiper(
       v-if="init"
       :loop="true"
@@ -13,11 +13,11 @@ router-link.product(:to="`/catalog/${id}`")
       :modules="modules"
       class="product__galery"
     )
-      swiper-slide(v-for="(slide, i) in slides" :key="i")
+      swiper-slide(v-for="(slide, i) in paint.images" :key="i")
         img(:src="slide")
   .product__bottom
-    .product__price 30 000 ₽
-    .product__description Картина для спальни. Обнаженная девушка.
+    .product__price {{ paint.price }} ₽
+    .product__description {{ paint.name }}
     ui-button Купить
 </template>
 
@@ -27,11 +27,12 @@ import { Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { ref, onMounted } from 'vue'
+import Paint from '@/models/Paint'
 
 export default {
   components: { Swiper, SwiperSlide },
   props: {
-    id: Number
+    paint: Paint
   },
   setup () {
     const init = ref(false)
@@ -47,10 +48,6 @@ export default {
       observer.value.observe(sw.value)
     })
 
-    const slides = ref([
-      '/img/catalog/1.jpg',
-      '/img/catalog/2.jpg'
-    ])
     return {
       pagination: {
         clickable: true,
@@ -59,7 +56,6 @@ export default {
         }
       },
       modules: [Pagination],
-      slides,
       init,
       sw
     }
@@ -73,8 +69,19 @@ export default {
   flex-direction: column
   filter: drop-shadow(0px 9px 11px black)
   &__img
-    height: 80*$u
+    height: 100*$u
     position: relative
+    flex-shrink: 0
+    @media screen and (max-width: 1400px)
+      height: 80*$u
+    @media screen and (max-width: $padWidth)
+      height: 70*$u
+    @media screen and (max-width: $XSWidth)
+      height: 60*$u
+    @media screen and (max-width: $XXSWidth)
+      height: 50*$u
+    @media screen and (max-width: 440px)
+      height: 40*$u
     & > img
       position: absolute
       width: 100%
@@ -94,11 +101,25 @@ export default {
   &__bottom
     padding: 5*$u
     background: $BGOpacity
+    display: flex
+    flex-direction: column
+    height: 100%
+    @media screen and (max-width: $XSWidth)
+      padding: 3*$u
+    & > *:last-child
+      margin-top: auto
+    button
+      @media screen and (max-width: $XXSWidth)
+        height: 9*$u!important
   &__price
     @include font(h2)
     color: $firstColor
+    @media screen and (max-width: $XSWidth)
+      @include font(h3)
   &__description
     @include font(h3)
     margin: 2*$u 0 4*$u
     line-height: 120%
+    @media screen and (max-width: $XSWidth)
+      @include font(t16-regular)
 </style>
