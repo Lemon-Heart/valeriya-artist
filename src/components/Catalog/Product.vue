@@ -1,7 +1,10 @@
 <template lang="pug">
 router-link.product(:to="`/catalog/${id}`")
-  .product__img
+  .product__img(ref="sw")
+    img.noFoto(v-if="!slides.length" src="/img/noFoto.png")
+    img(v-if="!init" :src="slides[0]")
     swiper(
+      v-if="init"
       :loop="true"
       :slidesPerView="1"
       :slidesPerGroup="1"
@@ -23,7 +26,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 export default {
   components: { Swiper, SwiperSlide },
@@ -31,6 +34,19 @@ export default {
     id: Number
   },
   setup () {
+    const init = ref(false)
+    const sw = ref()
+    const observer = ref()
+    onMounted(() => {
+      observer.value = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          init.value = true
+          observer.value.disconnect(sw.value)
+        }
+      }, { threshold: 0.2 })
+      observer.value.observe(sw.value)
+    })
+
     const slides = ref([
       '/img/catalog/1.jpg',
       '/img/catalog/2.jpg'
@@ -43,7 +59,9 @@ export default {
         }
       },
       modules: [Pagination],
-      slides
+      slides,
+      init,
+      sw
     }
   }
 }
@@ -56,10 +74,21 @@ export default {
   filter: drop-shadow(0px 9px 11px black)
   &__img
     height: 80*$u
+    position: relative
+    & > img
+      position: absolute
+      width: 100%
+      height: 100%
+      object-fit: cover
+      object-position: center
+      &.noFoto
+        object-fit: contain
+        filter: contrast(0.1)
   &__galery
     height: 100%
     img
       width: 100%
+      height: 100%
       object-position: center
       object-fit: cover
   &__bottom

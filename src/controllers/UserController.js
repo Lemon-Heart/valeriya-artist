@@ -23,7 +23,7 @@ export default function UserController () {
     if (response.ok) {
       const res = await response.json()
       if (!res.mess) courses.value = res.map((o) => new Module(o))
-    }
+    } else logout()
   }
 
   const getProfile = async () => {
@@ -36,7 +36,7 @@ export default function UserController () {
     if (response.ok) {
       const res = await response.json()
       profile.value = new UserProfile(res)
-    }
+    } else logout()
   }
 
   const auth = async payload => {
