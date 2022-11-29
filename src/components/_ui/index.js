@@ -9,6 +9,7 @@ import UiBaseLoader from './UiBaseLoader'
 import UiClose from './UiClose'
 import UiLogo from './UiLogo'
 import UiBurgerMenuIcon from './UiBurgerMenuIcon'
+import UiZoomImg from './UiZoomImg'
 
 export default function initializeUiKit (app) {
   app.component('UiSvgIcon', UiSvgIcon)
@@ -22,4 +23,5 @@ export default function initializeUiKit (app) {
   app.component('UiClose', UiClose)
   app.component('UiLogo', UiLogo)
   app.component('UiBurgerMenuIcon', UiBurgerMenuIcon)
+  app.component('UiZoomImg', UiZoomImg)
 }

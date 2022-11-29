@@ -24,6 +24,7 @@
         swiper(
           :thumbs="{ swiper: thumbsSwiper }"
           :loop="true"
+          :autoHeight="true"
           :slidesPerView="1"
           :spaceBetween="1"
           :grabCursor="true"
@@ -31,7 +32,8 @@
           class="product__galery"
         )
           swiper-slide(v-for="(slide, i) in paint.images" :key="i")
-            img(:src="slide")
+            img(v-lazy="slide")
+            ui-zoom-img(:img="slide")
       .product__card
         .product__price {{ paint.price }} ₽
         ui-button Купить
@@ -124,11 +126,14 @@ export default {
     @media screen and (max-width: $XXLWidth)
       width: 100%
   &__galery
-    height: 100%
-    max-height: 200*$u
+    width: 100%
+    .swiper-slide
+      position: relative
     img
       width: 100%
       height: 100%
+      top: 0
+      left: 0
       object-position: top center
       object-fit: contain
   &__galeryThumbs
