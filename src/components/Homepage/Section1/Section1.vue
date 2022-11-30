@@ -6,7 +6,7 @@ section.section1
     ui-button.buttonDesktop(is-animated scroll-to="tariffs") Оформить заявку
   .img
     img(:src="'/img/homepage/section1/3.webp'")
-    ui-button.buttonMobile(is-animated scroll-to="tariffs") Оформить заявку
+  ui-button.buttonMobile(is-animated scroll-to="tariffs") Оформить заявку
 </template>
 
 <style lang="sass" scoped>
@@ -57,13 +57,16 @@ section.section1
       @media screen and (max-width: $padWidth)
         object-fit: cover
         transform: none
-    .buttonMobile
-      display: none
-      @media screen and (max-width: $padWidth)
-        justify-content: center
-        display: flex
-        position: absolute
-        bottom: 5*$u
-        z-index: 10
-        min-width: 50*$u
+        z-index: -1
+  .buttonMobile
+    display: none
+    @media screen and (max-width: $padWidth)
+      justify-content: center
+      display: flex
+      left: 50%
+      transform: translateX(-50%)
+      position: absolute
+      bottom: 5*$u
+      z-index: 10
+      min-width: 50*$u
 </style>

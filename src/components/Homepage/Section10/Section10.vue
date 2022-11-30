@@ -13,6 +13,8 @@ section.section10
     margin-top: 20*$u
   p
     @include font('t18-demibold')
+    @media screen and (max-width: $XXSWidth)
+      text-align: justify
     &:not(:first-child)
       text-align: center
       margin-top: 7.5*$u

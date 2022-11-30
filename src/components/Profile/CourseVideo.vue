@@ -53,7 +53,7 @@ export default {
     transform: translate(-50%, -50%)
     cursor: pointer
   &__name
-    @include font('t16-regular')
+    @include font('t16-demibold')
     line-height: 130%
     margin-bottom: 3*$u
   &__link

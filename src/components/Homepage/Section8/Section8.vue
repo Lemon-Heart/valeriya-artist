@@ -6,7 +6,7 @@ section.section8
     .shadowWrapper
       .shadow
     .img
-      img(v-lazy="'img/homepage/section8/1.webp'")
+      img(:src="'img/homepage/section8/1.webp'")
     .text
       ul
         li

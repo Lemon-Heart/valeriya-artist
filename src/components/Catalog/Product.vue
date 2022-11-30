@@ -122,4 +122,5 @@ export default {
     line-height: 120%
     @media screen and (max-width: $XSWidth)
       @include font(t16-regular)
+      line-height: 120%
 </style>
