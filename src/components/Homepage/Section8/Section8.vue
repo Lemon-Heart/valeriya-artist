@@ -83,7 +83,6 @@ section.section8
         bottom: 0
         transform: translateX(-5%)
         @media screen and (max-width: $XXXLWidth)
-          z-index: -10
           position: inherit
           transform: translateX(0)
     .text
@@ -94,6 +93,7 @@ section.section8
       @media screen and (max-width: 1390px)
         padding: 5*$u 10*$u 5*$u 0
       @media screen and (max-width: $XXXLWidth)
+        z-index: 10
         border: 1px solid $white
         padding: 10*$u
         border-radius: $BR

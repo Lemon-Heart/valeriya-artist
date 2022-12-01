@@ -13,7 +13,10 @@ import AppModal from '@/components/_layout/Modal/Modal'
 import SideMenu from '@/components/_layout/SideMenu/SideMenu'
 
 export default {
-  components: { AppHeader, AppModal, SideMenu }
+  components: { AppHeader, AppModal, SideMenu },
+  setup () {
+    return { }
+  }
 }
 </script>
 

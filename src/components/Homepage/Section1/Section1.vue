@@ -57,7 +57,6 @@ section.section1
       @media screen and (max-width: $padWidth)
         object-fit: cover
         transform: none
-        z-index: -1
   .buttonMobile
     display: none
     @media screen and (max-width: $padWidth)
