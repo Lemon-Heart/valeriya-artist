@@ -43,7 +43,7 @@
             |  {{ paint.materials }}
           .p
             .bold Размер:
-            |  {{ paint.size }}
+            |  {{ paint.size }} см
           .p
             .bold Рекомендации по уходу:
             |  {{ paint.recomendation }}
