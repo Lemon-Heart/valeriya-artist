@@ -6,11 +6,11 @@
   .profile(v-if="profile")
     .profile__info
       .profile__name(:class="{ border: isEdit }")
-        ui-input(is-transparent :with-border="false" v-model="profile.name" name="name")
+        ui-input(is-transparent :with-border="false" :is-disabled="!isEdit" v-model="profile.name" name="name")
       .profile__phone(:class="{ border: isEdit }")
-        ui-input(is-transparent :with-border="false" v-model="profile.phone" name="phone" phone-mask="+7 (000) 000-00-00")
+        ui-input(is-transparent :with-border="false" :is-disabled="!isEdit" v-model="profile.phone" name="phone" phone-mask="+7 (000) 000-00-00")
       .profile__email(:class="{ border: isEdit }")
-        ui-input(is-transparent :with-border="false" v-model="profile.email" name="email")
+        ui-input(is-transparent :with-border="false" :is-disabled="!isEdit" v-model="profile.email" name="email")
       .profile__changeButtons
         ui-button(v-if="!isEdit" variant="dark" size="L" is-animated @click="isEdit = true") Редактировать
         ui-button(v-if="isEdit" variant="dark" size="L" is-animated @click="changeProfileInfo({ name: profile.name, phone: profile.phone, email: profile.email })") Применить
@@ -69,7 +69,7 @@ export default {
   left: 0
   bottom: 0
   top: 0
-  background: rgba(0, 0, 0, .7)
+  background: rgba(0, 0, 0, .8)
   color: $firstColor
   @include font('h2')
   display: flex
@@ -98,6 +98,8 @@ export default {
   &__info
     display: flex
     flex-direction: column
+    @media screen and (max-width: $XXSWidth)
+      padding-right: 2*$u
   &__avatar
     display: flex
     justify-content: flex-end

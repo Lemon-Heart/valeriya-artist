@@ -9,8 +9,9 @@ label.uiInputComponent(v-show="type !== 'hidden'" :class="classed")
     :name="name"
     :data-mask="phoneMask"
     :placeholder="phoneMask"
+    :disabled="isDisabled"
   )
-  span {{ placeholder }}
+  span(v-if="placeholder") {{ placeholder }}
   template(v-if="type === 'password'")
     .icon(v-if="iconName" @click="toggleViewPass")
       ui-svg-icon(:name="iconName" :size="30")
@@ -45,6 +46,10 @@ export default {
       default: true
     },
     isTransparent: {
+      type: Boolean,
+      default: false
+    },
+    isDisabled: {
       type: Boolean,
       default: false
     },
