@@ -37,4 +37,6 @@ export default {
 .content
   margin-top: 20*$u
   padding-bottom: 100px
+  @media screen and (max-width: $mobileWidth)
+    margin-top: 15*$u
 </style>

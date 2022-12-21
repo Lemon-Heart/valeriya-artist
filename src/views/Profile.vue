@@ -89,6 +89,8 @@ export default {
   justify-content: space-between
   @media screen and (max-width: $XSWidth)
     padding: 5*$u
+  @media screen and (max-width: $XXSWidth)
+    margin-top: 5*$u
   &:deep
     .uiInputComponent
       @include font('h2')
@@ -185,6 +187,8 @@ export default {
   &__changeButtons
     margin: 3*$u 0 5*$u
     display: flex
+    @media screen and (max-width: $XXSWidth)
+      margin: $u 0
     > *:first-child
       margin-right: 2*$u
     &:deep button
@@ -219,6 +223,8 @@ export default {
   margin-top: 10*$u
   @media screen and (max-width: $XXSWidth)
     padding: 5*$u
+  @media screen and (max-width: $XXSWidth)
+    margin-top: 5*$u
   &__head
     color: $firstColor
     @include font('h1')
