@@ -28,6 +28,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.catalog
+  margin-top: 10*$u
 .products
   display: grid
   grid-template-columns: repeat( auto-fit, 100*$u)

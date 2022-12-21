@@ -44,6 +44,10 @@ export default {
       type: Boolean,
       default: true
     },
+    isTransparent: {
+      type: Boolean,
+      default: false
+    },
     type: {
       type: String,
       default: 'text'
@@ -102,6 +106,7 @@ export default {
       const className = []
       props.error ? className.push('error') : className.filter(function (f) { return f !== 'error' })
       props.modelValue === '' ? className.filter(function (f) { return f !== 'notEmpty' }) : className.push('notEmpty')
+      props.isTransparent === false ? className.filter(function (f) { return f !== '_transparent' }) : className.push('_transparent')
       viewPass.value === 'password' ? className.filter(function (f) { return f !== 'show' }) : className.push('show')
       return className
     })
@@ -118,6 +123,10 @@ export default {
   position: relative
   flex-direction: column
   height: 12.5*$u
+  &._transparent
+    .input
+      background: transparent
+      padding: 0
   &.notEmpty span
     font-size: 3.5*$u
     color: white

@@ -4,5 +4,6 @@ export default class UserProfile {
     this.name = data?.name ?? null
     this.phone = data?.phone ?? null
     this.tariff = data?.tariff ?? null
+    this.photo = data?.photo ?? null
   }
 }
