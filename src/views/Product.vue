@@ -57,10 +57,9 @@
               li
                 span Почтовые службы по миру
           ui-dropdown(
-            variant="text"
+            variant="np"
             title="Описание"
-            :text="paint.description"
-          )
+          ) {{ paint.description }}
 </template>
 
 <script>

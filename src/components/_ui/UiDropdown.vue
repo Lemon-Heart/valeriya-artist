@@ -1,7 +1,7 @@
 <template lang="pug">
 .accordion(
   ref="item"
-  :class="{'text': text}"
+  :class="{'np': variant === 'np'}"
 )
   .accordion__header(@click="click")
     .img(v-if="icon")
@@ -9,32 +9,22 @@
     span {{ title }}
   .accordion__body(ref="body")
     .accordion__content
-      ul(v-if="list")
-        li(v-for="(item, i) in list" :key="i" :class="{'altListHeading': altListHeading}")
-          ul(v-if="Array.isArray(item)")
-            li(v-for="(nestedItem, i) in item" :key="i")
-              span {{ nestedItem }}
-          span(v-else) {{ item }}
-      span(v-if="text") {{ text }}
+      slot
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 export default {
   props: {
     variant: {
-      // text
+      // np
       type: String,
       default: 'default'
     },
     title: {
       type: String,
       required: true
-    },
-    list: {
-      type: Array,
-      default: null
     },
     icon: {
       type: String,
@@ -43,21 +33,11 @@ export default {
     altListHeading: {
       type: Boolean,
       default: false
-    },
-    text: {
-      type: String,
-      default: null
     }
   },
   setup () {
     const item = ref()
     const body = ref()
-
-    onMounted(() => {
-      // Удаляем list-style если ul вложен в li
-      Array.from(document.getElementsByTagName('ul')).forEach(el => { el.parentNode.style.listStyle = 'none' })
-    })
-
     const click = () => {
       item.value.classList.toggle('accordion__item_show')
       body.value.style.transitionDuration = body.value.scrollHeight < 100 ? body.value.scrollHeight / 200 + 's' : body.value.scrollHeight < 500 ? body.value.scrollHeight / 500 + 's' : body.value.scrollHeight / 2500 + 's'
@@ -73,7 +53,7 @@ export default {
 .accordion
   overflow: hidden
   border-radius: $BR
-  &.text
+  &.np
     .accordion__header
       width: fit-content
       padding: 0
@@ -129,9 +109,4 @@ export default {
     background: $headerBG
     padding: 5*$u
     @include font('t16-regular')
-    & > ul > li
-      padding: 2*$u 0
-    .altListHeading > span
-      @include font('t16-demibold')
-      color: $firstColor
 </style>

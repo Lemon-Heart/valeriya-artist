@@ -1,36 +1,45 @@
 <template lang="pug">
-section.section4
+ui-base-loader(v-if="loading")
+section.section4(v-else)
   h1
-    ui-text-anim О курсе
+    ui-text-anim {{ modulesDescription.heading }}
   .aboutCourse
     .left
-      .title Программа курса охватывает все аспекты рисования:
-      ul
-        li
-          span изучение анатомии
-        li
-          span развитие глазомера
-        li
-          span методы измерения
-        li
-          span изучение перспективы
-        li
-          span понимание конструкции
-        li
-          span тональность и объем
-        li
-          span тренировка техники
-        li
-          span эстетика образа
+      .title {{ modulesDescription.subheading }}
+      ul(v-if="modulesDescription.list.length")
+        li(v-for="li in modulesDescription.list" :key="li.id")
+          span {{ li.description }}
     .img
-      img(src="/img/homepage/section4/module0.png")
-    .right Я использую усредненный подход между академическим рисунком и реализмом. Академизм – это основа построения и выявления пропорций, реализм – это техника. Я считаю, что если ты владеешь тем и другим, то можешь смело считать себя настоящим художником! А если к этому добавить авторскую технику, личный бренд и позиционирование – ты станешь уникальны и востребованным. Все эти знания я накопила 15-летним опытом и упаковала в один курс, который ты можешь пройти за 3 недели.
-  modules
+      img(v-if="modulesDescription.img" :src="modulesDescription.img")
+    .right {{ modulesDescription.description }}
+  ui-dropdown(
+    v-for="(item, i) in modules"
+    :key="i"
+    :title="item.name"
+    :icon="item.img"
+    style="margin-top: 20px"
+  )
+    ul.list(v-if="item.lessons.length")
+      li(v-for="lesson in item.lessons" :key="lesson.id")
+        span(:class="{ altListHeading: lesson.description.length }") {{ lesson.name }}
+        ul(v-if="lesson.description.length")
+          li(v-for="(description, i) in lesson.description" :key="i")
+            span {{ description }}
 </template>
 
 <script>
-import Modules from './Modules/Modules'
-export default { components: { Modules } }
+import ModulesController from '@/controllers/ModulesController'
+import { useLoading } from '@/composables/useLoading'
+
+export default {
+  setup () {
+    const { loading, loadingOn, loadingOff } = useLoading()
+    loadingOn()
+    const { modules, modulesDescription, getModules } = ModulesController()
+    getModules().then(() => loadingOff())
+    return { modules, modulesDescription, loading }
+  }
+}
 </script>
 
 <style lang="sass" scoped>
@@ -99,4 +108,10 @@ export default { components: { Modules } }
         @include font('t15-regular')
     .title
       margin-bottom: 4*$u
+.list > li, .list > li > ul
+  padding-top: 2*$u
+  padding-bottom: 2*$u
+.altListHeading
+  @include font('t16-demibold')
+  color: $firstColor
 </style>
