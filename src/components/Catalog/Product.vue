@@ -18,7 +18,9 @@ router-link.product(:to="`/catalog/${paint.id}`")
   .product__bottom
     .product__price {{ paint.price }} ₽
     .product__description {{ paint.name }}
-    ui-button Купить
+    .product__buttons
+      ui-button(size="L") Подробнее
+      ui-button(size="L") Купить
 </template>
 
 <script>
@@ -123,4 +125,23 @@ export default {
     @media screen and (max-width: $XSWidth)
       @include font(t16-regular)
       line-height: 120%
+  &__buttons
+    display: flex
+    justify-content: space-between
+    > *
+      width: 47%
+    @media screen and (max-width: $padWidth)
+      > *
+        &:deep
+          padding: 0!important
+    @media screen and (max-width: $XXSWidth)
+      > *
+        &:deep .text
+          font-size: 3*$u
+    @media screen and (max-width: 440px)
+      flex-direction: column
+      > *
+        width: 100%
+        &:not(:last-child)
+          margin-bottom: 2*$u
 </style>

@@ -36,7 +36,9 @@
             ui-zoom-img(:img="slide")
       .product__card
         .product__price {{ paint.price }} ₽
-        ui-button Купить
+        .product__buttons
+          ui-button Купить
+          ui-button Купить digital
         .product__description
           .p
             .bold Материалы:
@@ -159,6 +161,10 @@ export default {
   &__price
     @include font(h1)
     margin-bottom: 5*$u
+  &__buttons
+    display: flex
+    > *:not(:last-child)
+      margin-right: 2*$u
   &__description
     display: flex
     flex-direction: column

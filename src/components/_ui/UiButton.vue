@@ -111,6 +111,7 @@ export default {
     font-family: GolosTextWebDemiBold, serif
     font-size: 4*$u
     line-height: 5*$u
+    margin: auto
 
   &._extra-small
     height: 7.5*$u

@@ -59,7 +59,6 @@ export default function UserController () {
     })
     const res = await response.json()
     if (response.ok) {
-      errMess.value = ''
       localStorage.setItem('auth_token', res.auth_token)
       authToken.value = res.auth_token
       if (router.currentRoute.value.query.checkout) {
