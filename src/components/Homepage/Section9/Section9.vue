@@ -6,9 +6,8 @@ section.section9
     swiper(
       :autoplay="false"
       :loop="true"
-      :spaceBetween="30"
+      :spaceBetween="0"
       :slidesPerView="1"
-      :slidesPerGroup="1"
       :grabCursor="true"
       :navigation="true"
       :pagination="pagination"

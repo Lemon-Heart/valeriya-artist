@@ -74,6 +74,12 @@ export default {
     flex-direction: column
 .mainMenu, .exit
   @include font('h3')
+.mainMenu a
+  transition: .1s
+  &:hover
+    color: $firstColor
+    transform: scale(1.05)
+    font-size: 5.15*$u
 .exit
   cursor: pointer
   display: flex
