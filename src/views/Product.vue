@@ -61,7 +61,8 @@
           ui-dropdown(
             variant="np"
             title="Описание"
-          ) {{ paint.description }}
+          )
+            span(v-html="paint.description")
 </template>
 
 <script>
