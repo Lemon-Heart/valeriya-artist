@@ -52,12 +52,8 @@
           .p
             .bold Доставка:
             ul
-              li
-                span Самовывоз (Иваново)
-              li
-                span Boxberry (Россия)
-              li
-                span Почтовые службы по миру
+              li(v-for="(li, i) in paint.delivery" :key="i")
+                span {{ li }}
           ui-dropdown(
             variant="np"
             title="Описание"

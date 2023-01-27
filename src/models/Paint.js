@@ -8,5 +8,6 @@ export default class Paint {
     this.recomendation = data?.recomendation ?? null
     this.description = data?.description ?? false
     this.images = data?.images ?? []
+    this.delivery = data?.delivery ?? []
   }
 }
