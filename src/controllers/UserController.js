@@ -33,8 +33,8 @@ export default function UserController () {
     if (response.ok) {
       const res = await response.json()
       if (!res.mess) courses.value = res.map((o) => new Module(o))
+      loadingOff()
     } else refresh(getCourses)
-    loadingOff()
   }
 
   const getProfile = async () => {
@@ -48,11 +48,15 @@ export default function UserController () {
     if (response.ok) {
       const res = await response.json()
       profile.value = new UserProfile(res)
+      loadingOff()
     } else refresh(getProfile)
-    loadingOff()
   }
 
   const refresh = async (func) => {
+    if (!uuid.value) {
+      logout()
+      return
+    }
     const response = await fetch('https://valeriya-artist.ru/api/refresh', {
       method: 'GET',
       headers: {
@@ -65,7 +69,9 @@ export default function UserController () {
       authToken.value = res.auth_token
       func()
     }
+    loadingOff()
   }
+
   const auth = async payload => {
     if (!payload) return
     const response = await fetch('https://valeriya-artist.ru/api/auth', {
