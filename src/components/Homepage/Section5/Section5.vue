@@ -11,7 +11,7 @@ import StandartTariff from './Tariffs/Standart'
 import PremiumTariff from './Tariffs/Premium'
 import { inject } from 'vue'
 import LoginAndAuthComponent from '@/components/Forms/LoginAndAuthComponent'
-import { payment } from '@/services/payment'
+import { buyCourse } from '@/services/payment'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -23,7 +23,7 @@ export default {
       if (store.user.isAuth) {
         const data = new FormData()
         data.append('tariff', tariffProps)
-        await payment(data)
+        await buyCourse(data)
       } else {
         router.push({ query: { checkout: tariffProps } })
         store.modalQueue.push({

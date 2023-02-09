@@ -3,13 +3,14 @@ import router from '@/router'
 import UserProfile from '@/models/UserProfile'
 import Module from '@/models/Module'
 import store from '@/store'
-import { payment } from '@/services/payment'
+import { buyCourse } from '@/services/payment'
 import { useLoading } from '@/composables/useLoading'
 
 export default function UserController () {
   const { loading, loadingOn, loadingOff } = useLoading()
 
   const authToken = ref(localStorage.getItem('auth_token') || '')
+  const uuid = ref(localStorage.getItem('uuid') || '')
   const profile = ref(null)
   const courses = ref(null)
   const errMess = ref('')
@@ -32,7 +33,7 @@ export default function UserController () {
     if (response.ok) {
       const res = await response.json()
       if (!res.mess) courses.value = res.map((o) => new Module(o))
-    } else logout()
+    } else refresh(getCourses)
     loadingOff()
   }
 
@@ -47,10 +48,24 @@ export default function UserController () {
     if (response.ok) {
       const res = await response.json()
       profile.value = new UserProfile(res)
-    } else logout()
+    } else refresh(getProfile)
     loadingOff()
   }
 
+  const refresh = async (func) => {
+    const response = await fetch('https://valeriya-artist.ru/api/refresh', {
+      method: 'GET',
+      headers: {
+        uuid: uuid.value
+      }
+    })
+    if (response.ok) {
+      const res = await response.json()
+      localStorage.setItem('auth_token', res.auth_token)
+      authToken.value = res.auth_token
+      func()
+    }
+  }
   const auth = async payload => {
     if (!payload) return
     const response = await fetch('https://valeriya-artist.ru/api/auth', {
@@ -60,11 +75,13 @@ export default function UserController () {
     const res = await response.json()
     if (response.ok) {
       localStorage.setItem('auth_token', res.auth_token)
+      localStorage.setItem('uuid', res.uuid)
       authToken.value = res.auth_token
+      uuid.value = res.uuid
       if (router.currentRoute.value.query.checkout) {
         const data = new FormData()
         data.append('tariff', router.currentRoute.value.query.checkout)
-        await payment(data)
+        await buyCourse(data)
       } else await router.push({ name: 'Profile' })
       store.modalQueue.removeAll()
     } else setError(res.err)

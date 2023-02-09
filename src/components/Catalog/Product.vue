@@ -20,7 +20,7 @@ router-link.product(:to="`/catalog/${paint.id}`")
     .product__description {{ paint.name }}
     .product__buttons
       ui-button(size="L") Подробнее
-      ui-button(size="L") Купить
+      ui-button(size="L" @click.prevent="buy") Купить
 </template>
 
 <script>
@@ -28,15 +28,19 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, inject } from 'vue'
 import Paint from '@/models/Paint'
+import { buyPaint } from '@/services/payment'
+import PaintPurchase from '@/components/Forms/PaintPurchase'
 
 export default {
   components: { Swiper, SwiperSlide },
   props: {
     paint: Paint
   },
-  setup () {
+  setup (props) {
+    const store = inject('store')
+
     const init = ref(false)
     const sw = ref()
     const observer = ref()
@@ -50,6 +54,22 @@ export default {
       observer.value.observe(sw.value)
     })
 
+    const buy = async () => {
+      if (store.user.isAuth) {
+        const data = new FormData()
+        data.append('id', props.paint.id)
+        await buyPaint(data)
+      } else {
+        store.modalQueue.push({
+          key: 'PaintPurchase',
+          component: PaintPurchase,
+          props: {
+            id: props.paint.id
+          }
+        })
+      }
+    }
+
     return {
       pagination: {
         clickable: true,
@@ -59,7 +79,8 @@ export default {
       },
       modules: [Pagination],
       init,
-      sw
+      sw,
+      buy
     }
   }
 }

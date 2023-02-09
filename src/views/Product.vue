@@ -24,7 +24,6 @@
         swiper(
           :thumbs="{ swiper: thumbsSwiper }"
           :loop="true"
-          :autoHeight="true"
           :slidesPerView="1"
           :spaceBetween="1"
           :grabCursor="true"
