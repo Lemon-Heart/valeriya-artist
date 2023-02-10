@@ -3,6 +3,7 @@
   app-header
   side-menu
 .content
+  .alo alo
   router-view
 app-modal
 </template>
