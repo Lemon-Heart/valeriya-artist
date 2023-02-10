@@ -22,5 +22,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: bodymaiu.beget.tech
+        local-dir: ./dist/
+        server-dir: valeriya-artist.ru/public_html/
         username: bodymaiu
         password: ${{ secrets.ftp_password }}
