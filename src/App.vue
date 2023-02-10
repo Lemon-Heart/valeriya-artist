@@ -3,7 +3,6 @@
   app-header
   side-menu
 .content
-  .alo alo
   router-view
 app-modal
 </template>
@@ -13,12 +12,7 @@ import AppHeader from '@/components/_layout/Header/Header'
 import AppModal from '@/components/_layout/Modal/Modal'
 import SideMenu from '@/components/_layout/SideMenu/SideMenu'
 
-export default {
-  components: { AppHeader, AppModal, SideMenu },
-  setup () {
-    return { }
-  }
-}
+export default { components: { AppHeader, AppModal, SideMenu } }
 </script>
 
 <style lang="sass">
