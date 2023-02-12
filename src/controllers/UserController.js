@@ -112,7 +112,7 @@ export default function UserController () {
     })
     const res = await response.json()
     if (response.ok) return res.mess
-    else setError(res.err)
+    else return res.err
   }
 
   const restore = async payload => {
