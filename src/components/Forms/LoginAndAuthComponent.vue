@@ -1,34 +1,36 @@
 <template lang="pug">
 .tabs
   .tabs__head
-    span(@click="toggleTab" :class="{'active': currentTab === 0}") Регистрация
-    span(@click="toggleTab" :class="{'active': currentTab === 1}") Вход
+    span(@click="changeTab(0)" :class="{'active': currentTab === 0}") Регистрация
+    span(@click="changeTab(1)" :class="{'active': currentTab === 1}") Вход
   .tabs__content
     LoginForm(v-if="currentTab === 0")
-    AuthForm(v-if="currentTab === 1")
+    AuthForm(v-if="currentTab === 1" @restorePass="changeTab(2)")
+    RequestChangePass(v-if="currentTab === 2")
 </template>
 
 <script>
 import { ref, onUnmounted, inject } from 'vue'
 import AuthForm from './AuthForm'
 import LoginForm from './LoginForm'
+import RequestChangePass from './RequestChangePass'
 import { useRouter } from 'vue-router'
 
 export default {
-  components: { AuthForm, LoginForm },
+  components: { AuthForm, LoginForm, RequestChangePass },
   setup () {
     const store = inject('store')
     const router = useRouter()
 
     const currentTab = ref(0)
-    const toggleTab = () => {
+    const changeTab = (tab) => {
       store.user.errMess = ''
-      currentTab.value = Number(!currentTab.value)
+      currentTab.value = tab
     }
 
     onUnmounted(() => router.push({ query: {} }))
 
-    return { toggleTab, currentTab }
+    return { changeTab, currentTab }
   }
 }
 </script>

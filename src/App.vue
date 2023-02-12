@@ -8,11 +8,33 @@ app-modal
 </template>
 
 <script>
+import { useRoute } from 'vue-router'
+import { watch, inject } from 'vue'
 import AppHeader from '@/components/_layout/Header/Header'
 import AppModal from '@/components/_layout/Modal/Modal'
 import SideMenu from '@/components/_layout/SideMenu/SideMenu'
+import RestoreForm from '@/components/Forms/RestoreForm'
 
-export default { components: { AppHeader, AppModal, SideMenu } }
+export default {
+  components: { AppHeader, AppModal, SideMenu, RestoreForm },
+  setup () {
+    const route = useRoute()
+    const store = inject('store')
+    watch(
+      () => route.query.changepass,
+      () => {
+        if (route.query.uuid && route.query.changepass === 'true') {
+          store.modalQueue.push({
+            key: 'RestoreForm',
+            component: RestoreForm
+          })
+        }
+      },
+      { immediate: true }
+    )
+    return {}
+  }
+}
 </script>
 
 <style lang="sass">

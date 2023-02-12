@@ -10,6 +10,7 @@ form.signinForm(ref="form")
   )
   ui-button.button(:is-animated="!error" :is-disabled="error" :title="error ? 'Заполните все поля' : ''" @click="handleFormSubmit") Войти
   .error(v-if="errMess") {{ errMess }}
+  .passRestore(@click="$emit('restorePass')") Забыли пароль?
 </template>
 
 <script>
@@ -46,4 +47,10 @@ export default {
     margin-bottom: 12*$u
 .error
   color: $error
+.passRestore
+  color: $white
+  transition: .2s
+  cursor: pointer
+  &:hover
+    color: $firstColor
 </style>

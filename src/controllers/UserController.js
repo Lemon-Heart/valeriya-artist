@@ -104,6 +104,31 @@ export default function UserController () {
     else setError(res.err)
   }
 
+  const changePass = async payload => {
+    if (!payload) return
+    const response = await fetch('https://valeriya-artist.ru/api/changepass', {
+      method: 'POST',
+      body: payload
+    })
+    const res = await response.json()
+    if (response.ok) return res.mess
+    else setError(res.err)
+  }
+
+  const restore = async payload => {
+    if (!payload) return
+    const response = await fetch('https://valeriya-artist.ru/api/restore', {
+      method: 'POST',
+      headers: {
+        uuid: router.currentRoute.value.query.uuid
+      },
+      body: payload
+    })
+    const res = await response.json()
+    if (response.ok) return res.mess
+    else setError(res.err)
+  }
+
   const logout = async () => {
     localStorage.removeItem('auth_token')
     authToken.value = ''
@@ -147,6 +172,8 @@ export default function UserController () {
     auth,
     isAuth,
     login,
+    changePass,
+    restore,
     logout,
     profile,
     getProfile,
