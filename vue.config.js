@@ -7,7 +7,7 @@ module.exports = {
     }
   },
   pwa: {
-    name: 'Валерия',
+    name: 'Valeriya-Artist',
     themeColor: '#000000'
   }
 }
