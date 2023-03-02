@@ -11,6 +11,7 @@ import UiLogo from './UiLogo'
 import UiBurgerMenuIcon from './UiBurgerMenuIcon'
 import UiZoomImg from './UiZoomImg'
 import UiMessage from './UiMessage'
+import UiPwa from './UiPwa'
 
 export default function initializeUiKit (app) {
   app.component('UiSvgIcon', UiSvgIcon)
@@ -26,4 +27,5 @@ export default function initializeUiKit (app) {
   app.component('UiBurgerMenuIcon', UiBurgerMenuIcon)
   app.component('UiZoomImg', UiZoomImg)
   app.component('UiMessage', UiMessage)
+  app.component('UiPwa', UiPwa)
 }

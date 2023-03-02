@@ -5,6 +5,7 @@
 .content
   router-view
 app-modal
+ui-pwa
 </template>
 
 <script>
