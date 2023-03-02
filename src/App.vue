@@ -1,4 +1,5 @@
 <template lang="pug">
+ui-pwa
 .header
   app-header
   side-menu

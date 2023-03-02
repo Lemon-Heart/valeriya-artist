@@ -1,9 +1,9 @@
 <!-- PWAPrompt.vue -->
 <template>
-  <div v-if="shown" class="pwa">
+  <div class="pwa">
     Add app to home screen?
 
-    <button @click="installPWA">
+    <button @click="install">
       Install!
     </button>
 
@@ -15,33 +15,21 @@
 
 <script>
 export default {
-  data: () => ({
-    shown: true
-  }),
-
-  beforeMount () {
+  data () {
+    return {
+      deferredPrompt: null
+    }
+  },
+  created () {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault()
-      this.installEvent = e
-      this.shown = true
+      // Stash the event so it can be triggered later.
+      this.deferredPrompt = e
     })
   },
-
   methods: {
-    dismissPrompt () {
-      this.shown = false
-    },
-
-    installPWA () {
-      this.installEvent.prompt()
-      this.installEvent.userChoice.then((choice) => {
-        this.dismissPrompt() // Hide the prompt once the user's clicked
-        if (choice.outcome === 'accepted') {
-          // Do something additional if the user chose to install
-        } else {
-          // Do something additional if the user declined
-        }
-      })
+    async install () {
+      this.deferredPrompt.prompt()
     }
   }
 }
