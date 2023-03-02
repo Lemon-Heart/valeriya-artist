@@ -9,6 +9,8 @@ import '@/_core/styles/reset.css'
 import '@/assets/styles/general.sass'
 import initializeUiKit from '@/components/_ui'
 
+import './registerServiceWorker'
+
 initStore()
 const app = createApp(App)
 initializeUiKit(app)
