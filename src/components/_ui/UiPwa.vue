@@ -1,6 +1,6 @@
 <!-- PWAPrompt.vue -->
 <template>
-  <div v-if="shown">
+  <div v-if="shown" class="pwa">
     Add app to home screen?
 
     <button @click="installPWA">
@@ -46,3 +46,12 @@ export default {
   }
 }
 </script>
+
+<style lang="sass">
+.pwa
+  background: white
+  padding: 10px
+  z-index: 1000
+  display: flex
+  max-width: 400px
+</style>

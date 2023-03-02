@@ -1,11 +1,11 @@
 <template lang="pug">
+ui-pwa
 .header
   app-header
   side-menu
 .content
   router-view
 app-modal
-ui-pwa
 </template>
 
 <script>
