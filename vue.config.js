@@ -14,7 +14,7 @@ module.exports = {
         urlPattern: 'https://valeriya-artist.ru/api',
         handler: 'networkFirst',
         options: {
-          networkTimeoutSeconds: 20,
+          networkTimeoutSeconds: 21,
           cacheName: 'api-cache',
           cacheableResponse: { statuses: [0, 200] }
         }
