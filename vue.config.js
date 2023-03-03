@@ -9,6 +9,17 @@ module.exports = {
   pwa: {
     name: 'Valeriya-Artist',
     themeColor: '#000000',
+    workboxOptions: {
+      runtimeCaching: [{
+        urlPattern: 'https://valeriya-artist.ru/api',
+        handler: 'networkFirst',
+        options: {
+          networkTimeoutSeconds: 20,
+          cacheName: 'api-cache',
+          cacheableResponse: { statuses: [0, 200] }
+        }
+      }]
+    },
     manifestOptions: {
       icons: [
         { src: './img/icons/icon-48x48.png', sizes: '48x48', type: 'image/png', purpose: 'maskable any' },
