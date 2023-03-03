@@ -12,12 +12,7 @@ module.exports = {
     workboxOptions: {
       runtimeCaching: [{
         urlPattern: 'https://valeriya-artist.ru/api',
-        handler: 'CacheFirst',
-        options: {
-          networkTimeoutSeconds: 21,
-          cacheName: 'api-cache',
-          cacheableResponse: { statuses: [0, 200] }
-        }
+        handler: 'CacheFirst'
       }]
     },
     manifestOptions: {
