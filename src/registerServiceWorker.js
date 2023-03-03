@@ -30,3 +30,21 @@ if (process.env.NODE_ENV === 'production') {
     }
   })
 }
+
+self.addEventListener('install', async event => {
+  console.log('install')
+})
+
+self.addEventListener('activate', async event => {
+  console.log('activate')
+})
+
+self.addEventListener('fetch', async event => {
+  console.log('fetch', event.request.url)
+  event.respondWith(caheFirst(event.request))
+})
+
+const caheFirst = async (request) => {
+  const cached = await caches.match(request)
+  return cached ?? await fetch(request)
+}
