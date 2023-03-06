@@ -10,12 +10,12 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue')
+    component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue')
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import('@/views/Profile.vue'),
+    component: () => import(/* webpackChunkName: "profile" */ '@/views/Profile.vue'),
     meta: {
       middleware: [isAuthenticated],
       title: 'Профиль'
@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/catalog',
     name: 'Catalog',
-    component: () => import('@/views/Catalog.vue'),
+    component: () => import(/* webpackChunkName: "catalog" */ '@/views/Catalog.vue'),
     meta: {
       title: 'Каталог'
     }
@@ -33,12 +33,12 @@ const routes = [
     path: '/catalog/:id',
     name: 'Product',
     props: route => ({ productId: Number(route.params.id) }),
-    component: () => import('@/views/Product')
+    component: () => import(/* webpackChunkName: "product" */ '@/views/Product')
   },
   {
     path: '/offer',
     name: 'Offer',
-    component: () => import('@/views/Offer.vue'),
+    component: () => import(/* webpackChunkName: "offer" */ '@/views/Offer.vue'),
     meta: {
       title: 'Публичная оферта'
     }
@@ -46,7 +46,7 @@ const routes = [
   {
     path: '/payment',
     name: 'Payment',
-    component: () => import('@/views/Payment.vue'),
+    component: () => import(/* webpackChunkName: "payment" */ '@/views/Payment.vue'),
     meta: {
       title: 'Способы оплаты'
     }
@@ -54,12 +54,12 @@ const routes = [
   {
     path: '/tg',
     name: 'Tg',
-    component: () => import('@/views/Tg.vue')
+    component: () => import(/* webpackChunkName: "tg" */ '@/views/Tg.vue')
   },
   {
     path: '/:notFound(.*)',
     name: 'NotFound',
-    component: () => import('@/views/NotFound'),
+    component: () => import(/* webpackChunkName: "notFound" */ '@/views/NotFound'),
     meta: {
       title: '404'
     }
