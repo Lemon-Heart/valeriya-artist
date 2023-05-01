@@ -29,15 +29,18 @@ export default {
 .video
   width: 100%
   height: 100%
-  display: flex
-  flex-direction: column
+  display: grid
+  grid-template-rows: 1fr auto 20px
+  gap: 15px
+  // display: flex
+  // flex-direction: column
   &.notAvailable
     filter: brightness(0.5)
   iframe, &__img
     max-width: 95*$u
     border-radius: 20px
     width: 100%
-    margin: auto 0 0
+    // margin: auto 0 0
     height: 50*$u
     position: relative
     img
@@ -55,10 +58,10 @@ export default {
   &__name
     @include font('t16-demibold')
     line-height: 130%
-    margin-bottom: 3*$u
+    // margin-bottom: 3*$u
   &__link
     @include font('t14-regular')
-    margin-top: 3*$u
+    // margin-top: 3*$u
     display: flex
     color: $firstColor
     &:deep
