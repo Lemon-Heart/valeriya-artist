@@ -23,6 +23,6 @@ jobs:
       with:
         server: bodymaiu.beget.tech
         local-dir: ./dist/
-        server-dir: valeriya-artist.art/public_html/
+        server-dir: valeriya-artist.ru/public_html/
         username: bodymaiu
         password: ${{ secrets.ftp_password }}
