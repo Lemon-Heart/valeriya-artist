@@ -24,6 +24,8 @@ section.section1
     flex-direction: column
     flex: 1
     justify-content: center
+    @media screen and (max-width: $padWidth)
+      padding-top: 2.5*$u
     .buttonDesktop
       @media screen and (max-width: $padWidth)
         display: none
@@ -47,7 +49,7 @@ section.section1
     justify-content: flex-end
     @media screen and (max-width: $padWidth)
       align-items: center
-      margin-top: 25px
+      margin-top: 5*$u
     img
       width: 100%
       max-height: 100%
