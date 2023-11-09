@@ -45,6 +45,7 @@ section.section1
     flex-direction: column
     flex: 1
     justify-content: flex-end
+    margin-top: 20px
     @media screen and (max-width: $XXXLWidth)
       flex: 1
     @media screen and (max-width: $padWidth)
