@@ -11,6 +11,14 @@
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
   <% if(process.env.NODE_ENV==='production' ) { %>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -33,19 +41,6 @@
       <div><img src="https://mc.yandex.ru/watch/95522258" style="position:absolute; left:-9999px;" alt="" /></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
-    <% } %>
-</head>
-
-<body>
-  <noscript>
-    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-        Please enable it to continue.</strong>
-  </noscript>
-  <div id="app"></div>
-  <% if(process.env.NODE_ENV==='production' ) { %>
-    <noscript>
-      <div><img src="https://mc.yandex.ru/watch/91363549" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
     <% } %>
 </body>
 
