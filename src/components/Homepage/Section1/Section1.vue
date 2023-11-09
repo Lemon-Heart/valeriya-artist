@@ -47,7 +47,7 @@ section.section1
     justify-content: flex-end
     @media screen and (max-width: $padWidth)
       align-items: center
-      margin-top: 20px
+      margin-top: 25px
     img
       width: 100%
       max-height: 100%
