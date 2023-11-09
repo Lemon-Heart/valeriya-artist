@@ -54,7 +54,6 @@ section.section1
       width: 100%
       max-height: 100%
       object-fit: contain
-      transform: scale(-1, 1)
       @media screen and (max-width: $padWidth)
         object-fit: cover
         transform: none
