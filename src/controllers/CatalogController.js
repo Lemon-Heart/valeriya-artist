@@ -7,7 +7,7 @@ export default function CatalogController () {
 
   const getCatalog = async () => {
     if (!paintings.value) {
-      const response = await fetch('https://valeriya-artist.ru/api/catalog')
+      const response = await fetch('https://valeriya-artist.art/api/catalog')
       if (response.ok) {
         const res = await response.json()
         if (!res.mess) paintings.value = res.map((o) => new Paint(o))
@@ -17,7 +17,7 @@ export default function CatalogController () {
 
   const getProduct = async (id) => {
     if (currentPaint.value === null || currentPaint.value.id !== id) {
-      const response = await fetch(`https://valeriya-artist.ru/api/catalog/${id}`)
+      const response = await fetch(`https://valeriya-artist.art/api/catalog/${id}`)
       if (response.ok) {
         const res = await response.json()
         currentPaint.value = new Paint(res)

@@ -11,7 +11,7 @@ module.exports = {
     themeColor: '#000000',
     workboxOptions: {
       runtimeCaching: [{
-        urlPattern: 'https://valeriya-artist.ru/api',
+        urlPattern: 'https://valeriya-artist.art/api',
         handler: 'CacheFirst'
       }]
     },

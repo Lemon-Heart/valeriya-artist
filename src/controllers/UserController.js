@@ -24,7 +24,7 @@ export default function UserController () {
 
   const getCourses = async () => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.ru/api/courses', {
+    const response = await fetch('https://valeriya-artist.art/api/courses', {
       method: 'GET',
       headers: {
         Authorization: authToken.value
@@ -39,7 +39,7 @@ export default function UserController () {
 
   const getProfile = async () => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.ru/api/profile', {
+    const response = await fetch('https://valeriya-artist.art/api/profile', {
       method: 'GET',
       headers: {
         Authorization: authToken.value
@@ -57,7 +57,7 @@ export default function UserController () {
       logout()
       return
     }
-    const response = await fetch('https://valeriya-artist.ru/api/refresh', {
+    const response = await fetch('https://valeriya-artist.art/api/refresh', {
       method: 'GET',
       headers: {
         uuid: uuid.value
@@ -74,7 +74,7 @@ export default function UserController () {
 
   const auth = async payload => {
     if (!payload) return
-    const response = await fetch('https://valeriya-artist.ru/api/auth', {
+    const response = await fetch('https://valeriya-artist.art/api/auth', {
       method: 'POST',
       body: payload
     })
@@ -95,7 +95,7 @@ export default function UserController () {
 
   const login = async payload => {
     if (!payload) return
-    const response = await fetch('https://valeriya-artist.ru/api/login', {
+    const response = await fetch('https://valeriya-artist.art/api/login', {
       method: 'POST',
       body: payload
     })
@@ -106,7 +106,7 @@ export default function UserController () {
 
   const changePass = async payload => {
     if (!payload) return
-    const response = await fetch('https://valeriya-artist.ru/api/changepass', {
+    const response = await fetch('https://valeriya-artist.art/api/changepass', {
       method: 'POST',
       body: payload
     })
@@ -117,7 +117,7 @@ export default function UserController () {
 
   const restore = async payload => {
     if (!payload) return
-    const response = await fetch('https://valeriya-artist.ru/api/restore', {
+    const response = await fetch('https://valeriya-artist.art/api/restore', {
       method: 'POST',
       headers: {
         uuid: router.currentRoute.value.query.uuid
@@ -139,7 +139,7 @@ export default function UserController () {
 
   const changeProfileInfo = async payload => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.ru/api/profile/change', {
+    const response = await fetch('https://valeriya-artist.art/api/profile/change', {
       method: 'POST',
       headers: {
         Authorization: authToken.value
@@ -154,7 +154,7 @@ export default function UserController () {
 
   const changeProfileAvatar = async (payload) => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.ru/api/profile/avatar', {
+    const response = await fetch('https://valeriya-artist.art/api/profile/avatar', {
       method: 'POST',
       headers: {
         Authorization: authToken.value

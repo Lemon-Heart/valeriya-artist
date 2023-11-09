@@ -6,7 +6,7 @@ export default function ModulesController () {
 
   const getModules = async () => {
     if (!modules.value) {
-      const response = await fetch('https://valeriya-artist.ru/api/modules')
+      const response = await fetch('https://valeriya-artist.art/api/modules')
       if (response.ok) {
         const res = await response.json()
         if (!res.mess) {
