@@ -14,8 +14,11 @@
   .tariff__footer(v-if="textMore")
     .tariff__text(v-html="textMore")
   .tariff__priceWrapper
-    .tariff__oldPrice {{ price }} ₽
-    h1.tariff__price {{ newPrice }} ₽
+    template(v-if="newPrice")
+      .tariff__oldPrice {{ price }} ₽
+      h1.tariff__price {{ newPrice }} ₽
+    template(v-else)
+      .tariff__defaultPrice {{ price }} ₽
   ui-button.tariff__button(is-animated variant="dark" @click="$emit('buy', 'Стандарт')") Оформить заказ
 </template>
 
@@ -81,12 +84,15 @@ export default {
     display: flex
     flex-direction: column
     align-items: center
-  &__oldPrice
+  &__oldPrice, &__defaultPrice
     text-decoration: line-through
     @include font('h3')
     white-space: nowrap
     @media screen and (max-width: $padWidth)
       @include font('t18-demibold')
+  &__defaultPrice
+    text-decoration: none
+    @include font('h1')
   &__button
     margin: 10*$u auto 0 auto
   &__icons

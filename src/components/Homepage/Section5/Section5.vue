@@ -62,6 +62,7 @@ export default {
   margin-top: 50*$u
   grid-gap: 5*$u
   gap: 5*$u
+  justify-content: center
   @media screen and (max-width: $XXLWidth)
     flex-direction: column
     align-items: center
