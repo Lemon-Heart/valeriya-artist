@@ -4,6 +4,8 @@
   side-menu
 .content
   router-view
+.footer
+  app-footer
 app-modal
 </template>
 
@@ -11,12 +13,13 @@ app-modal
 import { useRoute } from 'vue-router'
 import { watch, inject } from 'vue'
 import AppHeader from '@/components/_layout/Header/Header'
+import AppFooter from '@/components/_layout/Footer/Footer'
 import AppModal from '@/components/_layout/Modal/Modal'
 import SideMenu from '@/components/_layout/SideMenu/SideMenu'
 import RestoreForm from '@/components/Forms/RestoreForm'
 
 export default {
-  components: { AppHeader, AppModal, SideMenu, RestoreForm },
+  components: { AppHeader, AppFooter, AppModal, SideMenu, RestoreForm },
   setup () {
     const route = useRoute()
     const store = inject('store')
@@ -51,6 +54,9 @@ export default {
   padding: 5*$u 0
   @media screen and (max-width: $mobileWidth)
     padding: 3*$u 0
+.footer
+  background-color: $headerBG
+  padding: 5*$u 0
 .content
   margin-top: 20*$u
   padding-bottom: 100px
