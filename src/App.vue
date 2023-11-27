@@ -55,6 +55,7 @@ export default {
   @media screen and (max-width: $mobileWidth)
     padding: 3*$u 0
 .footer
+  margin-top: auto
   background-color: $headerBG
   padding: 5*$u 0
 .content
