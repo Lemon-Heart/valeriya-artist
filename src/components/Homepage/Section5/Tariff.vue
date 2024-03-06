@@ -5,7 +5,7 @@
   .tariff__title
     span Тариф
     h1 {{ name }}
-  .tariff__body(v-if="textTop" :class="{ 'tariff__body_with-margin': code === 'base' }")
+  .tariff__body(v-if="textTop")
     .tariff__text(v-html="textTop")
   .tariff__footer(v-if="textMiddle")
     .tariff__text(v-html="textMiddle")
