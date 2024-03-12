@@ -52,6 +52,14 @@ const routes = [
     }
   },
   {
+    path: '/pwa',
+    name: 'Pwa',
+    component: () => import(/* webpackChunkName: "payment" */ '@/views/Pwa.vue'),
+    meta: {
+      title: 'Pwa'
+    }
+  },
+  {
     path: '/tg',
     name: 'Tg',
     component: () => import(/* webpackChunkName: "tg" */ '@/views/Tg.vue')
