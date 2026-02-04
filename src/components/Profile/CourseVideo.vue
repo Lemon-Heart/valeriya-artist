@@ -1,15 +1,15 @@
 <template lang="pug">
 .video(:class="{'notAvailable': !available}")
   .video__name {{ name }}
-  .video__img(v-if="!isFrameVisible")
+  .video__img(v-if="!isFrameVisible && !isVK")
     img(v-lazy="`//img.youtube.com/vi/${video}/hqdefault.jpg`" @click="available ? isFrameVisible = true : isFrameVisible = false")
-  iframe(v-if="isFrameVisible && available" :src="`https://www.youtube.com/embed/${video}?autoplay=1&amp`" allow="autoplay" allowfullscreen)
+  iframe(v-if="(isFrameVisible || isVK) && available" :src="videoFormatted" allow="autoplay" allowfullscreen)
   a.video__link(v-if="link && available" :href="link" target="blank") Дополнительные материалы
     ui-svg-icon(name="link" :size="20")
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export default {
   props: {
@@ -18,9 +18,18 @@ export default {
     link: String,
     available: Boolean
   },
-  setup () {
+  setup (props) {
     const isFrameVisible = ref(false)
-    return { isFrameVisible }
+    const isVK = computed(() => {
+      return props.video.includes('vkvideo.ru')
+    })
+    const videoFormatted = computed(() => {
+      if (isVK.value) {
+        return props.video
+      }
+      return `https://www.youtube.com/embed/${props.video}?autoplay=1&amp`
+    })
+    return { isFrameVisible, videoFormatted, isVK }
   }
 }
 </script>
