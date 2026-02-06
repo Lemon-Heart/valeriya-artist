@@ -17,19 +17,19 @@ export default {
     const advantage = ref([
       {
         icon: '/img/homepage/section2/molbertwhite.webp',
-        text: 'Рисовать на чем нравится: в digital, маслом на холсте или карандашом на бумаге'
+        text: 'Разобраться в основах и уверенно доводить портрет до законченного результата'
       },
       {
         icon: '/img/homepage/section2/brandwhite.webp',
-        text: 'Развить свой личный бренд и стать востребованным художником'
+        text: 'Найти свой авторский почерк для развития личного бренда художника'
       },
       {
         icon: '/img/homepage/section2/moneywhite.webp',
-        text: 'Зарабатывать на любимом деле в кратчайшие сроки'
+        text: 'Заниматься любимым делом, монетизируя свои навыки'
       },
       {
         icon: '/img/homepage/section2/portfoliowhite.webp',
-        text: 'Создать портфолио'
+        text: 'Сформировать портфолио на основе сильных работ'
       },
       {
         icon: '/img/homepage/section2/earthwhite.png',
@@ -37,15 +37,15 @@ export default {
       },
       {
         icon: '/img/homepage/section2/timewhite.webp',
-        text: 'Заменить годы обучения в художественной школе и вузе на 1,5 месяца'
+        text: 'Сфокуссироваться на самом важном, без лишних лет обучения'
       },
       {
         icon: '/img/homepage/section2/handswhite.webp',
-        text: 'Найти новых друзей среди художников и обрести поддержку'
+        text: 'Стать частью творческого сообщества единомышленников и обрести поддержку'
       },
       {
         icon: '/img/homepage/section2/portretwhite.webp',
-        text: 'Изучить основы портрета максимально понятно и не скучно или прокачать свои навыки'
+        text: 'Научиться видеть и передавать сходство в портрете'
       }
     ])
     return { advantage }
