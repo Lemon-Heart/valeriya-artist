@@ -1,7 +1,7 @@
 <template lang="pug">
 section.section8
   h1
-    ui-text-anim Познакомимся
+    ui-text-anim Познакомимся?
   .about
     .shadowWrapper
       .shadow
