@@ -16,7 +16,7 @@ section.section9
       class="mySwiper"
     )
       swiper-slide(v-for="i in 13" :key="i")
-        img(:src="`/img/homepage/section9/${i}.PNG`")
+        img(:src="`/img/homepage/section9/${i}.webp`")
 </template>
 
 <script>
