@@ -1,21 +1,22 @@
 <template lang="pug">
 section.section9
   h1
-    ui-text-anim Работы Валерии
+    ui-text-anim Что тебя ждет
   .galery
     swiper(
       :autoplay="false"
       :loop="true"
       :spaceBetween="0"
-      :slidesPerView="1"
+      :slidesPerView="3"
+      :slidesPerGroup="1"
       :grabCursor="true"
       :navigation="true"
       :pagination="pagination"
       :modules="modules"
       class="mySwiper"
     )
-      swiper-slide(v-for="(slide, i) in slides" :key="i")
-        img(:src="slide")
+      swiper-slide(v-for="i in 13" :key="i")
+        img(:src="`/img/homepage/section9/${i}.PNG`")
 </template>
 
 <script>
@@ -24,24 +25,9 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { Pagination, Navigation, Autoplay } from 'swiper'
-import { ref } from 'vue'
 export default {
   components: { Swiper, SwiperSlide },
   setup () {
-    const slides = ref([
-      '/img/homepage/section9/11.jpg',
-      '/img/homepage/section9/12.PNG',
-      '/img/homepage/section9/1.JPG',
-      '/img/homepage/section9/2.PNG',
-      '/img/homepage/section9/3.PNG',
-      '/img/homepage/section9/4.PNG',
-      '/img/homepage/section9/5.PNG',
-      '/img/homepage/section9/6.PNG',
-      '/img/homepage/section9/9.JPG',
-      '/img/homepage/section9/10.JPG',
-      '/img/homepage/section9/7.JPG',
-      '/img/homepage/section9/8.JPG'
-    ])
     return {
       pagination: {
         clickable: true,
@@ -49,8 +35,7 @@ export default {
           return '<span class="' + className + '"></span>'
         }
       },
-      modules: [Pagination, Navigation, Autoplay],
-      slides
+      modules: [Pagination, Navigation, Autoplay]
     }
   }
 }
