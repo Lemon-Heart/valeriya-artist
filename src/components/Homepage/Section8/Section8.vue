@@ -6,7 +6,7 @@ section.section8
     .shadowWrapper
       .shadow
     .img
-      img(:src="'img/homepage/section8/1.webp'")
+      img(:src="'img/homepage/section8/1.PNG'")
     .text
       ul
         li
@@ -73,21 +73,21 @@ section.section8
       flex: 1
       position: relative
       @media screen and (max-width: $XXXLWidth)
-        max-height: 200*$u
+        max-height: 250*$u
         overflow: hidden
       @media screen and (max-width: $XXLWidth)
-        max-height: 160*$u
+        max-height: 220*$u
       @media screen and (max-width: $padWidth)
-        max-height: 130*$u
+        max-height: 190*$u
       @media screen and (max-width: $XSWidth)
-        max-height: 110*$u
+        max-height: 150*$u
       @media screen and (max-width: $XXSWidth)
-        max-height: 95*$u
+        max-height: 120*$u
       @media screen and (max-width: $mobileWidth)
-        max-height: 75*$u
+        max-height: 110*$u
       img
         position: absolute
-        width: 100%
+        width: 90%
         bottom: 0
         transform: translateX(-5%)
         @media screen and (max-width: $XXXLWidth)
