@@ -13,6 +13,7 @@ section.section9
       :navigation="true"
       :pagination="pagination"
       :modules="modules"
+      :breakpoints="swiperBreakpoints"
       class="mySwiper"
     )
       swiper-slide(v-for="i in 13" :key="i")
@@ -35,7 +36,21 @@ export default {
           return '<span class="' + className + '"></span>'
         }
       },
-      modules: [Pagination, Navigation, Autoplay]
+      modules: [Pagination, Navigation, Autoplay],
+      swiperBreakpoints: {
+        320: {
+          slidesPerView: 1,
+          slidesPerGroup: 1
+        },
+        768: {
+          slidesPerView: 2,
+          slidesPerGroup: 1
+        },
+        1024: {
+          slidesPerView: 3,
+          slidesPerGroup: 1
+        }
+      }
     }
   }
 }
@@ -55,6 +70,9 @@ export default {
     @media screen and (max-width: $XXSWidth)
       margin-left: -20px
       margin-right: -20px
+    @media screen and (max-width: $mobileWidth)
+      margin-left: -10px
+      margin-right: -10px
     .swiper-slide
       display: flex
     img
@@ -66,11 +84,13 @@ export default {
       filter: drop-shadow(0px 9px 11px black)
       @media screen and (max-width: $padWidth)
         height: 125*$u
+        max-width: calc(100% - 80px)
       @media screen and (max-width: $XXSWidth)
         height: 100*$u
-        max-width: calc(100% - 100px)
+        max-width: calc(100% - 60px)
       @media screen and (max-width: $mobileWidth)
         height: 90*$u
+        max-width: calc(100% - 40px)
     .swiper-slide-active img
       object-position: center
     .swiper-slide-next img
