@@ -19,7 +19,9 @@
       h1.tariff__price {{ newPrice }} ₽
     template(v-else)
       .tariff__defaultPrice {{ price }} ₽
-  ui-button.tariff__button(is-animated variant="dark" @click="$emit('buy', 'Стандарт')") Оформить заказ
+  a(target="_blank" href="https://t.me/valeriya_admin")
+    ui-button.tariff__button(is-animated variant="dark" is-responsive) Внутренняя рассрочка
+  ui-button.tariff__button(is-animated variant="dark" is-responsive @click="$emit('buy', 'Стандарт')") Оформить заказ
 </template>
 
 <script>
@@ -94,7 +96,7 @@ export default {
     text-decoration: none
     @include font('h1')
   &__button
-    margin: 10*$u auto 0 auto
+    margin-top: 5*$u
   &__icons
     display: flex
     grid-gap: 4*$u

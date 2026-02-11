@@ -85,9 +85,9 @@ export default {
   0%
     transform: skewX(-45deg) translateX(0)
   20%
-    transform: skewX(-45deg) translateX(390px)
+    transform: skewX(-45deg) translateX(490px)
   100%
-    transform: skewX(-45deg) translateX(390px)
+    transform: skewX(-45deg) translateX(490px)
 
 .buttonComponent
   width: fit-content

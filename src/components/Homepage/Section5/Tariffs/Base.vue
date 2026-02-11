@@ -17,5 +17,6 @@
   .tariff__priceWrapper
     .tariff__oldPrice 102 000 ₽
     h1.tariff__price 29 900 ₽
+  ui-button.tariff__button(is-animated @click="$emit('buy', 'Базовый')") Внутренняя рассрочка
   ui-button.tariff__button(is-animated @click="$emit('buy', 'Базовый')") Оформить заказ
 </template>
