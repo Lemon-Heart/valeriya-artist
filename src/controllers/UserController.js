@@ -30,11 +30,14 @@ export default function UserController () {
         Authorization: authToken.value
       }
     })
+    
     if (response.ok) {
       const res = await response.json()
       if (!res.mess) courses.value = res.map((o) => new Module(o))
       loadingOff()
-    } else refresh(getCourses)
+    } else {
+      await refresh(getCourses)
+    }
   }
 
   const getProfile = async () => {
@@ -45,29 +48,38 @@ export default function UserController () {
         Authorization: authToken.value
       }
     })
+    
     if (response.ok) {
       const res = await response.json()
       profile.value = new UserProfile(res)
       loadingOff()
-    } else refresh(getProfile)
+    } else {
+      await refresh(getProfile)
+    }
   }
 
   const refresh = async (func) => {
     if (!uuid.value) {
       logout()
+      loadingOff()
       return
     }
+    
     const response = await fetch('https://valeriya-artist.art/api/refresh', {
       method: 'GET',
       headers: {
         uuid: uuid.value
       }
     })
+    
     if (response.ok) {
       const res = await response.json()
+      // Обновляем токен
       localStorage.setItem('auth_token', res.auth_token)
       authToken.value = res.auth_token
-      func()
+      await func()
+    } else {
+      logout()
     }
     loadingOff()
   }
@@ -131,7 +143,9 @@ export default function UserController () {
 
   const logout = async () => {
     localStorage.removeItem('auth_token')
+    localStorage.removeItem('uuid')
     authToken.value = ''
+    uuid.value = ''
     profile.value = new UserProfile(null)
     router.push({ name: 'Home' })
     store.sideMenu.close()
