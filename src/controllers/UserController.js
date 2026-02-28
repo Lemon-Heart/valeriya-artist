@@ -30,7 +30,7 @@ export default function UserController () {
         Authorization: authToken.value
       }
     })
-    
+
     if (response.ok) {
       const res = await response.json()
       if (!res.mess) courses.value = res.map((o) => new Module(o))
@@ -48,7 +48,7 @@ export default function UserController () {
         Authorization: authToken.value
       }
     })
-    
+
     if (response.ok) {
       const res = await response.json()
       profile.value = new UserProfile(res)
@@ -64,17 +64,16 @@ export default function UserController () {
       loadingOff()
       return
     }
-    
+
     const response = await fetch('https://valeriya-artist.art/api/refresh', {
       method: 'GET',
       headers: {
         uuid: uuid.value
       }
     })
-    
+
     if (response.ok) {
       const res = await response.json()
-      // Обновляем токен
       localStorage.setItem('auth_token', res.auth_token)
       authToken.value = res.auth_token
       await func()
