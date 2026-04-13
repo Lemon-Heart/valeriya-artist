@@ -15,6 +15,7 @@ export default {
     name: String,
     video: String,
     link: String,
+    preview: String,
     available: Boolean
   },
   setup (props) {
@@ -25,9 +26,6 @@ export default {
     const isRT = computed(() => {
       return props.video.includes('rutube.ru')
     })
-    const isYT = computed(() => {
-      return props.video.includes('youtube.com')
-    })
     function extractId (url) {
       const pattern = /\/embed\/([a-f0-9]+)/
       const match = url.match(pattern)
@@ -37,17 +35,12 @@ export default {
       const match = url.match(/[?&]p=([^&]+)/)
       return match ? match[1] : null
     }
-    const preview = computed(() => {
-      if (isYT.value) return `//img.youtube.com/vi/${extractId(props.video)}/hqdefault.jpg`
-      // if (isRT.value) return `https://rutube.ru/api/video/${extractId(props.video)}/thumbnail/?redirect=1`
-      return null
-    })
     const videoFormatted = computed(() => {
       if (isVK.value) return props.video
       if (isRT.value) return `https://rutube.ru/play/embed/${extractId(props.video)}/?p=${extractAccessKey(props.video)}`
       return `https://www.youtube.com/embed/${extractId(props.video)}?autoplay=1&amp`
     })
-    return { isFrameVisible, videoFormatted, preview }
+    return { isFrameVisible, videoFormatted }
   }
 }
 </script>
