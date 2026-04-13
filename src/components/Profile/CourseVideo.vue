@@ -1,16 +1,15 @@
 <template lang="pug">
 .video(:class="{'notAvailable': !available}")
   .video__name {{ name }}
-  .video__img(v-if="!isFrameVisible && !isVK")
-    img(v-lazy="`//img.youtube.com/vi/${video}/hqdefault.jpg`" @click="available ? isFrameVisible = true : isFrameVisible = false")
-  iframe(v-if="(isFrameVisible || isVK) && available" :src="videoFormatted" allow="autoplay" allowfullscreen)
+  .video__img(v-if="!isFrameVisible && preview")
+    img(v-lazy="preview" @click="available ? isFrameVisible = true : isFrameVisible = false")
+  iframe(v-if="(isFrameVisible || !preview) && available" :src="videoFormatted" allow="autoplay" allowfullscreen)
   a.video__link(v-if="link && available" :href="link" target="blank") Дополнительные материалы
     ui-svg-icon(name="link" :size="20")
 </template>
 
 <script>
 import { ref, computed } from 'vue'
-
 export default {
   props: {
     name: String,
@@ -23,13 +22,32 @@ export default {
     const isVK = computed(() => {
       return props.video.includes('vkvideo.ru')
     })
-    const videoFormatted = computed(() => {
-      if (isVK.value) {
-        return props.video
-      }
-      return `https://www.youtube.com/embed/${props.video}?autoplay=1&amp`
+    const isRT = computed(() => {
+      return props.video.includes('rutube.ru')
     })
-    return { isFrameVisible, videoFormatted, isVK }
+    const isYT = computed(() => {
+      return props.video.includes('youtube.com')
+    })
+    function extractId (url) {
+      const pattern = /\/embed\/([a-f0-9]+)/
+      const match = url.match(pattern)
+      return match ? match[1] : null
+    }
+    function extractAccessKey (url) {
+      const match = url.match(/[?&]p=([^&]+)/)
+      return match ? match[1] : null
+    }
+    const preview = computed(() => {
+      if (isYT.value) return `//img.youtube.com/vi/${extractId(props.video)}/hqdefault.jpg`
+      // if (isRT.value) return `https://rutube.ru/api/video/${extractId(props.video)}/thumbnail/?redirect=1`
+      return null
+    })
+    const videoFormatted = computed(() => {
+      if (isVK.value) return props.video
+      if (isRT.value) return `https://rutube.ru/play/embed/${extractId(props.video)}/?p=${extractAccessKey(props.video)}`
+      return `https://www.youtube.com/embed/${extractId(props.video)}?autoplay=1&amp`
+    })
+    return { isFrameVisible, videoFormatted, preview }
   }
 }
 </script>

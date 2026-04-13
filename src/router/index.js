@@ -44,6 +44,14 @@ const routes = [
     }
   },
   {
+    path: '/cookies',
+    name: 'Cookies',
+    component: () => import(/* webpackChunkName: "cookies" */ '@/views/Cookies.vue'),
+    meta: {
+      title: 'Cookies'
+    }
+  },
+  {
     path: '/payment',
     name: 'Payment',
     component: () => import(/* webpackChunkName: "payment" */ '@/views/Payment.vue'),

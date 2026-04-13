@@ -60,5 +60,6 @@ class ModalData {
     this.params.isClosable = data.params?.isClosable ?? true
     this.params.isResponsive = data.params?.isResponsive ?? false
     this.params.isFullscreen = data.params?.isFullscreen ?? false
+    this.params.isFloating = data.params?.isFloating ?? false
   }
 }
