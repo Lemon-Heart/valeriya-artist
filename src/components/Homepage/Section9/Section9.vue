@@ -16,7 +16,7 @@ section.section9
       :breakpoints="swiperBreakpoints"
       class="mySwiper"
     )
-      swiper-slide(v-for="i in 17" :key="i")
+      swiper-slide(v-for="i in 18" :key="i")
         img(:src="`/img/homepage/section9/${i}.webp`")
 </template>
 
