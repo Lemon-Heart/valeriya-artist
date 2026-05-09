@@ -13,7 +13,7 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
         .exit(v-if="user.isAuth" @click="user.logout") Выход
           ui-svg-icon(name="exit" :size="24")
         router-link(:to="{ name: 'Offer'}") Публичная оферта
-        router-link(:to="{ name: 'Payment'}") Способы оплаты
+        router-link(:to="{ name: 'Policy'}") Политика конфиденциальности
         header-soc.soc
 </template>
 
@@ -84,12 +84,16 @@ export default {
   cursor: pointer
   display: flex
   align-items: center
-  margin-bottom: 5*$u
+  margin-bottom: 3*$u
   & > *
     margin-left: 2*$u
     margin-top: $u
 .footerMenu
+  display: grid
+  gap: 2*$u
   @include font('t16-regular')
+  a
+    line-height: 5*$u
   .soc
-    margin-top: 10*$u
+    margin-top: 8*$u
 </style>

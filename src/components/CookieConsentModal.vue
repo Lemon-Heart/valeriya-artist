@@ -4,10 +4,10 @@ transition(name="cookie-slide")
     .cookie-consent__content
       .cookie-consent__text
         h3 Мы используем cookies
-        p Мы используем файлы cookie для улучшения работы сайта, анализа трафика и персонализации контента. Продолжая использовать наш сайт, вы соглашаетесь с нашей Политикой конфиденциальности
-          //- router-link(:to="{ name: 'Cookies'}")
+        p Мы используем файлы cookie для улучшения работы сайта, анализа трафика и персонализации контента. Продолжая использовать наш сайт, вы соглашаетесь с нашей
+          router-link(:to="{ name: 'Policy'}")
             |  Политикой конфиденциальности
-          //- | .
+          | .
       .cookie-consent__buttons
         ui-button(@click="acceptAll" is-animated variant="dark") Принять
 </template>
@@ -89,6 +89,7 @@ export default {
       line-height: 1.5
 
       a
+        color: $firstColor
         text-decoration: none
         transition: color 0.3s
 

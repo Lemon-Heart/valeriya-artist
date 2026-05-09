@@ -44,11 +44,11 @@ const routes = [
     }
   },
   {
-    path: '/cookies',
-    name: 'Cookies',
-    component: () => import(/* webpackChunkName: "cookies" */ '@/views/Cookies.vue'),
+    path: '/policy',
+    name: 'Policy',
+    component: () => import(/* webpackChunkName: "policy" */ '@/views/Policy.vue'),
     meta: {
-      title: 'Cookies'
+      title: 'Политика конфиденциальности, обработки персональных данных и использования файлов cookies'
     }
   },
   {
