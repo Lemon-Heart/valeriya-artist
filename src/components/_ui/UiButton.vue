@@ -158,6 +158,12 @@ export default {
     &:hover
       background-color: $btnBGDarkHover
 
+  &._primary
+    background-color: $firstColor
+    color: $btnBGDark
+    &:hover
+      background-color: $firstColor
+
   &._responsive
     width: 100%
     justify-content: center

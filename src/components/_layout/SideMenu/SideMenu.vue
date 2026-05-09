@@ -6,13 +6,11 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
       ui-close(:size="40" @onClick="sideMenu.toggle")
     .menu
       .mainMenu
-        router-link(:to="{ name: 'Home'}") Главная
-        router-link(:to="{ name: 'Profile'}") Профиль
-        router-link(:to="{ name: 'Catalog'}") Каталог
+        router-link(:to="{ name: 'Home'}") С чего начинается портрет
         router-link(:to="{ name: 'Faq'}") Частые вопросы
+        router-link(:to="{ name: 'Catalog'}") Каталог картин Валерии
       .footerMenu
-        .exit(v-if="user.isAuth" @click="user.logout") Выход
-          ui-svg-icon(name="exit" :size="24")
+        ui-button(is-responsive is-animated variant="primary" size="L" @click.prevent="$router.push({ name: 'Profile' })") Профиль
         header-soc.soc
 </template>
 
@@ -51,7 +49,7 @@ export default {
   position: relative
   display: flex
   flex-direction: column
-  max-width: 75*$u
+  max-width: 90*$u
   height: 100%
   padding: 6*$u 10*$u 10*$u 10*$u
   background: $headerBG
@@ -79,14 +77,6 @@ export default {
     color: $firstColor
     transform: scale(1.05)
     font-size: 5.15*$u
-.exit
-  cursor: pointer
-  display: flex
-  align-items: center
-  margin-bottom: 3*$u
-  & > *
-    margin-left: 2*$u
-    margin-top: $u
 .footerMenu
   display: grid
   gap: 2*$u
@@ -94,5 +84,5 @@ export default {
   a
     line-height: 5*$u
   .soc
-    margin-top: 8*$u
+    margin: 8*$u auto 0
 </style>

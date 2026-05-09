@@ -16,6 +16,8 @@
         ui-button(v-if="isEdit" variant="dark" size="L" is-animated @click="changeProfileInfo({ name: profile.name, phone: profile.phone, email: profile.email })") Применить
         ui-button(v-if="isEdit" is-animated size="L" @click="isEdit = false") Отменить
       .profile__tariff(v-if="profile.tariff") Тариф: {{ profile.tariff }}
+      .profile__exit(v-if="user.isAuth" @click="user.logout") Выход
+        ui-svg-icon(name="exit" :size="24")
     .profile__avatar
       .photo(v-if="profile.photo")
         img(:src="profile.photo")
@@ -43,6 +45,7 @@ export default {
     Promise.all([store.user.getProfile(), store.user.getCourses()])
 
     const profile = computed(() => store.user.profile)
+    const user = computed(() => store.user)
     const courses = computed(() => store.user.courses)
     const error = computed(() => store.user.errMess)
 
@@ -57,7 +60,7 @@ export default {
       e.target.value = ''
     }
 
-    return { profile, loading, courses, isEdit, changeProfileInfo, changeProfileAvatar, error }
+    return { profile, loading, courses, isEdit, changeProfileInfo, changeProfileAvatar, error, user }
   }
 }
 </script>
@@ -95,6 +98,15 @@ export default {
     .uiInputComponent
       @include font('h2')
       height: auto
+  &__exit
+    @include font('t18-regular')
+    cursor: pointer
+    display: flex
+    align-items: center
+    margin-top: 3*$u
+    & > *
+      margin-left: 2*$u
+      margin-top: $u
   &__info
     display: flex
     flex-direction: column
