@@ -36,6 +36,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "product" */ '@/views/Product')
   },
   {
+    path: '/faq',
+    name: 'Faq',
+    component: () => import(/* webpackChunkName: "faq" */ '@/views/Faq.vue'),
+    meta: {
+      title: 'Частые вопросы'
+    }
+  },
+  {
     path: '/offer',
     name: 'Offer',
     component: () => import(/* webpackChunkName: "offer" */ '@/views/Offer.vue'),
