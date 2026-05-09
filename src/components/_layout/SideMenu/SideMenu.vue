@@ -13,8 +13,6 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
       .footerMenu
         .exit(v-if="user.isAuth" @click="user.logout") Выход
           ui-svg-icon(name="exit" :size="24")
-        router-link(:to="{ name: 'Offer'}") Публичная оферта
-        router-link(:to="{ name: 'Policy'}") Политика конфиденциальности
         header-soc.soc
 </template>
 
