@@ -4,7 +4,7 @@
   :class="{'np': variant === 'np'}"
 )
   .accordion__header(@click="click")
-    .img(v-if="icon")
+    .img(v-if="icon" :class="iconSize")
       img(:src="icon")
     span {{ title }}
   .accordion__body(ref="body")
@@ -18,7 +18,6 @@ import { ref } from 'vue'
 export default {
   props: {
     variant: {
-      // np
       type: String,
       default: 'default'
     },
@@ -29,6 +28,10 @@ export default {
     icon: {
       type: String,
       default: null
+    },
+    iconSize: {
+      type: String,
+      default: 'm' // s | m
     },
     altListHeading: {
       type: Boolean,
@@ -90,8 +93,12 @@ export default {
     .img
       height: 25*$u
       margin-right: 5*$u
+      &.s
+        height: 15*$u
       @media screen and (max-width: $XXSWidth)
         height: 15*$u
+        &.s
+          height: 10*$u
       img
         object-fit: contain
         object-position: center
