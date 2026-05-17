@@ -2,15 +2,15 @@
 section.section3
   h1
     ui-text-anim Чему ты научишься?
-  learn-list(:items="items")
+  list-component(:items="items" variant="number")
 </template>
 
 <script>
-import LearnList from './LearnList/LearnList'
+import ListComponent from '@/components/ListComponent/ListComponent'
 import { ref } from 'vue'
 
 export default {
-  components: { LearnList },
+  components: { ListComponent },
   setup () {
     const items = ref([
       {

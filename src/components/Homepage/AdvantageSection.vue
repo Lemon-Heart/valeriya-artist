@@ -2,15 +2,15 @@
 section.section7
   h1
     ui-text-anim Ты приобретаешь не просто новые знания в рисовании портретов!
-  learn-list(:items="items")
+  list-component(:items="items")
 </template>
 
 <script>
-import LearnList from './LearnList/LearnList'
+import ListComponent from '@/components/ListComponent/ListComponent'
 import { ref } from 'vue'
 
 export default {
-  components: { LearnList },
+  components: { ListComponent },
   setup () {
     const items = ref([
       {

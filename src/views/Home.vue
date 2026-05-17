@@ -1,36 +1,38 @@
 <template lang="pug">
 .cont
-  section-1
+  main-section
 .roundedLine
 .bg
   .cont
-    section-2
+    wish-section
 .roundedLine.flipped
 .cont
-  section-3
-  section-4
-  section-5
-  section-6
-  section-7
-  section-8
-  section-9
-  section-10
-  section-11
+  learn-section
+  about-section
+  tariff-section
+  requirements-section
+  advantage-section
+  resume-section
+  painting-section
+  faq-section
+  trust-section
+  news-section
 </template>
 
 <script>
-import Section1 from '@/components/Homepage/Section1/Section1'
-import Section2 from '@/components/Homepage/Section2/Section2'
-import Section3 from '@/components/Homepage/Section3/Section3'
-import Section4 from '@/components/Homepage/Section4/Section4'
-import Section5 from '@/components/Homepage/Section5/Section5'
-import Section6 from '@/components/Homepage/Section6/Section6'
-import Section7 from '@/components/Homepage/Section7/Section7'
-import Section8 from '@/components/Homepage/Section8/Section8'
-import Section9 from '@/components/Homepage/Section9/Section9'
-import Section10 from '@/components/Homepage/Section10/Section10'
-import Section11 from '@/components/Homepage/Section11/Section11'
-export default { components: { Section1, Section2, Section3, Section4, Section5, Section6, Section7, Section8, Section9, Section10, Section11 } }
+import MainSection from '@/components/Homepage/MainSection'
+import WishSection from '@/components/Homepage/WishSection'
+import LearnSection from '@/components/Homepage/LearnSection'
+import AboutSection from '@/components/Homepage/AboutSection'
+import TariffSection from '@/components/Homepage/TariffSection'
+import RequirementsSection from '@/components/Homepage/RequirementsSection'
+import AdvantageSection from '@/components/Homepage/AdvantageSection'
+import ResumeSection from '@/components/Homepage/ResumeSection'
+import PaintingSection from '@/components/Homepage/PaintingSection'
+import FaqSection from '@/components/Homepage/FaqSection'
+import TrustSection from '@/components/Homepage/TrustSection'
+import NewsSection from '@/components/Homepage/NewsSection'
+export default { components: { MainSection, WishSection, LearnSection, AboutSection, TariffSection, RequirementsSection, AdvantageSection, ResumeSection, PaintingSection, FaqSection, TrustSection, NewsSection } }
 </script>
 
 <style lang="sass" scoped>

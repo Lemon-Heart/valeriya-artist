@@ -49,7 +49,7 @@ export default {
   position: relative
   display: flex
   flex-direction: column
-  max-width: 90*$u
+  max-width: 75*$u
   height: 100%
   padding: 6*$u 10*$u 10*$u 10*$u
   background: $headerBG
@@ -70,7 +70,8 @@ export default {
     display: flex
     flex-direction: column
 .mainMenu, .exit
-  @include font('h3')
+  @include font('h3-bebas')
+  letter-spacing: 1px
 .mainMenu a
   transition: .1s
   &:hover

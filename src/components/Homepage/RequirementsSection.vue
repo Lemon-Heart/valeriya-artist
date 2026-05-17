@@ -1,9 +1,9 @@
 <template lang="pug">
-section.section6
+section.requirements-section
   h1
     ui-text-anim Что тебе потребуется для обучения
   block-list(:items="items")
-  div.section6__text Сразу после оплаты курса тебе будет доступен 1 модуль «Материалы и техники», где я подробно рассказываю какие материалы лучше выбрать, где их приобретать и как красиво оформить скетчбук, чтобы он стал не только местом для обучения, а еще и местом вдохновения
+  div.requirements-section__text Сразу после оплаты курса тебе будет доступен 1 модуль «Материалы и техники», где я подробно рассказываю какие материалы лучше выбрать, где их приобретать и как красиво оформить скетчбук, чтобы он стал не только местом для обучения, а еще и местом вдохновения
 </template>
 
 <script>
@@ -16,22 +16,22 @@ export default {
     const items = ref([
       {
         title: 'Скетчбук или бумага',
-        icon: '/img/homepage/section6/book.png',
+        icon: '/img/homepage/requirements-section/book.png',
         text: 'Плотность ~200г/м² Формат А4 (в идеале А3) Бумага для акварели или принтера НЕ подойдет'
       },
       {
         title: 'Карандаши',
-        icon: '/img/homepage/section6/pen.webp',
+        icon: '/img/homepage/requirements-section/pen.webp',
         text: 'Потребуется 3 вида: средней твердости НВ(ТМ) мягкие 2В(М) и 6В(М)'
       },
       {
         title: 'Блокнот',
-        icon: '/img/homepage/section6/paper.webp',
+        icon: '/img/homepage/requirements-section/paper.webp',
         text: 'Может потребоваться для конспектов, а можешь записывать их прямо в скетчбуке'
       },
       {
         title: 'Ластик/клячка',
-        icon: '/img/homepage/section6/eraser.png',
+        icon: '/img/homepage/requirements-section/eraser.png',
         text: 'Клячка лучше - не затирает бумагу и не оставляет крошек. Ластик советую исключительно белый и мягкий'
       }
     ])
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.section6
+.requirements-section
   display: flex
   flex-direction: column
   margin-top: 50*$u

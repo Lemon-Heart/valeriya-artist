@@ -24,7 +24,7 @@ import { buyCourse } from '@/services/payment'
 import { useRouter } from 'vue-router'
 import TariffsController from '@/controllers/TariffsController'
 import { useLoading } from '@/composables/useLoading'
-import Tariff from './Tariff'
+import Tariff from '@/components/Tariff'
 
 export default {
   components: { Tariff },
