@@ -3,7 +3,7 @@ a.soc-block(:href="link" target="_blank")
   .soc-block__icons
     .soc-block__icon
       ui-svg-icon(:name="icon" :size="24")
-    img.soc-block__icon.soc-block__photo(src="img/avatar.jpg")
+    img.soc-block__icon.soc-block__photo(src="/img/avatar.JPG")
   .soc-block__title {{ title }}
   .soc-block__link Перейти в блог
 </template>
