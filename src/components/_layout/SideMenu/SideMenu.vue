@@ -7,7 +7,7 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
     .menu
       .mainMenu
         router-link(:to="{ name: 'Home'}") С чего начинается портрет
-        router-link(:to="{ name: 'Faq'}") Частые вопросы
+        a(href="#faq") Частые вопросы
         router-link(:to="{ name: 'Catalog'}") Каталог картин Валерии
       .footerMenu
         ui-button(is-responsive is-animated variant="primary" size="L" @click.prevent="$router.push({ name: 'Profile' })") Профиль

@@ -1,7 +1,7 @@
 <template lang="pug">
-section.section10
+section.faq(id="faq")
   h1
-    ui-text-anim Наиболее частые вопросы
+    ui-text-anim Частые вопросы
   Faq
 </template>
 
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.section10
+.faq
   display: flex
   flex-direction: column
   margin-top: 50*$u
