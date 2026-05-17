@@ -10,6 +10,7 @@ section.news-section
       :icon="item.icon"
       :link="item.link"
     )
+  .note * Признаны экстремистскими организациями и запрещены на территории РФ
 </template>
 
 <script>
@@ -26,12 +27,12 @@ export default {
       },
       {
         icon: 'tg',
-        title: 'Telegram',
+        title: 'Telegram*',
         link: 'https://t.me/valeriya_artist'
       },
       {
         icon: 'inst',
-        title: 'Instagram',
+        title: 'Instagram*',
         link: 'https://www.instagram.com/valeriya.artist'
       },
       {
@@ -52,6 +53,9 @@ export default {
   flex-direction: column
   @media screen and (max-width: $mobileWidth)
     margin-top: 25*$u
+  .note
+    margin-top: 5*$u
+    text-align: center
   .grid
     margin-top: 5*$u
     display: grid
