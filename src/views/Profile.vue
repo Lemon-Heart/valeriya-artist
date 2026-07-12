@@ -26,18 +26,28 @@
           input(type="file" @change="changeProfileAvatar")
       label.add(v-else)
         input(type="file" @change="changeProfileAvatar")
+
+  ReviewForm.review-form(photos-required="one")
+
   .videos(v-for="course in courses" :key="course.id")
     .videos__head {{ course.name }}
     .videos__wrapper
       course-video(v-for="lesson in course.lessons" :key="lesson.id" :name="lesson.name" :video="lesson.video" :link="lesson.link" :available="lesson.available" :preview="lesson.preview")
+
+  UiNotification(
+    v-if="store.review.errMess || store.review.successMess"
+    :message="store.review.errMess || store.review.successMess"
+    :type="store.review.errMess ? 'error' : 'success'"
+  )
 </template>
 
 <script>
 import { inject, computed, ref } from 'vue'
 import CourseVideo from '@/components/Profile/CourseVideo'
+import ReviewForm from '@/components/Reviews/ReviewForm'
 
 export default {
-  components: { CourseVideo },
+  components: { CourseVideo, ReviewForm },
   setup () {
     const store = inject('store')
     const loading = computed(() => store.user.loading)
@@ -60,7 +70,7 @@ export default {
       e.target.value = ''
     }
 
-    return { profile, loading, courses, isEdit, changeProfileInfo, changeProfileAvatar, error, user }
+    return { profile, loading, courses, isEdit, changeProfileInfo, changeProfileAvatar, error, user, store }
   }
 }
 </script>
@@ -229,6 +239,8 @@ export default {
         font-size: 3.5*$u
   &__tariff
     margin-top: auto
+.review-form
+  margin-top: 10*$u
 .videos
   background: $BGOpacity
   padding: 10*$u

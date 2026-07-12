@@ -17,9 +17,12 @@
   faq-section
   trust-section
   news-section
+  reviews-section
 </template>
 
 <script>
+import { onMounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import MainSection from '@/components/Homepage/MainSection'
 import WishSection from '@/components/Homepage/WishSection'
 import LearnSection from '@/components/Homepage/LearnSection'
@@ -32,7 +35,45 @@ import PaintingSection from '@/components/Homepage/PaintingSection'
 import FaqSection from '@/components/Homepage/FaqSection'
 import TrustSection from '@/components/Homepage/TrustSection'
 import NewsSection from '@/components/Homepage/NewsSection'
-export default { components: { MainSection, WishSection, LearnSection, AboutSection, TariffSection, RequirementsSection, AdvantageSection, ResumeSection, PaintingSection, FaqSection, TrustSection, NewsSection } }
+import ReviewsSection from '@/components/Homepage/ReviewsSection'
+
+export default {
+  components: {
+    MainSection,
+    WishSection,
+    LearnSection,
+    AboutSection,
+    TariffSection,
+    RequirementsSection,
+    AdvantageSection,
+    ResumeSection,
+    PaintingSection,
+    FaqSection,
+    TrustSection,
+    NewsSection,
+    ReviewsSection
+  },
+  setup () {
+    const route = useRoute()
+
+    const scrollToFaq = () => {
+      nextTick(() => {
+        const faqElement = document.getElementById('faq')
+        if (faqElement) {
+          faqElement.scrollIntoView({ behavior: 'smooth' })
+        }
+      })
+    }
+
+    onMounted(() => {
+      if (route.hash === '#faq') {
+        setTimeout(scrollToFaq, 500)
+      }
+    })
+
+    return {}
+  }
+}
 </script>
 
 <style lang="sass" scoped>

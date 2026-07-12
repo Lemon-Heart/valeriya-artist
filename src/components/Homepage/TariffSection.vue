@@ -1,6 +1,6 @@
 <template lang="pug">
 ui-base-loader(v-if="loading")
-section.section5(v-else id="tariffs")
+section.tariff-section(v-else id="tariffs")
   Tariff(
     v-for="tariff in tariffs"
     :key="tariff.id"
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.section5
+.tariff-section
   display: flex
   flex-direction: row
   flex-wrap: wrap

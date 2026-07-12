@@ -1,5 +1,5 @@
 <template lang="pug">
-section.section1
+section.main-section
   .text
     h1 С чего начинается портрет
     p Твоя школа по формированию базовых навыков в рисовании портрета. Система понятных последовательных шагов от наброска до законченной работы с опорой на логику, а не интуицию
@@ -10,7 +10,7 @@ section.section1
 </template>
 
 <style lang="sass" scoped>
-.section1
+.main-section
   display: flex
   height: calc( 100vh - #{35*$u} )
   position: relative

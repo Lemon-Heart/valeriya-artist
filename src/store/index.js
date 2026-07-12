@@ -4,6 +4,7 @@ import UserController from '@/controllers/UserController'
 import SideMenuController from '@/controllers/SideMenuController'
 import CatalogController from '@/controllers/CatalogController'
 import FaqController from '@/controllers/FaqController'
+import ReviewController from '@/controllers/ReviewController'
 
 const store = reactive({})
 
@@ -15,4 +16,5 @@ export function initStore () {
   store.sideMenu = SideMenuController()
   store.catalog = CatalogController()
   store.faq = FaqController()
+  store.review = ReviewController()
 }

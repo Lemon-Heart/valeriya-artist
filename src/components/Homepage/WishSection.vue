@@ -1,5 +1,5 @@
 <template lang="pug">
-section.section2
+section.wish-section
   h1
     ui-text-anim Этот курс для тебя, если ты хочешь:
   .advantage
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.section2
+.wish-section
   display: flex
   flex-direction: column
   align-items: center

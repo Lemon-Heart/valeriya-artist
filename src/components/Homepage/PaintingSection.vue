@@ -1,5 +1,5 @@
 <template lang="pug">
-section.section9
+section.painting-section
   h1
     ui-text-anim Что тебя ждет
   .galery
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.section9
+.painting-section
   display: flex
   flex-direction: column
   margin-top: 50*$u

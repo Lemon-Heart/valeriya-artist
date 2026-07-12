@@ -1,5 +1,5 @@
 <template lang="pug">
-section.section7
+section.advantage-section
   h1
     ui-text-anim Ты приобретаешь не просто новые знания в рисовании портретов!
   list-component(:items="items")
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.section7
+.advantage-section
   margin-top: 50*$u
   display: flex
   flex-direction: column

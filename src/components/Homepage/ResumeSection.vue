@@ -1,5 +1,5 @@
 <template lang="pug">
-section.section8
+section.resume-section
   h1
     ui-text-anim Познакомимся?
   .about
@@ -34,7 +34,7 @@ section.section8
 </template>
 
 <style lang="sass" scoped>
-.section8
+.resume-section
   display: flex
   flex-direction: column
   margin-top: 50*$u

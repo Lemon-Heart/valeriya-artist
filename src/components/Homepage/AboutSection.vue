@@ -1,6 +1,6 @@
 <template lang="pug">
 ui-base-loader(v-if="loading")
-section.section4(v-else)
+section.about-section(v-else)
   h1
     ui-text-anim {{ modulesDescription.heading }}
   .aboutCourse
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.section4
+.about-section
   display: flex
   flex-direction: column
   .aboutCourse

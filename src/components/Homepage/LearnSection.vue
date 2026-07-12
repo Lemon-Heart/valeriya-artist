@@ -1,5 +1,5 @@
 <template lang="pug">
-section.section3
+section.learn-section
   h1
     ui-text-anim Чему ты научишься?
   list-component(:items="items" variant="number")
@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.section3
+.learn-section
   display: flex
   flex-direction: column
   @media screen and (max-width: $padWidth)
