@@ -1,5 +1,5 @@
 <template lang="pug">
-.reviews-slider
+.reviews-slider(v-if="reviews.length")
   swiper(
     v-if="reviews.length > 0"
     :loop="reviews.length > 3"
