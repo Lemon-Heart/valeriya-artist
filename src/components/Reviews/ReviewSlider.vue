@@ -16,9 +16,6 @@
       :key="review.id"
     )
       ReviewCard(:review="review")
-
-  .reviews-slider__empty(v-else)
-    p Пока нет отзывов. Будьте первыми!
 </template>
 
 <script>
@@ -82,14 +79,4 @@ export default {
       padding-bottom: 10*$u
     .swiper-slide
       height: auto
-
-  &__empty
-    text-align: center
-    padding: 60px 20px
-    background: $BGOpacity
-    border-radius: $BR
-
-    p
-      @include font('h3')
-      color: rgba(255, 255, 255, 0.5)
 </style>
