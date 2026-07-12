@@ -27,7 +27,7 @@
       label.add(v-else)
         input(type="file" @change="changeProfileAvatar")
 
-  ReviewForm.review-form(photos-required="both")
+  ReviewForm.review-form(v-if="courses.length" photos-required="both")
 
   .videos(v-for="course in courses" :key="course.id")
     .videos__head {{ course.name }}
