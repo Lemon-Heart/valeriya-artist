@@ -1,5 +1,7 @@
 <template lang="pug">
-section.reviews-section
+section.reviews-section(
+  :class="[{'reviews-section__empty': !reviews.length}]"
+)
   UiFullScreenLoader(v-if="loading")
   ReviewSlider(v-else :reviews="reviews")
 </template>
@@ -32,4 +34,6 @@ export default {
   display: flex
   flex-direction: column
   margin-top: 50*$u
+  &__empty
+    margin-top: 0
 </style>
