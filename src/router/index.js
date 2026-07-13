@@ -22,6 +22,14 @@ const routes = [
     }
   },
   {
+    path: '/reviews',
+    name: 'Reviews',
+    component: () => import(/* webpackChunkName: "reviews" */ '@/views/Reviews.vue'),
+    meta: {
+      title: 'Отзывы'
+    }
+  },
+  {
     path: '/catalog',
     name: 'Catalog',
     component: () => import(/* webpackChunkName: "catalog" */ '@/views/Catalog.vue'),

@@ -27,27 +27,24 @@
       label.add(v-else)
         input(type="file" @change="changeProfileAvatar")
 
-  ReviewForm.review-form(v-if="courses.length" photos-required="both")
+  ReviewsCta.review-form(
+    v-if="courses.length"
+    text="Уже прошел обучение? Мне будет приятно, если ты напишешь пару слов для обратной связи и поделишься результатом - загрузи фото своей работы до и после прохождения курса."
+  )
 
   .videos(v-for="course in courses" :key="course.id")
     .videos__head {{ course.name }}
     .videos__wrapper
       course-video(v-for="lesson in course.lessons" :key="lesson.id" :name="lesson.name" :video="lesson.video" :link="lesson.link" :available="lesson.available" :preview="lesson.preview")
-
-  UiNotification(
-    v-if="store.review.errMess || store.review.successMess"
-    :message="store.review.errMess || store.review.successMess"
-    :type="store.review.errMess ? 'error' : 'success'"
-  )
 </template>
 
 <script>
 import { inject, computed, ref } from 'vue'
 import CourseVideo from '@/components/Profile/CourseVideo'
-import ReviewForm from '@/components/Reviews/ReviewForm'
+import ReviewsCta from '@/components/Reviews/ReviewsCta'
 
 export default {
-  components: { CourseVideo, ReviewForm },
+  components: { CourseVideo, ReviewsCta },
   setup () {
     const store = inject('store')
     const loading = computed(() => store.user.loading)
@@ -77,7 +74,7 @@ export default {
 
 <style lang="sass" scoped>
 .error, .wrapper
-  position: absolute
+  position: fixed
   right: 0
   left: 0
   bottom: 0
@@ -164,9 +161,42 @@ export default {
       height: 70*$u
       border-radius: 50%
       position: relative
-      background: $socIconHover
+      background-color: $socIconHover
+      background-image: url('/public/img/user.svg')
+      background-position: center
+      background-size: 50%
+      background-repeat: no-repeat
       cursor: pointer
       transition: .2s
+      &::after
+        content: '+'
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 15*$u
+        height: 15*$u
+        background: $headerBG
+        border-radius: 50%
+        display: flex
+        align-items: center
+        justify-content: center
+        color: $white
+        font-size: 30px
+        font-weight: bold
+        line-height: 1
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+        @media screen and (max-width: $padWidth)
+          width: 12*$u
+          height: 12*$u
+        @media screen and (max-width: 750px)
+          width: 10*$u
+          height: 10*$u
+        @media screen and (max-width: $XXSWidth)
+          width: 8*$u
+          height: 8*$u
+        @media screen and (max-width: 490px)
+          width: 6*$u
+          height: 6*$u
       @media screen and (max-width: $padWidth)
         width: 60*$u
         height: 60*$u
@@ -181,19 +211,6 @@ export default {
         height: 25*$u
       &:hover
         opacity: .5
-      &:before, &:after
-        content: ''
-        transition: .2s
-        position: absolute
-        width: 80%
-        height: 2*$u
-        background: $white
-        top: 50%
-        left: 50%
-      &:before
-        transform: translate(-50%, -50%)
-      &:after
-        transform: translate(-50%, -50%) rotate(90deg)
       input
         display: none
   &__name
@@ -241,6 +258,8 @@ export default {
     margin-top: auto
 .review-form
   margin-top: 10*$u
+  @media screen and (max-width: $XXSWidth)
+    margin-top: 5*$u
 .videos
   background: $BGOpacity
   padding: 10*$u

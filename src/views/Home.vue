@@ -15,9 +15,9 @@
   resume-section
   painting-section
   faq-section
+  reviews-section
   trust-section
   news-section
-  reviews-section
 </template>
 
 <script>

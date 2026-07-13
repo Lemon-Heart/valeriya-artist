@@ -1,18 +1,18 @@
 <template lang="pug">
-section.reviews-section(
-  :class="[{'reviews-section__empty': !reviews.length}]"
-)
+section.reviews-section
   UiFullScreenLoader(v-if="loading")
   ReviewSlider(v-else :reviews="reviews")
+  ReviewsCta(text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса").reviews-section__cta
 </template>
 
 <script>
 import { inject, computed } from 'vue'
 import ReviewSlider from '@/components/Reviews/ReviewSlider'
+import ReviewsCta from '@/components/Reviews/ReviewsCta'
 
 export default {
   name: 'ReviewsSection',
-  components: { ReviewSlider },
+  components: { ReviewSlider, ReviewsCta },
   setup () {
     const store = inject('store')
 
@@ -34,6 +34,11 @@ export default {
   display: flex
   flex-direction: column
   margin-top: 50*$u
-  &__empty
-    margin-top: 0
+  @media screen and (max-width: $XXLWidth)
+    margin-top: 20*$u
+
+  &__cta
+    max-width: 210*$u
+    margin-left: auto
+    margin-right: auto
 </style>

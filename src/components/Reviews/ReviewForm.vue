@@ -1,5 +1,8 @@
 <template lang="pug">
 .review-form
+  .wrapper(v-show="isSubmitting")
+    UiFullScreenLoader
+
   .review-form__title Оставить отзыв
   textarea.review-form__textarea(
     v-model="reviewText"
@@ -15,6 +18,7 @@
         :label="photosRequired === 'both' ? 'Фото до *' : 'Фото до'"
         placeholder="Перетащите или нажмите для загрузки"
         icon="download"
+        :key="photoBeforeKey"
       )
     .review-form__photo
       UiImageUploader(
@@ -22,6 +26,7 @@
         :label="photosRequired === 'both' ? 'Фото после *' : 'Фото после'"
         placeholder="Перетащите или нажмите для загрузки"
         icon="download"
+        :key="photoAfterKey"
       )
 
     .review-form__hint(v-if="photosRequired === 'both'")
@@ -31,6 +36,9 @@
     .review-form__hint(v-else)
       | Фото загружаются по желанию
 
+    .review-form__hint Отправляя отзыв, вы соглашаетесь с&nbsp;
+      router-link(:to="{ name: 'Policy'}") политикой обработки персональных данных
+
   .review-form__footer
     span.review-form__chars {{ reviewText.length }}/2000
     UiButton(
@@ -39,7 +47,7 @@
       is-animated
       @click="submit"
       :is-disabled="isDisabled"
-    ) Отправить отзыв
+    ) Оставить отзыв
 </template>
 
 <script>
@@ -60,6 +68,11 @@ export default {
     const reviewText = ref('')
     const photoBefore = ref(null)
     const photoAfter = ref(null)
+    const isSubmitting = ref(false)
+
+    // Ключи для принудительного перерендера компонентов
+    const photoBeforeKey = ref(0)
+    const photoAfterKey = ref(0)
 
     const photoClasses = computed(() => {
       const classes = {}
@@ -73,6 +86,9 @@ export default {
     })
 
     const isDisabled = computed(() => {
+      // Если идет отправка - кнопка заблокирована
+      if (isSubmitting.value) return true
+
       const loading = store.review.loading
       if (loading) return true
       if (!reviewText.value.trim()) return true
@@ -102,17 +118,34 @@ export default {
       return formData
     }
 
+    const resetForm = () => {
+      reviewText.value = ''
+      photoBefore.value = null
+      photoAfter.value = null
+      // Обновляем ключи для перерендера компонентов
+      photoBeforeKey.value++
+      photoAfterKey.value++
+    }
+
     const submit = async () => {
       if (isDisabled.value) return
 
-      const formData = getFormData()
-      const success = await store.review.addReview(formData)
+      // Включаем лоадер
+      isSubmitting.value = true
 
-      if (success) {
-        reviewText.value = ''
-        photoBefore.value = null
-        photoAfter.value = null
-        await store.review.getReviews()
+      try {
+        const formData = getFormData()
+        const success = await store.review.addReview(formData)
+
+        if (success) {
+          resetForm()
+          await store.review.getReviews()
+        }
+      } catch (error) {
+        console.error('Error submitting review:', error)
+      } finally {
+        // Выключаем лоадер
+        isSubmitting.value = false
       }
     }
 
@@ -123,14 +156,32 @@ export default {
       photoAfter,
       photoClasses,
       isDisabled,
+      isSubmitting,
+      photoBeforeKey,
+      photoAfterKey,
       submit,
-      getFormData
+      getFormData,
+      resetForm
     }
   }
 }
 </script>
 
 <style lang="sass" scoped>
+.wrapper
+  position: fixed
+  right: 0
+  left: 0
+  bottom: 0
+  top: 0
+  background: rgba(0, 0, 0, .8)
+  color: $firstColor
+  @include font('h2')
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 100
+  text-align: center
 .review-form
   background: $BGOpacity
   padding: 30px
@@ -194,7 +245,9 @@ export default {
     color: rgba(255, 255, 255, 0.5)
     @include font('t14-regular')
     text-align: center
-    margin-top: -10px
+
+    a
+      color: $firstColor
 
     &:empty
       display: none
