@@ -20,6 +20,7 @@
         icon="download"
         :key="photoBeforeKey"
       )
+      .review-form__photo-hint Макс. размер: 5 МБ
     .review-form__photo
       UiImageUploader(
         v-model="photoAfter"
@@ -28,6 +29,7 @@
         icon="download"
         :key="photoAfterKey"
       )
+      .review-form__photo-hint Макс. размер: 5 МБ
 
     .review-form__hint(v-if="photosRequired === 'both'")
       | * Оба фото обязательны для загрузки
@@ -36,7 +38,8 @@
     .review-form__hint(v-else)
       | Фото загружаются по желанию
 
-    .review-form__hint Отправляя отзыв, вы соглашаетесь с&nbsp;
+    .review-form__hint
+      | Отправляя отзыв, вы соглашаетесь с&nbsp;
       router-link(:to="{ name: 'Policy'}") политикой обработки персональных данных
 
   .review-form__footer
@@ -182,6 +185,7 @@ export default {
   align-items: center
   z-index: 100
   text-align: center
+
 .review-form
   background: $BGOpacity
   padding: 30px
@@ -239,6 +243,15 @@ export default {
 
   &__photo
     min-height: 150px
+    display: flex
+    flex-direction: column
+    gap: 6px
+
+  &__photo-hint
+    color: rgba(255, 255, 255, 0.35)
+    @include font('t14-regular')
+    text-align: center
+    font-size: 12px
 
   &__hint
     grid-column: 1 / -1
