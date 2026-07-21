@@ -44,12 +44,15 @@
           ui-svg-icon(name="exit" :size="18")
           span Выход
 
+  .profile-empty(v-else-if="!loading && !error")
+    p Профиль не найден
+
   ReviewsCta.review-form(
-    v-if="courses.length"
+    v-if="courses && courses.length"
     text="Уже прошел обучение? Мне будет приятно, если ты напишешь пару слов для обратной связи и поделишься результатом - загрузи фото своей работы до и после прохождения курса."
   )
 
-  .videos(v-for="course in courses" :key="course.id")
+  .videos(v-for="course in courses" :key="course.id" v-if="courses && courses.length")
     .videos__head {{ course.name }}
     .videos__wrapper
       course-video(v-for="lesson in course.lessons" :key="lesson.id" :name="lesson.name" :video="lesson.video" :link="lesson.link" :available="lesson.available" :preview="lesson.preview")
@@ -114,7 +117,6 @@ export default {
       user.value.logout()
     }
 
-    // Закрываем меню при клике вне его
     const handleClickOutside = (e) => {
       const menu = document.querySelector('.profile__menu')
       if (menu && !menu.contains(e.target)) {
@@ -167,6 +169,15 @@ export default {
   align-items: center
   z-index: 100
   text-align: center
+
+.profile-empty
+  background: $BGOpacity
+  padding: 10*$u
+  border-radius: $BR
+  color: $white
+  margin-top: 10*$u
+  text-align: center
+  @include font('h2')
 
 .border
   border-bottom: 1px dashed $white!important
@@ -308,7 +319,6 @@ export default {
 
   &__changeButtons
     margin: 3*$u 0 5*$u
-    height: 12.5*$u
     display: flex
     @media screen and (max-width: $XXSWidth)
       margin: $u 0
@@ -351,7 +361,7 @@ export default {
 
   &__menuDots
     cursor: pointer
-    padding: 2*$u
+    padding: 0.5*$u
     border-radius: 50%
     transition: background-color 0.2s
     display: flex
