@@ -1,15 +1,12 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useLoading } from '@/composables/useLoading'
 
-export default function ReviewController () {
+export default function ReviewController (auth) {
   const { loading, loadingOn, loadingOff } = useLoading()
 
   const reviews = ref([])
   const errMess = ref('')
   const successMess = ref('')
-
-  const authToken = ref(localStorage.getItem('auth_token') || '')
-  const isAuth = computed(() => authToken.value)
 
   const setError = (error) => {
     errMess.value = error
@@ -48,7 +45,7 @@ export default function ReviewController () {
       return false
     }
 
-    if (!isAuth.value) {
+    if (!auth.isAuth) {
       setError('Необходимо авторизоваться')
       return false
     }
@@ -58,7 +55,7 @@ export default function ReviewController () {
       const response = await fetch('https://valeriya-artist.art/api/reviews', {
         method: 'POST',
         headers: {
-          Authorization: authToken.value
+          Authorization: auth.getAuthToken()
         },
         body: formData
       })
@@ -85,7 +82,6 @@ export default function ReviewController () {
     reviews,
     errMess,
     successMess,
-    isAuth,
     getReviews,
     addReview
   }

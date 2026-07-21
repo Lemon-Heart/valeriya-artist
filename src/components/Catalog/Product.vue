@@ -55,7 +55,7 @@ export default {
     })
 
     const buy = async () => {
-      if (store.user.isAuth) {
+      if (store.auth.isAuth) {
         const data = new FormData()
         data.append('id', props.paint.id)
         await buyPaint(data)

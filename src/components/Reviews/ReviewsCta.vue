@@ -53,7 +53,8 @@ export default {
     margin: auto
     height: 130px
     transform: rotate(-15deg)
-    filter: brightness(0) saturate(100%) invert(83%) sepia(45%) saturate(400%) hue-rotate(320deg) brightness(105%) contrast(90%)
+    filter: invert(100%)
+    // filter: brightness(0) saturate(100%) invert(83%) sepia(45%) saturate(400%) hue-rotate(320deg) brightness(105%) contrast(90%)
     @media screen and (max-width: $padWidth)
       height: 110px
     @media screen and (max-width: $XSWidth)

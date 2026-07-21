@@ -12,12 +12,9 @@
       .profile__email(:class="{ border: isEdit }")
         ui-input(is-transparent :with-border="false" :is-disabled="!isEdit" v-model="profile.email" name="email")
       .profile__changeButtons
-        ui-button(v-if="!isEdit" variant="dark" size="L" is-animated @click="isEdit = true") Редактировать
         ui-button(v-if="isEdit" variant="dark" size="L" is-animated @click="changeProfileInfo({ name: profile.name, phone: profile.phone, email: profile.email })") Применить
         ui-button(v-if="isEdit" is-animated size="L" @click="isEdit = false") Отменить
       .profile__tariff(v-if="profile.tariff") Тариф: {{ profile.tariff }}
-      .profile__exit(v-if="user.isAuth" @click="user.logout") Выход
-        ui-svg-icon(name="exit" :size="24")
     .profile__avatar
       .photo(v-if="profile.photo")
         img(:src="profile.photo")
@@ -26,6 +23,26 @@
           input(type="file" @change="changeProfileAvatar")
       label.add(v-else)
         input(type="file" @change="changeProfileAvatar")
+
+    .profile__menu
+      .profile__menuDots(@click="toggleMenu")
+        svg.profile__dotsIcon(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
+          circle(cx="5" cy="12" r="2.5" fill="white")
+          circle(cx="12" cy="12" r="2.5" fill="white")
+          circle(cx="19" cy="12" r="2.5" fill="white")
+      .profile__menuDropdown(v-if="menuOpen" @click.stop)
+        .profile__menuItem(v-if="!isEdit" @click="startEdit")
+          ui-svg-icon(name="edit" :size="18")
+          span Редактировать
+        .profile__menuItem(v-if="isEdit" @click="applyChanges")
+          ui-svg-icon(name="check" :size="18")
+          span Применить
+        .profile__menuItem(v-if="isEdit" @click="cancelEdit")
+          ui-svg-icon(name="close" :size="18")
+          span Отменить
+        .profile__menuItem.profile__menuItem--exit(v-if="store.auth.isAuth" @click="handleLogout")
+          ui-svg-icon(name="exit" :size="18")
+          span Выход
 
   ReviewsCta.review-form(
     v-if="courses.length"
@@ -39,7 +56,7 @@
 </template>
 
 <script>
-import { inject, computed, ref } from 'vue'
+import { inject, computed, ref, onMounted, onUnmounted } from 'vue'
 import CourseVideo from '@/components/Profile/CourseVideo'
 import ReviewsCta from '@/components/Reviews/ReviewsCta'
 
@@ -57,6 +74,31 @@ export default {
     const error = computed(() => store.user.errMess)
 
     const isEdit = ref(false)
+    const menuOpen = ref(false)
+
+    const toggleMenu = (e) => {
+      e.stopPropagation()
+      menuOpen.value = !menuOpen.value
+    }
+
+    const closeMenu = () => {
+      menuOpen.value = false
+    }
+
+    const startEdit = () => {
+      isEdit.value = true
+      closeMenu()
+    }
+
+    const applyChanges = () => {
+      changeProfileInfo({ name: profile.value.name, phone: profile.value.phone, email: profile.value.email })
+      closeMenu()
+    }
+
+    const cancelEdit = () => {
+      isEdit.value = false
+      closeMenu()
+    }
 
     const changeProfileInfo = (payload) => store.user.changeProfileInfo(payload).then(() => (isEdit.value = false))
 
@@ -67,7 +109,45 @@ export default {
       e.target.value = ''
     }
 
-    return { profile, loading, courses, isEdit, changeProfileInfo, changeProfileAvatar, error, user, store }
+    const handleLogout = () => {
+      closeMenu()
+      user.value.logout()
+    }
+
+    // Закрываем меню при клике вне его
+    const handleClickOutside = (e) => {
+      const menu = document.querySelector('.profile__menu')
+      if (menu && !menu.contains(e.target)) {
+        closeMenu()
+      }
+    }
+
+    onMounted(() => {
+      document.addEventListener('click', handleClickOutside)
+    })
+
+    onUnmounted(() => {
+      document.removeEventListener('click', handleClickOutside)
+    })
+
+    return {
+      profile,
+      loading,
+      courses,
+      isEdit,
+      changeProfileInfo,
+      changeProfileAvatar,
+      error,
+      user,
+      store,
+      menuOpen,
+      toggleMenu,
+      startEdit,
+      applyChanges,
+      cancelEdit,
+      handleLogout,
+      closeMenu
+    }
   }
 }
 </script>
@@ -87,8 +167,10 @@ export default {
   align-items: center
   z-index: 100
   text-align: center
+
 .border
   border-bottom: 1px dashed $white!important
+
 .profile
   background: $BGOpacity
   padding: 10*$u
@@ -97,31 +179,28 @@ export default {
   margin-top: 10*$u
   display: flex
   justify-content: space-between
+  position: relative
   @media screen and (max-width: $XSWidth)
     padding: 5*$u
   @media screen and (max-width: $XXSWidth)
     margin-top: 5*$u
+
   &:deep
     .uiInputComponent
       @include font('h2')
       height: auto
-  &__exit
-    @include font('t18-regular')
-    cursor: pointer
-    display: flex
-    align-items: center
-    margin-top: 3*$u
-    & > *
-      margin-left: 2*$u
-      margin-top: $u
+
   &__info
     display: flex
     flex-direction: column
+    flex: 1
     @media screen and (max-width: $XXSWidth)
       padding-right: 2*$u
+
   &__avatar
     display: flex
     justify-content: flex-end
+    margin-left: 4*$u
     .photo
       width: 70*$u
       height: 70*$u
@@ -213,6 +292,7 @@ export default {
         opacity: .5
       input
         display: none
+
   &__name
     display: flex
     color: $firstColor
@@ -225,8 +305,10 @@ export default {
         @include font('h2')
       @media screen and (max-width: $XXSWidth)
         @include font('h3')
+
   &__changeButtons
     margin: 3*$u 0 5*$u
+    height: 12.5*$u
     display: flex
     @media screen and (max-width: $XXSWidth)
       margin: $u 0
@@ -239,6 +321,7 @@ export default {
           font-size: 3.5*$u
       @media screen and (max-width: 450px)
         padding: 0 3*$u!important
+
   &__phone, &__email, &__tariff
     border-bottom: 1px solid transparent
     display: flex
@@ -254,12 +337,76 @@ export default {
         @include font('h3')
       @media screen and (max-width: 450px)
         font-size: 3.5*$u
+
   &__tariff
     margin-top: auto
+
+  &__menu
+    position: absolute
+    top: 2*$u
+    right: 2*$u
+    @media screen and (max-width: $XXSWidth)
+      top: $u
+      right: $u
+
+  &__menuDots
+    cursor: pointer
+    padding: 2*$u
+    border-radius: 50%
+    transition: background-color 0.2s
+    display: flex
+    align-items: center
+    justify-content: center
+    &:hover
+      background-color: rgba(255, 255, 255, 0.1)
+
+  &__dotsIcon
+    display: block
+
+  &__menuDropdown
+    position: absolute
+    top: calc(100% + 0.5*$u)
+    right: 0
+    background: $headerBG
+    border-radius: $BR
+    padding: 0.5*$u 0
+    min-width: 25*$u
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3)
+    z-index: 10
+    animation: fadeIn 0.2s ease
+
+  &__menuItem
+    padding: 1.5*$u 3*$u
+    color: $white
+    cursor: pointer
+    @include font('t16-regular')
+    transition: background-color 0.2s
+    white-space: nowrap
+    display: flex
+    align-items: center
+    gap: 1.5*$u
+    &:hover
+      background-color: rgba(255, 255, 255, 0.1)
+    &--exit
+      color: #ff6b6b
+      &:hover
+        background-color: rgba(255, 107, 107, 0.15)
+    &:deep svg
+      flex-shrink: 0
+
+@keyframes fadeIn
+  from
+    opacity: 0
+    transform: translateY(-10px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
 .review-form
   margin-top: 10*$u
   @media screen and (max-width: $XXSWidth)
     margin-top: 5*$u
+
 .videos
   background: $BGOpacity
   padding: 10*$u

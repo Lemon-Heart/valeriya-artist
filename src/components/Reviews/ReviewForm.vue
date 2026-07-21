@@ -6,7 +6,7 @@
   .review-form__title Оставить отзыв
   textarea.review-form__textarea(
     v-model="reviewText"
-    placeholder="Напишите ваш отзыв..."
+    placeholder="Поделись своим впечатлением"
     maxlength="2000"
     rows="4"
   )
@@ -15,8 +15,8 @@
     .review-form__photo
       UiImageUploader(
         v-model="photoBefore"
-        :label="photosRequired === 'both' ? 'Фото до *' : 'Фото до'"
-        placeholder="Перетащите или нажмите для загрузки"
+        :label="photosRequired === 'both' ? 'покажи как ты рисовал портреты до обучения *' : 'покажи как ты рисовал портреты до обучения'"
+        placeholder="Перетащи или нажми для загрузки"
         icon="download"
         :key="photoBeforeKey"
       )
@@ -24,8 +24,8 @@
     .review-form__photo
       UiImageUploader(
         v-model="photoAfter"
-        :label="photosRequired === 'both' ? 'Фото после *' : 'Фото после'"
-        placeholder="Перетащите или нажмите для загрузки"
+        :label="photosRequired === 'both' ? 'покажи как ты рисовал портреты после обучения *' : 'покажи как ты рисовал портреты после обучения'"
+        placeholder="Перетащи или нажми для загрузки"
         icon="download"
         :key="photoAfterKey"
       )
@@ -261,6 +261,7 @@ export default {
 
     a
       color: $firstColor
+      text-decoration: underline
 
     &:empty
       display: none

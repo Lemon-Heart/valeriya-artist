@@ -6,6 +6,8 @@
     ui-svg-icon(name="inst" :size="18")
   a.headerIconWrapper(target="blank" href="https://t.me/valeriya_artist")
     ui-svg-icon(name="tg" :size="18")
+  a.headerIconWrapper(target="blank" href="https://max.ru/u/f9LHodD0cOL2NxYHPFy0NR5-2GqU2GC8tKh5LpVvUEctc_fsiCEGj1ElJXA")
+    ui-svg-icon(name="max" :size="18")
 </template>
 
 <style lang="sass">
@@ -20,6 +22,7 @@
     width: 10*$u
     border-radius: 50%
     background-color: $socIcon
+    color: black
     transition: .2s
     @media screen and (max-width: $XXSWidth)
       height: 9*$u

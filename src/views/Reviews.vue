@@ -1,10 +1,10 @@
 <template lang="pug">
 .cont
-  h1 Отзывы наших учеников
+  h1 Твой отзыв может вдохновить других!
   ReviewForm(v-if="isAuth" photos-required="both")
 
   .auth-message(v-else)
-    p Чтобы оставить отзыв, необходимо
+    p Чтобы оставить отзыв, необходимо&nbsp;
       router-link(:to="{ name: 'Profile' }") авторизоваться
 
   ReviewsSlider(:reviews="reviews")
@@ -31,7 +31,7 @@ export default {
     const store = inject('store')
 
     const reviews = computed(() => store.review.reviews)
-    const isAuth = computed(() => store.review.isAuth)
+    const isAuth = computed(() => store.auth.isAuth)
 
     store.review.getReviews()
 

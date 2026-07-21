@@ -193,7 +193,7 @@ export default {
       margin-bottom: 5px
 
   &__hint
-    font-size: 12px
+    @include font('t14-regular')
     opacity: 0.6
     margin-top: 2px
 </style>

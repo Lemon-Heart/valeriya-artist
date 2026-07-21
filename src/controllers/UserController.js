@@ -1,16 +1,13 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import router from '@/router'
 import UserProfile from '@/models/UserProfile'
 import Module from '@/models/Module'
-import store from '@/store'
 import { buyCourse } from '@/services/payment'
 import { useLoading } from '@/composables/useLoading'
 
-export default function UserController () {
+export default function UserController (auth, modalQueue, sideMenu) {
   const { loading, loadingOn, loadingOff } = useLoading()
 
-  const authToken = ref(localStorage.getItem('auth_token') || '')
-  const uuid = ref(localStorage.getItem('uuid') || '')
   const profile = ref(null)
   const courses = ref(null)
   const errMess = ref('')
@@ -20,14 +17,12 @@ export default function UserController () {
     setTimeout(() => (errMess.value = ''), 3000)
   }
 
-  const isAuth = computed(() => authToken.value)
-
   const getCourses = async () => {
     loadingOn()
     const response = await fetch('https://valeriya-artist.art/api/courses', {
       method: 'GET',
       headers: {
-        Authorization: authToken.value
+        Authorization: auth.getAuthToken()
       }
     })
 
@@ -45,7 +40,7 @@ export default function UserController () {
     const response = await fetch('https://valeriya-artist.art/api/profile', {
       method: 'GET',
       headers: {
-        Authorization: authToken.value
+        Authorization: auth.getAuthToken()
       }
     })
 
@@ -59,7 +54,7 @@ export default function UserController () {
   }
 
   const refresh = async (func) => {
-    if (!uuid.value) {
+    if (!auth.getUuid()) {
       logout()
       loadingOff()
       return
@@ -68,14 +63,13 @@ export default function UserController () {
     const response = await fetch('https://valeriya-artist.art/api/refresh', {
       method: 'GET',
       headers: {
-        uuid: uuid.value
+        uuid: auth.getUuid()
       }
     })
 
     if (response.ok) {
       const res = await response.json()
-      localStorage.setItem('auth_token', res.auth_token)
-      authToken.value = res.auth_token
+      auth.setAuthToken(res.auth_token)
       await func()
     } else {
       logout()
@@ -83,7 +77,7 @@ export default function UserController () {
     loadingOff()
   }
 
-  const auth = async payload => {
+  const authAction = async payload => {
     if (!payload) return
     const response = await fetch('https://valeriya-artist.art/api/auth', {
       method: 'POST',
@@ -91,16 +85,14 @@ export default function UserController () {
     })
     const res = await response.json()
     if (response.ok) {
-      localStorage.setItem('auth_token', res.auth_token)
-      localStorage.setItem('uuid', res.uuid)
-      authToken.value = res.auth_token
-      uuid.value = res.uuid
+      auth.setAuthToken(res.auth_token)
+      auth.setUuid(res.uuid)
       if (router.currentRoute.value.query.checkout) {
         const data = new FormData()
         data.append('tariff', router.currentRoute.value.query.checkout)
         await buyCourse(data)
       } else await router.push({ name: 'Profile' })
-      store.modalQueue.removeAll()
+      modalQueue.removeAll()
     } else setError(res.err)
   }
 
@@ -111,7 +103,7 @@ export default function UserController () {
       body: payload
     })
     const res = await response.json()
-    if (response.ok) auth(payload)
+    if (response.ok) authAction(payload)
     else setError(res.err)
   }
 
@@ -141,13 +133,10 @@ export default function UserController () {
   }
 
   const logout = async () => {
-    localStorage.removeItem('auth_token')
-    localStorage.removeItem('uuid')
-    authToken.value = ''
-    uuid.value = ''
+    auth.clearAuth()
     profile.value = new UserProfile(null)
     router.push({ name: 'Home' })
-    store.sideMenu.close()
+    sideMenu.close()
   }
 
   const changeProfileInfo = async payload => {
@@ -155,7 +144,7 @@ export default function UserController () {
     const response = await fetch('https://valeriya-artist.art/api/profile/change', {
       method: 'POST',
       headers: {
-        Authorization: authToken.value
+        Authorization: auth.getAuthToken()
       },
       body: JSON.stringify(payload)
     })
@@ -170,7 +159,7 @@ export default function UserController () {
     const response = await fetch('https://valeriya-artist.art/api/profile/avatar', {
       method: 'POST',
       headers: {
-        Authorization: authToken.value
+        Authorization: auth.getAuthToken()
       },
       body: payload
     })
@@ -182,8 +171,7 @@ export default function UserController () {
 
   return {
     loading,
-    auth,
-    isAuth,
+    auth: authAction,
     login,
     changePass,
     restore,

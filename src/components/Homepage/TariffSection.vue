@@ -37,7 +37,7 @@ export default {
     const router = useRouter()
     const store = inject('store')
     const buy = async (code) => {
-      if (store.user.isAuth) {
+      if (store.auth.isAuth) {
         const data = new FormData()
         data.append('tariff', code)
         await buyCourse(data)
