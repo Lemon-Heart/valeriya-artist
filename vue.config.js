@@ -10,10 +10,42 @@ module.exports = {
     name: 'Valeriya-Artist',
     themeColor: '#000000',
     workboxOptions: {
-      runtimeCaching: [{
-        urlPattern: 'https://valeriya-artist.art/api',
-        handler: 'CacheFirst'
-      }]
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/valeriya-artist\.art\/api\/.*/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api-cache',
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 60 * 5
+            },
+            networkTimeoutSeconds: 3
+          }
+        },
+        {
+          urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'image-cache',
+            expiration: {
+              maxEntries: 100,
+              maxAgeSeconds: 60 * 60 * 24 * 7
+            }
+          }
+        },
+        {
+          urlPattern: /\.(js|css|woff|woff2)$/,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'static-cache',
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 60 * 60 * 24 * 30
+            }
+          }
+        }
+      ]
     },
     manifestOptions: {
       icons: [

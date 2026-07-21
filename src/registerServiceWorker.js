@@ -5,13 +5,13 @@ import { register } from 'register-service-worker'
 if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready () {
-      console.log(
-        'App is being served from cache by a service worker.\n' +
-        'For more details, visit https://goo.gl/AFskqB'
-      )
+      console.log('App is being served from cache by a service worker.')
     },
     registered () {
       console.log('Service worker has been registered.')
+      setInterval(() => {
+        navigator.serviceWorker?.controller?.postMessage({ type: 'CHECK_UPDATE' })
+      }, 5 * 60 * 1000)
     },
     cached () {
       console.log('Content has been cached for offline use.')
@@ -19,8 +19,12 @@ if (process.env.NODE_ENV === 'production') {
     updatefound () {
       console.log('New content is downloading.')
     },
-    updated () {
+    updated (registration) {
       console.log('New content is available; please refresh.')
+      if (window.confirm('Доступна новая версия сайта. Обновить сейчас?')) {
+        registration.waiting?.postMessage({ type: 'SKIP_WAITING' })
+        window.location.reload()
+      }
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')
