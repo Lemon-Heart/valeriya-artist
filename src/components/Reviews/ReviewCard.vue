@@ -178,13 +178,11 @@ export default {
     position: relative
     border-radius: $BR
     overflow: hidden
-    aspect-ratio: 1/1
     cursor: pointer
     transition: transform 0.3s ease
 
     &-bg
       width: 100%
-      height: 100%
       object-fit: fill
       pointer-events: none
 
