@@ -115,6 +115,7 @@ export default {
     color: $firstColor
 
   &__header
+    pointer-events: none
     display: flex
     align-items: center
     margin-bottom: 15px
@@ -157,6 +158,7 @@ export default {
     color: rgba(255, 255, 255, 0.5)
 
   &__text-wrapper
+    pointer-events: none
     flex: 1
     max-height: 120px
     overflow-y: auto

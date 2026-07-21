@@ -10,6 +10,7 @@
     :pagination="pagination"
     :modules="modules"
     :breakpoints="breakpoints"
+    :centeredSlides="true"
   )
     swiper-slide(
       v-for="review in reviews"
@@ -79,4 +80,12 @@ export default {
       padding-bottom: 10*$u
     .swiper-slide
       height: auto
+      transform: scale(0.85)
+      filter: blur(3px)
+      transition: .3s
+      &-duplicate-active,
+      &-active
+        transform: scale(1)
+        filter: blur(0)
+        z-index: 10
 </style>

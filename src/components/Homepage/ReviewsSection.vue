@@ -1,7 +1,7 @@
 <template lang="pug">
 section.reviews-section
   UiFullScreenLoader(v-if="loading")
-  ReviewSlider(v-else :reviews="reviews")
+  ReviewSlider.reviews-section__slider(v-else :reviews="reviews")
   ReviewsCta(text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса").reviews-section__cta
 </template>
 
@@ -36,6 +36,9 @@ export default {
   margin-top: 50*$u
   @media screen and (max-width: $XXLWidth)
     margin-top: 20*$u
+
+  &__slider
+    margin-bottom: 10*$u
 
   &__cta
     max-width: 210*$u

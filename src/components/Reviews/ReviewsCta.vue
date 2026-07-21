@@ -45,6 +45,7 @@ export default {
     // grid-template-areas: "img title" "img subtitle" "button button"
   @media screen and (max-width: $padWidth)
     padding: 8*$u 6*$u 8*$u 3*$u
+    gap: 0 5*$u
   @media screen and (max-width: $XXSWidth)
     padding: 4*$u 4*$u 4*$u 2*$u
 
