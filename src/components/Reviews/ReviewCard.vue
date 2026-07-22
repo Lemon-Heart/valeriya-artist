@@ -158,7 +158,7 @@ export default {
     color: rgba(255, 255, 255, 0.5)
 
   &__text-wrapper
-    pointer-events: none
+    user-select: none
     flex: 1
     max-height: 120px
     overflow-y: auto
