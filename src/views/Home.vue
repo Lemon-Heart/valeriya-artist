@@ -15,7 +15,8 @@
   resume-section
   painting-section
   faq-section
-  reviews-section
+reviews-section
+.cont
   trust-section
   news-section
 </template>

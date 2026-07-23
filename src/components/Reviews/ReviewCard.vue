@@ -107,6 +107,7 @@ export default {
   height: 100%
   display: flex
   flex-direction: column
+  position: relative
 
   &__quote
     position: absolute
@@ -159,22 +160,33 @@ export default {
 
   &__text-wrapper
     user-select: none
+    touch-action: pan-y
+    -webkit-overflow-scrolling: touch
     flex: 1
-    max-height: 120px
+    max-height: 30*$u
     overflow-y: auto
     padding-right: 5px
     @include custom-scrollbar($firstColor, $BG, 3*$u)
+    @media screen and (max-width: $XSWidth)
+      max-height: 20*$u
 
   &__text
     @include font('t16-regular')
     color: $white
     line-height: 1.6
     word-wrap: break-word
+    @media screen and (max-width: $XSWidth)
+      @include font('t14-regular')
 
   &__photos
     display: flex
-    gap: 3*$u
-    margin-top: 10*$u
+    gap: 10*$u
+    margin: 5*$u auto 0
+    max-width: 60*$u
+    @media screen and (max-width: $XSWidth)
+      margin-top: 2*$u
+      max-width: 40*$u
+      gap: 5*$u
 
   &__photo
     position: relative

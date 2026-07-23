@@ -1,8 +1,11 @@
 <template lang="pug">
 section.reviews-section
+  h1.reviews-section__title
+    ui-text-anim Отзывы учеников
+  .reviews-section__subtitle то, ради чего я создала этот курс
   UiFullScreenLoader(v-if="loading")
   ReviewSlider.reviews-section__slider(v-else :reviews="reviews")
-  ReviewsCta(text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса").reviews-section__cta
+  ReviewsCta.reviews-section__cta(text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса")
 </template>
 
 <script>
@@ -37,11 +40,25 @@ export default {
   @media screen and (max-width: $XXLWidth)
     margin-top: 20*$u
 
-  &__slider
+  &__title
+    margin-bottom: 2*$u
+
+  &__subtitle
+    @include font('t18-regular')
+    text-align: center
     margin-bottom: 10*$u
+    @media screen and (max-width: $XSWidth)
+      @include font('t14-regular')
+      margin-bottom: 5*$u
+
+  &__slider
+    margin-bottom: 5*$u
 
   &__cta
     max-width: 210*$u
     margin-left: auto
     margin-right: auto
+    @media screen and (max-width: 840px)
+      margin-left: 5*$u
+      margin-right: 5*$u
 </style>

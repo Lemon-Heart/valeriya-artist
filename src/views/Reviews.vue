@@ -7,13 +7,13 @@
     p Чтобы оставить отзыв, необходимо&nbsp;
       router-link(:to="{ name: 'Profile' }") авторизоваться
 
-  ReviewsSlider(:reviews="reviews")
+ReviewsSlider(:reviews="reviews")
 
-  UiNotification(
-    v-if="store.review.errMess || store.review.successMess"
-    :message="store.review.errMess || store.review.successMess"
-    :type="store.review.errMess ? 'error' : 'success'"
-  )
+UiNotification(
+  v-if="store.review.errMess || store.review.successMess"
+  :message="store.review.errMess || store.review.successMess"
+  :type="store.review.errMess ? 'error' : 'success'"
+)
 </template>
 
 <script>
