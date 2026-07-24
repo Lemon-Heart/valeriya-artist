@@ -25,7 +25,7 @@
       img.review-card__photo-bg(src="/img/photoBefore.png")
       img.review-card__photo-img(:src="review.photo_before" alt="Фото до")
       .review-card__photo-zoom
-        ui-svg-icon(name="zoom" :size="20")
+        ui-svg-icon(name="zoom" :size="10")
     .review-card__photo(
       v-if="review.photo_after"
       @click="openPhotoViewer(1)"
@@ -33,7 +33,7 @@
       img.review-card__photo-bg(src="/img/photoAfter.png")
       img.review-card__photo-img(:src="review.photo_after" alt="Фото после")
       .review-card__photo-zoom
-        ui-svg-icon(name="zoom" :size="20")
+        ui-svg-icon(name="zoom" :size="10")
 </template>
 
 <script>

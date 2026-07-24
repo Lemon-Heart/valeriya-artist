@@ -2,7 +2,26 @@
 .photo-viewer
   .photo-viewer__content
     button.photo-viewer__close(@click="close") ×
-    img.photo-viewer__image(:src="images[currentIndex]" :alt="`Фото ${currentIndex + 1}`")
+
+    swiper.photo-viewer__swiper(
+      :modules="modules"
+      :slides-per-view="1"
+      :space-between="0"
+      :initial-slide="currentIndex"
+      :grab-cursor="true"
+      @swiper="onSwiper"
+      @slide-change="onSlideChange"
+    )
+      swiper-slide(
+        v-for="(image, index) in images"
+        :key="index"
+      )
+        img.photo-viewer__image(
+          :src="image"
+          :alt="`Фото ${index + 1}`"
+          @click="close"
+        )
+
     .photo-viewer__nav(v-if="images.length > 1")
       button.photo-viewer__nav-btn(
         @click="prevImage"
@@ -17,9 +36,15 @@
 
 <script>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
 
 export default {
   name: 'PhotoViewer',
+  components: {
+    Swiper,
+    SwiperSlide
+  },
   props: {
     images: {
       type: Array,
@@ -34,24 +59,32 @@ export default {
   emits: ['close'],
   setup (props, { emit }) {
     const currentIndex = ref(props.initialIndex)
+    const swiperInstance = ref(null)
 
     const close = () => {
       emit('close')
     }
 
     const nextImage = () => {
-      if (currentIndex.value < props.images.length - 1) {
-        currentIndex.value++
+      if (swiperInstance.value) {
+        swiperInstance.value.slideNext()
       }
     }
 
     const prevImage = () => {
-      if (currentIndex.value > 0) {
-        currentIndex.value--
+      if (swiperInstance.value) {
+        swiperInstance.value.slidePrev()
       }
     }
 
-    // Обработка клавиш
+    const onSwiper = (swiper) => {
+      swiperInstance.value = swiper
+    }
+
+    const onSlideChange = (swiper) => {
+      currentIndex.value = swiper.realIndex
+    }
+
     const onKeydown = (e) => {
       if (e.key === 'Escape') close()
       if (e.key === 'ArrowRight') nextImage()
@@ -70,9 +103,12 @@ export default {
 
     return {
       currentIndex,
+      swiperInstance,
       close,
       nextImage,
-      prevImage
+      prevImage,
+      onSwiper,
+      onSlideChange
     }
   }
 }
@@ -93,11 +129,24 @@ export default {
 
   &__content
     position: relative
-    max-width: 90vw
-    max-height: 90vh
+    max-width: 100vw
+    max-height: 100vh
+    width: 100%
+    height: 100%
     display: flex
     align-items: center
     justify-content: center
+
+  &__swiper
+    width: 100%
+    height: 100%
+    max-width: 90vw
+    max-height: 90vh
+
+    :deep(.swiper-slide)
+      display: flex
+      align-items: center
+      justify-content: center
 
   &__image
     max-width: 90vw
@@ -106,11 +155,12 @@ export default {
     border-radius: $BR
     user-select: none
     -webkit-user-drag: none
+    cursor: pointer
 
   &__close
-    position: absolute
-    top: -50px
-    right: 0
+    position: fixed
+    top: 20px
+    right: 30px
     background: none
     border: none
     color: $white
@@ -120,13 +170,14 @@ export default {
     transition: opacity 0.3s
     padding: 5px 15px
     line-height: 1
+    z-index: 10
 
     &:hover
       opacity: 1
 
   &__nav
-    position: absolute
-    bottom: -60px
+    position: fixed
+    bottom: 30px
     left: 50%
     transform: translateX(-50%)
     display: flex
@@ -135,6 +186,7 @@ export default {
     background: rgba(0, 0, 0, 0.7)
     padding: 10px 20px
     border-radius: $BR
+    z-index: 10
 
   &__nav-btn
     background: none
@@ -164,8 +216,16 @@ export default {
   .photo-viewer
     &__close
       top: 10px
-      right: 10px
+      right: 15px
       font-size: 30px
+
+    &__swiper
+      max-width: 100vw
+      max-height: 80vh
+
+    &__image
+      max-width: 95vw
+      max-height: 80vh
 
     &__nav
       bottom: 20px
@@ -175,7 +235,17 @@ export default {
     &__nav-btn
       font-size: 24px
 
-    &__image
-      max-width: 95vw
-      max-height: 80vh
+@media screen and (max-width: 500px)
+  .photo-viewer
+    &__nav
+      bottom: 15px
+      padding: 6px 12px
+      gap: 10px
+
+    &__nav-btn
+      font-size: 20px
+
+    &__counter
+      font-size: 14px
+      min-width: 40px
 </style>
