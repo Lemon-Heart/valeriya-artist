@@ -21,11 +21,11 @@ if (process.env.NODE_ENV === 'production') {
     },
     updated (registration) {
       console.log('New content is available; updating...')
-      
+
       if (registration.waiting) {
         registration.waiting.postMessage({ type: 'SKIP_WAITING' })
       }
-      
+
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         console.log('New service worker activated, reloading...')
         window.location.reload()

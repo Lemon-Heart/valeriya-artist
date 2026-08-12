@@ -16,8 +16,8 @@ section.painting-section
       :breakpoints="swiperBreakpoints"
       class="mySwiper"
     )
-      swiper-slide(v-for="i in 19" :key="i")
-        img(:src="`/img/homepage/section9/${i}.webp`")
+      swiper-slide(v-for="(image, index) in images" :key="index" @click="openPhotoViewer(index)")
+        img(:src="image" :alt="`Изображение ${index + 1}`")
 </template>
 
 <script>
@@ -26,12 +26,48 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { Pagination, Navigation, Autoplay } from 'swiper'
+import UiPhotoViewer from '@/components/_ui/UiPhotoViewer'
+import { inject, ref } from 'vue'
+
 export default {
   components: { Swiper, SwiperSlide },
   setup () {
+    const store = inject('store')
+    const images = ref([])
+
+    for (let i = 1; i <= 19; i++) {
+      images.value.push(`/img/homepage/section9/${i}.webp`)
+    }
+
+    const openPhotoViewer = (index) => {
+      if (images.value.length === 0) return
+
+      store.modalQueue.push({
+        key: `photo-viewer-${Date.now()}`,
+        component: UiPhotoViewer,
+        props: {
+          images: images.value,
+          initialIndex: index
+        },
+        params: {
+          isClosable: true,
+          isFullscreen: true
+        },
+        on: {
+          close: () => {
+            store.modalQueue.remove(`photo-viewer-${Date.now()}`)
+          }
+        }
+      })
+    }
+
     return {
+      images,
+      openPhotoViewer,
       pagination: {
         clickable: true,
+        dynamicBullets: true,
+        dynamicMainBullets: 3,
         renderBullet: function (index, className) {
           return '<span class="' + className + '"></span>'
         }
@@ -75,22 +111,27 @@ export default {
       margin-right: -10px
     .swiper-slide
       display: flex
-    img
-      margin: auto
-      height: 175*$u
-      object-fit: contain
-      width: 100%
-      max-width: calc(100% - 120px)
-      filter: drop-shadow(0px 9px 11px black)
-      @media screen and (max-width: $padWidth)
-        height: 125*$u
-        max-width: calc(100% - 80px)
-      @media screen and (max-width: $XXSWidth)
-        height: 100*$u
-        max-width: calc(100% - 60px)
-      @media screen and (max-width: $mobileWidth)
-        height: 90*$u
-        max-width: calc(100% - 40px)
+      cursor: pointer
+
+      img
+        margin: auto
+        height: 175*$u
+        object-fit: contain
+        width: 100%
+        max-width: calc(100% - 120px)
+        filter: drop-shadow(0px 9px 11px black)
+        transition: transform 0.3s ease
+        @media screen and (max-width: $padWidth)
+          height: 125*$u
+          max-width: calc(100% - 80px)
+        @media screen and (max-width: $XXSWidth)
+          height: 100*$u
+          max-width: calc(100% - 60px)
+        @media screen and (max-width: $mobileWidth)
+          height: 90*$u
+          max-width: calc(100% - 40px)
+      &:hover img
+        transform: scale(1.02)
     .swiper-slide-active img
       object-position: center
     .swiper-slide-next img
