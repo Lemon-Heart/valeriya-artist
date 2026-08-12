@@ -21,10 +21,8 @@ if (process.env.NODE_ENV === 'production') {
     },
     updated (registration) {
       console.log('New content is available; please refresh.')
-      if (window.confirm('Доступна новая версия сайта. Обновить сейчас?')) {
-        registration.waiting?.postMessage({ type: 'SKIP_WAITING' })
-        window.location.reload()
-      }
+      registration.waiting?.postMessage({ type: 'SKIP_WAITING' })
+      window.location.reload()
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')
