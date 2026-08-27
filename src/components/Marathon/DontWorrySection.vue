@@ -102,6 +102,7 @@ export default {
     height: 20*$u
     @media screen and (max-width: $XSWidth)
       height: 15*$u
+      top: -3*$u
       left: 5%
     &_vertical
       transform: rotate(10deg)
