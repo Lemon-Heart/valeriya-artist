@@ -38,7 +38,7 @@ export default {
       {
         icon: 'youtube',
         title: 'YouTube',
-        link: 'https://youtube.com/@valeriya_artist'
+        link: 'https://youtube.com/@shatova_art'
       }
     ]
     return { soc }
