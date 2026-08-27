@@ -1,13 +1,14 @@
 <template lang="pug">
-.cont
-  .marathon
+.marathon
+  .cont
     main-section
     about-section
     why-section
     dont-worry-section
     imagine-section
     memory-section
-    road-section
+  road-section
+  .cont
     go-section
     agitation-section
 </template>

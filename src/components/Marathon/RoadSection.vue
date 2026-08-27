@@ -1,18 +1,21 @@
 <template lang="pug">
 section.road-section
-  h1
-    ui-text-anim Что получится через месяц?
-  .road-section__block
-    .road-section__item(v-for="(item, i) in list" :key="i")
-      img.road-section__clip(
-        v-if="[1, 4].includes(i)"
-        :class="{ 'road-section__clip_left': i === 1 }"
-        src="/img/marathon/road-section/clip.PNG"
-      )
-      img.road-section__img(:src="item.icon")
-      .road-section__description {{item.description}}
-  .road-section__subtitle
-    ui-text-anim И почувствуешь, как в жизни становится больше тепла и радости
+  .cont
+    h1
+      ui-text-anim Что получится через месяц?
+    .road-section__block
+      .road-section__item(v-for="(item, i) in list" :key="i")
+        img.road-section__clip(
+          v-if="[1, 4].includes(i)"
+          :class="{ 'road-section__clip_left': i === 1 }"
+          src="/img/marathon/road-section/clip.PNG"
+        )
+        img.road-section__img(:src="item.icon")
+        .road-section__description {{item.description}}
+    .road-section__subtitle
+      img.road-section__flower.road-section__flower_left(src="/img/marathon/flower.png")
+      ui-text-anim И почувствуешь, как в жизни становится больше тепла и радости
+      img.road-section__flower.road-section__flower_right(src="/img/marathon/flower.png")
 </template>
 
 <script>
@@ -47,6 +50,8 @@ export default {
 
 <style lang="sass" scoped>
 .road-section
+  background: rgba(0, 0, 0, .3)
+  padding: 10*$u 0
   &__block
     display: flex
     gap: 5*$u
@@ -92,12 +97,28 @@ export default {
       left: 5%
     &_left
       left: 1%
+  &__flower
+    width: 8*$u
+    height: 8*$u
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    @media screen and (max-width: $XSWidth)
+      width: 5*$u
+      height: 5*$u
+    &_left
+      left: 0
+    &_right
+      right: 0
+      transform: translateY(-50%) scaleX(-1) rotate(25deg)
   &__subtitle
+    position: relative
+    padding: 0 10*$u
     margin: 10*$u auto 0
     @include font('t18-finland')
     color: $firstColor
     text-align: center
-    max-width: 180*$u
+    max-width: 200*$u
     @media screen and (max-width: $padWidth)
       @include font('t16-finland')
     @media screen and (max-width: $XXSWidth)

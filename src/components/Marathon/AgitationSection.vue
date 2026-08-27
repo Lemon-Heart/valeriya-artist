@@ -6,6 +6,7 @@ section.agitation-section
     .description Присоединяйся к марафону и начни свое путешествие в самые теплые воспоминания
   .img
     img.img__main(src="/img/marathon/agitation-section/bg.PNG" alt="")
+    .img__description Присоединяйся к марафону и начни свое путешествие в самые теплые воспоминания
     ui-button(is-animated variant="primary" size="XL") Хочу на марафон
 </template>
 
@@ -70,8 +71,10 @@ export default {
       @include font('t18-demibold')
       @media screen and (max-width: $XXXLWidth)
         @include font('t16-demibold')
-      @media screen and (max-width: $XXLWidth)
+      @media screen and (max-width: $padWidth)
         @include font('t14-demibold')
+      @media screen and (max-width: 730px)
+        display: none
   .img
     display: flex
     flex-direction: column
@@ -79,12 +82,14 @@ export default {
     align-items: center
     position: relative
     gap: 10*$u
-    // @media screen and (max-width: $padWidth)
-    //   height: 100%
+    &__description
+      display: none
+      @include font('t14-demibold')
+      @media screen and (max-width: 730px)
+        display: block
     &__main
       max-width: 100%
       @media screen and (max-width: $padWidth)
-        // height: 100%
         object-fit: contain
         overflow: visible
 </style>
