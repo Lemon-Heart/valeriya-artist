@@ -32,7 +32,7 @@ export default {
     grid-template-columns: 1fr 1fr
   @media screen and (max-width: 730px)
     grid-template-columns: 1fr
-    gap: 10*$u
+    gap: 5*$u
   .text
     display: flex
     flex-direction: column
