@@ -47,37 +47,119 @@
   .profile-empty(v-else-if="!loading && !error")
     p Профиль не найден
 
-  ReviewsCta.review-form(
-    v-if="courses && courses.length"
-    text="Уже прошел обучение? Мне будет приятно, если ты напишешь пару слов для обратной связи и поделишься результатом - загрузи фото своей работы до и после прохождения курса."
-  )
+  //- Табы для переключения между курсами и марафоном (только если есть и то, и другое)
+  .tabs(v-if="showTabs")
+    .tabs__list
+      .tabs__item(
+        v-for="tab in tabs"
+        :key="tab.key"
+        :class="{ active: activeTab === tab.key }"
+        @click="activeTab = tab.key"
+      ) {{ tab.label }}
 
-  .videos(v-for="course in courses" :key="course.id" v-if="courses && courses.length")
-    .videos__head {{ course.name }}
-    .videos__wrapper
-      course-video(v-for="lesson in course.lessons" :key="lesson.id" :name="lesson.name" :video="lesson.video" :link="lesson.link" :available="lesson.available" :preview="lesson.preview")
+  //- Контент модулей
+  template(v-if="activeTab === 'courses' && courses && courses.length")
+    //- Блок с отзывами для модулей
+    ReviewsCta.review-form(
+      text="Уже прошел обучение? Мне будет приятно, если ты напишешь пару слов для обратной связи и поделишься результатом - загрузи фото своей работы до и после прохождения курса."
+    )
+
+    .videos(v-for="course in courses" :key="course.id")
+      .videos__head {{ course.name }}
+      .videos__wrapper
+        course-video(
+          v-for="lesson in course.lessons"
+          :key="lesson.id"
+          :name="lesson.name"
+          :video="lesson.video"
+          :link="lesson.link"
+          :available="lesson.available"
+          :preview="lesson.preview"
+        )
+
+  //- Контент марафона (показываем если активный таб марафон ИЛИ если нет курсов)
+  template(v-if="(activeTab === 'marathon' || !hasCourses) && marathon && marathon.length")
+    ReviewsCta.review-form(
+      source="marathon"
+      text="Уже прошел марафон? Поделись, как это было? И покажи свой самый лучший скетч или страницу из твоего арт-дневника."
+    )
+    .videos
+      .videos__head Марафон
+      .videos__wrapper.videos__wrapper_marathon
+        course-video(
+          v-for="lesson in marathon"
+          vertical
+          :key="lesson.id"
+          :name="lesson.name"
+          :video="lesson.video"
+          :link="lesson.link"
+          :available="lesson.available"
+          :preview="lesson.preview"
+        )
+
+  .empty-content(v-if="!hasContent && !loading")
+    p У вас пока нет доступа к материалам
 </template>
 
 <script>
-import { inject, computed, ref, onMounted, onUnmounted } from 'vue'
+import { inject, computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import CourseVideo from '@/components/Profile/CourseVideo'
 import ReviewsCta from '@/components/Reviews/ReviewsCta'
+// import ReviewsMarathon from '@/components/Reviews/ReviewsMarathon' // Если есть компонент для марафона
 
 export default {
-  components: { CourseVideo, ReviewsCta },
+  components: {
+    CourseVideo,
+    ReviewsCta
+    // ReviewsMarathon // Раскомментировать если есть
+  },
   setup () {
     const store = inject('store')
     const loading = computed(() => store.user.loading)
 
-    Promise.all([store.user.getProfile(), store.user.getCourses()])
+    Promise.all([store.user.getProfile(), store.user.getCourses(), store.user.getMarathon()])
 
     const profile = computed(() => store.user.profile)
     const user = computed(() => store.user)
     const courses = computed(() => store.user.courses)
+    const marathon = computed(() => store.user.marathon)
     const error = computed(() => store.user.errMess)
 
     const isEdit = ref(false)
     const menuOpen = ref(false)
+    const activeTab = ref('courses')
+
+    // Определяем, что показывать
+    const hasCourses = computed(() => courses.value && courses.value.length > 0)
+    const hasMarathon = computed(() => marathon.value && marathon.value.length > 0)
+    const hasContent = computed(() => hasCourses.value || hasMarathon.value)
+
+    // Показываем табы только если есть и курсы, и марафон
+    const showTabs = computed(() => hasCourses.value && hasMarathon.value)
+
+    // Список табов
+    const tabs = computed(() => {
+      const result = []
+      if (hasCourses.value) {
+        result.push({ key: 'courses', label: 'Модули' })
+      }
+      if (hasMarathon.value) {
+        result.push({ key: 'marathon', label: 'Марафон' })
+      }
+      return result
+    })
+
+    // Автоматически выбираем первый доступный таб
+    const setDefaultTab = () => {
+      if (tabs.value.length > 0) {
+        activeTab.value = tabs.value[0].key
+      }
+    }
+
+    // Следим за изменением контента и обновляем таб
+    watch([hasCourses, hasMarathon], () => {
+      setDefaultTab()
+    })
 
     const toggleMenu = (e) => {
       e.stopPropagation()
@@ -126,6 +208,7 @@ export default {
 
     onMounted(() => {
       document.addEventListener('click', handleClickOutside)
+      setDefaultTab()
     })
 
     onUnmounted(() => {
@@ -136,6 +219,7 @@ export default {
       profile,
       loading,
       courses,
+      marathon,
       isEdit,
       changeProfileInfo,
       changeProfileAvatar,
@@ -148,7 +232,13 @@ export default {
       applyChanges,
       cancelEdit,
       handleLogout,
-      closeMenu
+      closeMenu,
+      activeTab,
+      tabs,
+      showTabs,
+      hasContent,
+      hasCourses,
+      hasMarathon
     }
   }
 }
@@ -171,6 +261,15 @@ export default {
   text-align: center
 
 .profile-empty
+  background: $BGOpacity
+  padding: 10*$u
+  border-radius: $BR
+  color: $white
+  margin-top: 10*$u
+  text-align: center
+  @include font('h2')
+
+.empty-content
   background: $BGOpacity
   padding: 10*$u
   border-radius: $BR
@@ -412,6 +511,71 @@ export default {
     opacity: 1
     transform: translateY(0)
 
+// Стили для табов
+.tabs
+  margin-top: 10*$u
+  @media screen and (max-width: $XXSWidth)
+    margin-top: 5*$u
+
+  &__list
+    display: flex
+    gap: 2*$u
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+    padding-bottom: 0.5*$u
+
+  &__item
+    padding: 1.5*$u 4*$u
+    color: rgba(255, 255, 255, 0.6)
+    cursor: pointer
+    @include font('h2')
+    transition: all 0.3s ease
+    border-bottom: 2px solid transparent
+    margin-bottom: -0.5*$u
+
+    &:hover
+      color: rgba(255, 255, 255, 0.8)
+
+    &.active
+      color: $firstColor
+      border-bottom-color: $firstColor
+
+    @media screen and (max-width: $XSWidth)
+      @include font('h3')
+      padding: 1*$u 2*$u
+
+    @media screen and (max-width: 450px)
+      font-size: 3.5*$u
+      padding: 0.5*$u 1.5*$u
+
+// Блок для марафона
+.marathon-block
+  background: $BGOpacity
+  padding: 10*$u
+  border-radius: $BR
+  color: $white
+  margin-top: 10*$u
+  @media screen and (max-width: $XXSWidth)
+    padding: 5*$u
+    margin-top: 5*$u
+
+  &__title
+    color: $firstColor
+    @include font('h1')
+    @media screen and (max-width: $XSWidth)
+      @include font('h2')
+
+  &__description
+    margin-top: 2*$u
+    @include font('t16-regular')
+    @media screen and (max-width: $XSWidth)
+      @include font('t14-regular')
+
+// Если нужен отдельный компонент для отзывов марафона
+.marathon-review-form
+  margin-top: 10*$u
+  @media screen and (max-width: $XXSWidth)
+    margin-top: 5*$u
+
 .review-form
   margin-top: 10*$u
   @media screen and (max-width: $XXSWidth)
@@ -423,18 +587,29 @@ export default {
   border-radius: $BR
   color: $white
   margin-top: 10*$u
-  @media screen and (max-width: $XXSWidth)
+  @media screen and (max-width: $padWidth)
     padding: 5*$u
-  @media screen and (max-width: $XXSWidth)
     margin-top: 5*$u
   &__head
     color: $firstColor
     @include font('h1')
-    @media screen and (max-width: $XSWidth)
+    @media screen and (max-width: $padWidth)
       @include font('h2')
+    @media screen and (max-width: $mobileWidth)
+      @include font('h3')
   &__wrapper
     margin-top: 20px
     display: grid
     grid-template-columns: repeat( auto-fit, minmax(75*$u, 1fr))
     gap: 10*$u 7.5*$u
+    &_marathon
+      gap: 5*$u
+      grid-template-columns: repeat(auto-fit, minmax(49*$u, 1fr))
+      @media screen and (max-width: $XXXLWidth)
+        grid-template-columns: repeat(auto-fit, minmax(calc(100vw / 7.5), 1fr))
+      @media screen and (max-width: $XXLWidth)
+        grid-template-columns: repeat(auto-fit, minmax(calc(100vw / 6), 1fr))
+      @media screen and (max-width: $XXSWidth)
+        gap: 2.5*$u
+        grid-template-columns: repeat(3, 1fr)
 </style>

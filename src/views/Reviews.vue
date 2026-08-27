@@ -1,7 +1,10 @@
 <template lang="pug">
 .cont
   h1 Твой отзыв может вдохновить других!
-  ReviewForm(v-if="isAuth" photos-required="both")
+  ReviewForm(
+    v-if="isAuth"
+    :photos-required="sourceFromQuery === 'course' ? 'both' : 'one'"
+  )
 
   .auth-message(v-else)
     p Чтобы оставить отзыв, необходимо&nbsp;
@@ -18,6 +21,7 @@ UiNotification(
 
 <script>
 import { inject, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import ReviewsSlider from '@/components/Reviews/ReviewSlider'
 import ReviewForm from '@/components/Reviews/ReviewForm'
 
@@ -28,17 +32,19 @@ export default {
     ReviewForm
   },
   setup () {
+    const route = useRoute()
     const store = inject('store')
 
     const reviews = computed(() => store.review.reviews)
     const isAuth = computed(() => store.auth.isAuth)
-
+    const sourceFromQuery = computed(() => route.query.source)
     store.review.getReviews()
 
     return {
       store,
       reviews,
-      isAuth
+      isAuth,
+      sourceFromQuery
     }
   }
 }

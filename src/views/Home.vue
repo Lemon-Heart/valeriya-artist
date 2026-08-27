@@ -22,7 +22,7 @@ reviews-section
 </template>
 
 <script>
-import { onMounted, nextTick } from 'vue'
+import { onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import MainSection from '@/components/Homepage/MainSection'
 import WishSection from '@/components/Homepage/WishSection'
@@ -67,9 +67,14 @@ export default {
     }
 
     onMounted(() => {
+      document.body.classList.add('home-page')
       if (route.hash === '#faq') {
         setTimeout(scrollToFaq, 500)
       }
+    })
+
+    onBeforeUnmount(() => {
+      document.body.classList.remove('home-page')
     })
 
     return {}

@@ -9,6 +9,7 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
         router-link(:to="{ name: 'Home'}") С чего начинается портрет
         a(href="/#faq") Частые вопросы
         router-link(:to="{ name: 'Catalog'}") Каталог картин Валерии
+        router-link(:to="{ name: 'Marathon'}") Марафон
       .footerMenu
         ui-button(is-responsive is-animated variant="primary" size="L" @click.prevent="$router.push({ name: 'Profile' })") Профиль
         header-soc.soc

@@ -26,8 +26,10 @@ export default {
     display: flex
     & > *
       margin-right: 10*$u
-      @media screen and (max-width: $mobileWidth)
+      @media screen and (max-width: $XXSWidth)
         margin-right: 5*$u
+      @media screen and (max-width: $mobileWidth)
+        margin-right: 3*$u
   .right
     display: flex
   .button

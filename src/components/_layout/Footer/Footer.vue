@@ -6,8 +6,8 @@
       span ИНН 370219835613
       a(href="mailto:valeriya.artist@mail.ru", target="blank") valeriya.artist@mail.ru
     .col
-      router-link.t16(:to="{ name: 'Offer'}") Публичная оферта
-      router-link.t16(:to="{ name: 'Policy'}") Политика конфиденциальности
+      router-link.t18(:to="{ name: 'Offer'}") Публичная оферта
+      router-link.t18(:to="{ name: 'Policy'}") Политика конфиденциальности
 </template>
 
 <style lang="sass">
@@ -25,6 +25,6 @@
   @include font('t14-regular')
   @media screen and (max-width: $padWidth)
     align-items: center
-.t16
+.t18
   @include font('t18-regular')
 </style>

@@ -10,23 +10,25 @@ body
   color: $white
   overflow-x: hidden
   min-height: 100vh
+  background: #1A1A18
   &.fixed
     overflow: hidden
-  &::after
-    content: ''
-    top: 0
-    bottom: 0
-    right: 0
-    left: 0
-    position: fixed
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bg.webp')
-    background-repeat: no-repeat
-    background-position: center center
-    background-size: cover
-    z-index: -999
-  @media screen and (max-width: $XXXLWidth)
+  &.home-page
     &::after
-      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bgmobile.webp')
+      content: ''
+      top: 0
+      bottom: 0
+      right: 0
+      left: 0
+      position: fixed
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bg.webp')
+      background-repeat: no-repeat
+      background-position: center center
+      background-size: cover
+      z-index: -999
+    @media screen and (max-width: $XXXLWidth)
+      &::after
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .8)), url('/public/img/bgmobile.webp')
 
 .cont
   max-width: $width
@@ -37,8 +39,6 @@ body
     padding: 0 8*$u
   @media screen and (max-width: $XSWidth)
     padding: 0 5*$u
-  @media screen and (max-width: $XXSWidth)
-    padding: 0 3*$u
 
 div, button, input, textarea
   box-sizing: border-box
@@ -103,3 +103,12 @@ ul
   background: $btnBGDark!important
 .swiper-pagination-bullet-active
   background: $btnBGDark!important
+
+.marathon
+  display: grid
+  gap: 30*$u
+  @media screen and (max-width: $XXLWidth)
+    gap: 20*$u
+
+  h1
+    @include heading-finland

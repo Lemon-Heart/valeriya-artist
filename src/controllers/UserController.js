@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import router from '@/router'
 import UserProfile from '@/models/UserProfile'
 import Module from '@/models/Module'
+import Lesson from '@/models/Lesson'
 import { buyCourse } from '@/services/payment'
 import { useLoading } from '@/composables/useLoading'
 
@@ -10,6 +11,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const profile = ref(null)
   const courses = ref(null)
+  const marathon = ref(null)
   const errMess = ref('')
 
   const setError = (error) => {
@@ -32,6 +34,24 @@ export default function UserController (auth, modalQueue, sideMenu) {
       loadingOff()
     } else {
       await refresh(getCourses)
+    }
+  }
+
+  const getMarathon = async () => {
+    loadingOn()
+    const response = await fetch('https://valeriya-artist.art/api/marathon', {
+      method: 'GET',
+      headers: {
+        Authorization: auth.getAuthToken()
+      }
+    })
+
+    if (response.ok) {
+      const res = await response.json()
+      if (!res.mess) marathon.value = res.map((o) => new Lesson(o))
+      loadingOff()
+    } else {
+      await refresh(getMarathon)
     }
   }
 
@@ -180,6 +200,8 @@ export default function UserController (auth, modalQueue, sideMenu) {
     getProfile,
     courses,
     getCourses,
+    marathon,
+    getMarathon,
     errMess,
     changeProfileInfo,
     changeProfileAvatar

@@ -25,6 +25,6 @@ export default {
     font-size: 4.5*$u
   .text1
     margin-right: 2*$u
-    @media screen and (max-width: $XSWidth)
+    @media screen and (max-width: $padWidth)
       display: none
 </style>

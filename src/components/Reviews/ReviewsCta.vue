@@ -4,7 +4,7 @@ section.reviews-cta
   h2.reviews-cta__title Твой отзыв может вдохновить других!
   p.reviews-cta__subtitle {{ text }}
   router-link.reviews-cta__button(
-    :to="{ name: 'Reviews'}"
+    :to="{ name: 'Reviews', query: { source: source } }"
     variant="dark"
     size="L"
     is-animated
@@ -18,6 +18,10 @@ export default {
     text: {
       type: String,
       default: ''
+    },
+    source: {
+      type: String,
+      default: 'course' // 'course' | 'marathon'
     }
   },
   setup () {

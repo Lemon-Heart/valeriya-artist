@@ -16,6 +16,36 @@
     font-size: 5*$u
     line-height: 7.5*$u
 
+  @if $label == 'h1-finland'
+    font-family: ALSFinlandiaScript, serif
+    font-size: 20*$u
+    line-height: 20*$u
+
+  @if $label == 'h2-finland'
+    font-family: ALSFinlandiaScript, serif
+    font-size: 15*$u
+    line-height: 15*$u
+
+  @if $label == 'h3-finland'
+    font-family: ALSFinlandiaScript, serif
+    font-size: 12*$u
+    line-height: 12*$u
+
+  @if $label == 'h1-ustroke'
+    font-family: Ustroke-Regular, serif
+    font-size: 20*$u
+    line-height: 20*$u
+
+  @if $label == 'h2-ustroke'
+    font-family: Ustroke-Regular, serif
+    font-size: 15*$u
+    line-height: 15*$u
+
+  @if $label == 'h3-ustroke'
+    font-family: Ustroke-Regular, serif
+    font-size: 12*$u
+    line-height: 12*$u
+
   @if $label == 'h3-bebas'
     font-family: BebasNeueBold, serif
     font-size: 5*$u
@@ -39,12 +69,12 @@
   @if $label == 't16-regular'
     font-family: GolosTextWebRegular, serif
     font-size: 4*$u
-    line-height: 6.5*$u
+    line-height: 6*$u
 
   @if $label == 't16-demibold'
     font-family: GolosTextWebDemiBold, serif
     font-size: 4*$u
-    line-height: 6.5*$u
+    line-height: 6*$u
 
   @if $label == 't15-regular'
     font-family: GolosTextWebRegular, serif
@@ -55,6 +85,26 @@
     font-family: GolosTextWebRegular, serif
     font-size: 3.5*$u
     line-height: 5*$u
+
+  @if $label == 't18-finland'
+    font-family: ALSFinlandiaScript, serif
+    font-size: 13*$u
+    line-height: 13*$u
+
+  @if $label == 't16-finland'
+    font-family: ALSFinlandiaScript, serif
+    font-size: 10*$u
+    line-height: 10*$u
+
+  @if $label == 't14-finland'
+    font-family: ALSFinlandiaScript, serif
+    font-size: 8*$u
+    line-height: 8*$u
+
+  @if $label == 't12-finland'
+    font-family: ALSFinlandiaScript, serif
+    font-size: 6*$u
+    line-height: 6*$u
 
 // ***** Heading *****
 @mixin heading
@@ -67,6 +117,28 @@
     @include font('h2')
   @media screen and (max-width: $mobileWidth)
     @include font('h3')
+
+@mixin heading-ustroke
+  margin-bottom: 0
+  text-transform: uppercase
+  color: $firstColor
+  text-align: center
+  @include font('h1-ustroke')
+  @media screen and (max-width: $padWidth)
+    @include font('h2-ustroke')
+  @media screen and (max-width: $mobileWidth)
+    @include font('h3-ustroke')
+
+@mixin heading-finland
+  margin-bottom: 0
+  text-transform: none
+  color: $firstColor
+  text-align: center
+  @include font('h1-finland')
+  @media screen and (max-width: $padWidth)
+    @include font('h2-finland')
+  @media screen and (max-width: $mobileWidth)
+    @include font('h3-finland')
 
 // ***** SCROLLBAR *****
 @mixin custom-scrollbar($thumb-color: $white, $track-color: $track, $width: 3*$u)

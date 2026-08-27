@@ -1,10 +1,10 @@
 <template lang="pug">
 .headerSocComponent
-  a.headerIconWrapper(target="blank" href="https://vk.com/valeriya.artist")
+  a.headerIconWrapper(target="blank" href="https://vk.ru/shatova_art")
     ui-svg-icon(name="vk" :size="18")
-  a.headerIconWrapper(target="blank" href="https://instagram.com/valeriya.artist")
+  a.headerIconWrapper(target="blank" href="https://www.instagram.com/valeriya.shatova")
     ui-svg-icon(name="inst" :size="18")
-  a.headerIconWrapper(target="blank" href="https://t.me/valeriya_artist")
+  a.headerIconWrapper(target="blank" href="https://t.me/shatova_art")
     ui-svg-icon(name="tg" :size="18")
   a.headerIconWrapper(target="blank" href="https://max.ru/u/f9LHodD0cOL2NxYHPFy0NR5-2GqU2GC8tKh5LpVvUEctc_fsiCEGj1ElJXA")
     ui-svg-icon(name="max" :size="18")
