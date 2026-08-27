@@ -79,12 +79,12 @@ export default {
     align-items: center
     position: relative
     gap: 10*$u
-    @media screen and (max-width: $padWidth)
-      height: 100%
+    // @media screen and (max-width: $padWidth)
+    //   height: 100%
     &__main
       max-width: 100%
       @media screen and (max-width: $padWidth)
         height: 100%
-        object-fit: cover
+        object-fit: contain
         overflow: visible
 </style>

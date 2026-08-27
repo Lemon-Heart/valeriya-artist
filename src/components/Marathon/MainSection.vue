@@ -34,7 +34,7 @@ export default {
 
 <style lang="sass" scoped>
 .main-section
-  margin: 20*$u 0
+  margin: 25*$u 0 0
   display: grid
   grid-template-columns: 1fr 2fr
   align-items: center
@@ -101,18 +101,18 @@ export default {
     flex-direction: column
     justify-content: center
     position: relative
-    @media screen and (max-width: $padWidth)
-      height: 100%
+    // @media screen and (max-width: $padWidth)
+    //   height: 100%
     @media screen and (max-width: 730px)
       order: -1
     picture
-      @media screen and (max-width: $padWidth)
-        height: 100%
+      // @media screen and (max-width: $padWidth)
+      //   height: 100%
     &__main
       max-width: 100%
       @media screen and (max-width: $padWidth)
         height: 100%
-        object-fit: cover
+        object-fit: contain
         overflow: visible
     &__note
       position: absolute

@@ -120,7 +120,7 @@ export default {
       background-size: 100% 100%
       grid-template-columns: 20*$u 1fr
       padding: 15*$u
-      transform: translateX(80%)
+      transform: translateY(80%)
       opacity: 0
       transition: 1s
 
@@ -133,7 +133,7 @@ export default {
         margin-top: -7%
 
       &.observe
-        transform: translateX(0)
+        transform: translateY(0)
         opacity: 1
 
     @media screen and (max-width: $XSWidth)
