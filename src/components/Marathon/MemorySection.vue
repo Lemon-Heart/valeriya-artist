@@ -6,7 +6,7 @@ section.memory-section(ref="sectionRef")
     h2 На протяжении 30 дней мы будем ежедневно возвращаться в твое детство и вспоминать самые важные, теплые моменты.
       br
       | Например…
-    .memory-section__container
+    .memory-section__container(ref="containerRef")
       .memory-section__bg(
         :style="{ clipPath: 'inset(0 ' + clipRight + '% 0 0)' }"
       )
@@ -29,10 +29,13 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 export default {
   setup () {
     const sectionRef = ref(null)
+    const containerRef = ref(null)
     const bicycleRef = ref(null)
     const bicyclePosition = ref(0)
     const clipRight = ref(100)
     let isScrolling = false
+    let observer = null
+    let isSectionFullyVisible = false
 
     const handleScroll = () => {
       if (isScrolling) return
@@ -54,7 +57,17 @@ export default {
         let progress = 1 - (rect.top - end) / (start - end)
         progress = Math.max(0, Math.min(1, progress))
 
-        bicyclePosition.value = -20 + progress * 105
+        // Если секция видна полностью - считаем позицию велосипеда
+        if (isSectionFullyVisible) {
+          const startProgress = 0.6
+          const visibleProgress = Math.max(0, Math.min(1, (progress - startProgress) / (1 - startProgress)))
+          // Плавно двигаем от 0 до 75% в зависимости от прогресса
+          bicyclePosition.value = visibleProgress * 75
+        } else {
+          // Если секция не полностью видна - велосипед стоит на месте
+          // НЕ СБРАСЫВАЕМ в 0, а оставляем текущую позицию
+          // Ничего не делаем, bicyclePosition остается как есть
+        }
 
         const bicycleCenter = bicyclePosition.value + 12
         clipRight.value = Math.max(0, Math.min(100, 100 - bicycleCenter))
@@ -64,16 +77,32 @@ export default {
     }
 
     onMounted(() => {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isSectionFullyVisible = entry.intersectionRatio >= 1
+        })
+      }, {
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      })
+
+      if (containerRef.value) {
+        observer.observe(containerRef.value)
+      }
+
       window.addEventListener('scroll', handleScroll, { passive: true })
       handleScroll()
     })
 
     onBeforeUnmount(() => {
       window.removeEventListener('scroll', handleScroll)
+      if (observer) {
+        observer.disconnect()
+      }
     })
 
     return {
       sectionRef,
+      containerRef,
       bicycleRef,
       bicyclePosition,
       clipRight
@@ -124,7 +153,6 @@ export default {
     height: calc(100vw / 3.8)
     top: 50%
     transform: translateY(-50%)
-    left: 0
     will-change: left
     z-index: 2
 

@@ -23,17 +23,17 @@ export default {
       {
         icon: 'vk',
         title: 'ВКонтакте',
-        link: 'https://vk.com/valeriya.artist'
+        link: 'https://vk.ru/shatova_art'
       },
       {
         icon: 'tg',
         title: 'Telegram*',
-        link: 'https://t.me/valeriya_artist'
+        link: 'https://t.me/shatova_art'
       },
       {
         icon: 'inst',
         title: 'Instagram*',
-        link: 'https://www.instagram.com/valeriya.artist'
+        link: 'https://www.instagram.com/valeriya.shatova'
       },
       {
         icon: 'youtube',

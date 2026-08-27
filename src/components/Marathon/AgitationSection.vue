@@ -82,7 +82,10 @@ export default {
     align-items: center
     position: relative
     gap: 10*$u
+    @media screen and (max-width: 730px)
+      gap: 5*$u
     &__description
+      text-align: center
       display: none
       @include font('t14-demibold')
       @media screen and (max-width: 730px)
@@ -92,4 +95,6 @@ export default {
       @media screen and (max-width: $padWidth)
         object-fit: contain
         overflow: visible
+      @media screen and (max-width: 730px)
+        max-width: 80%
 </style>

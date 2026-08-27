@@ -1,16 +1,18 @@
 <template lang="pug">
-.marathon
+.marathon-wrapper
   .cont
-    main-section
-    about-section
-    why-section
-    dont-worry-section
-    imagine-section
-    memory-section
+    .marathon
+      main-section
+      about-section
+      why-section
+      dont-worry-section
+      imagine-section
+      memory-section
   road-section
   .cont
-    go-section
-    agitation-section
+    .marathon
+      go-section
+      agitation-section
 </template>
 
 <script>
