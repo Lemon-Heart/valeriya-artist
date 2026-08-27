@@ -84,7 +84,7 @@ export default {
     &__main
       max-width: 100%
       @media screen and (max-width: $padWidth)
-        height: 100%
+        // height: 100%
         object-fit: contain
         overflow: visible
 </style>
