@@ -1,21 +1,24 @@
 <template lang="pug">
-.video(:class="videoClasses")
+.video(:class="vertical ? 'video_vertical' : ''")
   .video__name {{ name }}
-  .video__img(
-    v-if="!isFrameVisible && preview",
-    :class="vertical ? 'video__img_vertical' : ''"
-  )
-    img.video__play(src="/img/play.png")
+  .video__media(:class="vertical ? 'video__media_vertical' : ''")
+    img.video__play(
+      v-if="!isFrameVisible && preview",
+      src="/img/marathon/video-section/play.PNG",
+      @click="available ? isFrameVisible = true : isFrameVisible = false"
+    )
     img.video__preview(
+      v-if="!isFrameVisible && preview",
       v-lazy="preview",
       @click="available ? isFrameVisible = true : isFrameVisible = false"
     )
-  iframe(
-    v-if="(isFrameVisible || !preview) && available",
-    :src="videoFormatted",
-    allow="autoplay",
-    allowfullscreen
-  )
+    iframe(
+      v-if="(isFrameVisible || !preview) && available",
+      :src="videoFormatted",
+      allow="autoplay",
+      allowfullscreen
+    )
+    .video__frame(v-if="!vertical")
   a.video__link(
     v-if="link && available",
     :href="link",
@@ -72,51 +75,82 @@ export default {
 .video
   width: 100%
   height: 100%
-  display: grid
-  grid-template-rows: 1fr auto 20px
-  gap: 15px
+  position: relative
+  display: flex
+  flex-direction: column
+  gap: 5*$u
   &.notAvailable
     filter: brightness(0.5)
-  iframe, &__img
-    max-width: 95*$u
-    border-radius: 20px
-    width: 100%
-    height: 50*$u
+
+  &_vertical
+    gap: 2*$u
+
+  &__media
     position: relative
+    width: 100%
+    aspect-ratio: 16 / 9
+    border-radius: 20px
+
     &_vertical
-      height: auto
       aspect-ratio: 9 / 16
       max-height: 100*$u
-  &__preview
+      margin: 0 auto
+      border: 4px solid rgba(255, 255, 255, 0.9)
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3)
+      border-radius: 20px
+
+      @media screen and (max-width: $XXSWidth)
+        .video__play
+          width: 10*$u
+          height: 10*$u
+          bottom: -5*$u
+          left: calc(50% - 5*$u)
+
+  &__preview,
+  iframe
+    position: absolute
+    top: 0
+    left: 0
     width: 100%
     height: 100%
     object-fit: cover
-    object-position: center
     border-radius: 20px
+
   &__play
     position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    width: 15*$u
-    opacity: .5
     cursor: pointer
-  &__icon
+    width: 16*$u
+    height: 16*$u
+    bottom: -7*$u
+    left: calc(50% - 8*$u)
+    z-index: 10
+
+  &__frame
     position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    cursor: pointer
+    top: -9%
+    right: -5%
+    bottom: -9%
+    left: -5%
+    background-image: url('./border.PNG')
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: 100% 100%
+    pointer-events: none
+    z-index: 5
+    border-radius: 20px
+
   &__name
     @include font('t16-demibold')
     line-height: 130%
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
+
   &__link
     @include font('t14-regular')
     display: flex
     color: $firstColor
+    margin-top: 4*$u
     &:deep
       .svgIconComponent
         margin-left: $u

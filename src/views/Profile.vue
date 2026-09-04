@@ -47,7 +47,6 @@
   .profile-empty(v-else-if="!loading && !error")
     p Профиль не найден
 
-  //- Табы для переключения между курсами и марафоном (только если есть и то, и другое)
   .tabs(v-if="showTabs")
     .tabs__list
       .tabs__item(
@@ -57,9 +56,7 @@
         @click="activeTab = tab.key"
       ) {{ tab.label }}
 
-  //- Контент модулей
   template(v-if="activeTab === 'courses' && courses && courses.length")
-    //- Блок с отзывами для модулей
     ReviewsCta.review-form(
       text="Уже прошел обучение? Мне будет приятно, если ты напишешь пару слов для обратной связи и поделишься результатом - загрузи фото своей работы до и после прохождения курса."
     )
@@ -77,7 +74,6 @@
           :preview="lesson.preview"
         )
 
-  //- Контент марафона (показываем если активный таб марафон ИЛИ если нет курсов)
   template(v-if="(activeTab === 'marathon' || !hasCourses) && marathon && marathon.length")
     ReviewsCta.review-form(
       source="marathon"
@@ -105,13 +101,11 @@
 import { inject, computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import CourseVideo from '@/components/Profile/CourseVideo'
 import ReviewsCta from '@/components/Reviews/ReviewsCta'
-// import ReviewsMarathon from '@/components/Reviews/ReviewsMarathon' // Если есть компонент для марафона
 
 export default {
   components: {
     CourseVideo,
     ReviewsCta
-    // ReviewsMarathon // Раскомментировать если есть
   },
   setup () {
     const store = inject('store')
@@ -129,15 +123,12 @@ export default {
     const menuOpen = ref(false)
     const activeTab = ref('courses')
 
-    // Определяем, что показывать
     const hasCourses = computed(() => courses.value && courses.value.length > 0)
     const hasMarathon = computed(() => marathon.value && marathon.value.length > 0)
     const hasContent = computed(() => hasCourses.value || hasMarathon.value)
 
-    // Показываем табы только если есть и курсы, и марафон
     const showTabs = computed(() => hasCourses.value && hasMarathon.value)
 
-    // Список табов
     const tabs = computed(() => {
       const result = []
       if (hasCourses.value) {
@@ -149,14 +140,12 @@ export default {
       return result
     })
 
-    // Автоматически выбираем первый доступный таб
     const setDefaultTab = () => {
       if (tabs.value.length > 0) {
         activeTab.value = tabs.value[0].key
       }
     }
 
-    // Следим за изменением контента и обновляем таб
     watch([hasCourses, hasMarathon], () => {
       setDefaultTab()
     })
@@ -601,15 +590,15 @@ export default {
     margin-top: 20px
     display: grid
     grid-template-columns: repeat( auto-fit, minmax(75*$u, 1fr))
-    gap: 10*$u 7.5*$u
+    gap: 10*$u
     &_marathon
-      gap: 5*$u
+      gap: 10*$u 5*$u
       grid-template-columns: repeat(auto-fit, minmax(49*$u, 1fr))
       @media screen and (max-width: $XXXLWidth)
         grid-template-columns: repeat(auto-fit, minmax(calc(100vw / 7.5), 1fr))
       @media screen and (max-width: $XXLWidth)
         grid-template-columns: repeat(auto-fit, minmax(calc(100vw / 6), 1fr))
       @media screen and (max-width: $XXSWidth)
-        gap: 2.5*$u
+        gap: 6*$u 2.5*$u
         grid-template-columns: repeat(3, 1fr)
 </style>

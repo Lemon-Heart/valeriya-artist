@@ -12,6 +12,9 @@
   .cont
     .marathon
       go-section
+  video-section
+  .cont
+    .marathon
       agitation-section
 </template>
 
@@ -26,6 +29,7 @@ import MemorySection from '@/components/Marathon/MemorySection'
 import RoadSection from '@/components/Marathon/RoadSection'
 import GoSection from '@/components/Marathon/GoSection'
 import AgitationSection from '@/components/Marathon/AgitationSection'
+import VideoSection from '@/components/Marathon/VideoSection'
 
 export default {
   components: {
@@ -37,6 +41,7 @@ export default {
     MemorySection,
     RoadSection,
     GoSection,
+    VideoSection,
     AgitationSection
   },
   setup () {
