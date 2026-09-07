@@ -28,6 +28,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+h1
+  margin-bottom: 10*$u
 .catalog
   margin-top: 10*$u
 .products

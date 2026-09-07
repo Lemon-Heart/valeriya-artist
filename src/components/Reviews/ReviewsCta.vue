@@ -44,14 +44,13 @@ export default {
   background-position: center
   background-size: 100% 100%
   grid-template-columns: auto 1fr auto
-  @media screen and (max-width: $XXLWidth)
-    // grid-template-columns: auto 1fr
-    // grid-template-areas: "img title" "img subtitle" "button button"
   @media screen and (max-width: $padWidth)
-    padding: 8*$u 6*$u 8*$u 3*$u
-    gap: 0 5*$u
+    grid-template-areas: "img title" "img subtitle" "button button"
+    grid-template-columns: auto 1fr
+    padding: 8*$u 6*$u
+    gap: 3*$u 5*$u
   @media screen and (max-width: $XXSWidth)
-    padding: 4*$u 4*$u 4*$u 2*$u
+    padding: 4*$u 2*$u
 
   &__img
     grid-area: img
@@ -59,13 +58,8 @@ export default {
     height: 130px
     transform: rotate(-15deg)
     filter: invert(100%)
-    // filter: brightness(0) saturate(100%) invert(83%) sepia(45%) saturate(400%) hue-rotate(320deg) brightness(105%) contrast(90%)
     @media screen and (max-width: $padWidth)
       height: 110px
-    @media screen and (max-width: $XSWidth)
-      height: 90px
-    @media screen and (max-width: $XXSWidth)
-      height: 70px
 
   &__title
     grid-area: title
@@ -77,12 +71,6 @@ export default {
     @media screen and (max-width: $padWidth)
       font-size: 18px
       line-height: 28px
-    @media screen and (max-width: $XSWidth)
-      font-size: 16px
-      line-height: 24px
-    @media screen and (max-width: $XXSWidth)
-      font-size: 14px
-      line-height: 22px
 
   &__subtitle
     grid-area: subtitle
@@ -92,13 +80,6 @@ export default {
     @media screen and (max-width: $padWidth)
       font-size: 14px
       line-height: 20px
-    @media screen and (max-width: $XSWidth)
-      font-size: 10px
-      line-height: 14px
-    @media screen and (max-width: $XXSWidth)
-      font-size: 8px
-      line-height: 10px
-      letter-spacing: 0px
 
   &__button
     grid-area: button
@@ -118,10 +99,4 @@ export default {
       padding: 2*$u 3*$u
       font-size: 12px
       line-height: 20px
-    @media screen and (max-width: $padWidth)
-      padding: 2*$u 3*$u
-      font-size: 10px
-      line-height: 14px
-    @media screen and (max-width: $XXSWidth)
-      padding: 2*$u
 </style>

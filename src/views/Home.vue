@@ -1,24 +1,25 @@
 <template lang="pug">
-.cont
-  main-section
-.roundedLine
-.bg
+.course
   .cont
-    wish-section
-.roundedLine.flipped
-.cont
-  learn-section
-  about-section
-  tariff-section
-  requirements-section
-  advantage-section
-  resume-section
-  painting-section
-  faq-section
-reviews-section
-.cont
-  trust-section
-  news-section
+    main-section
+  .roundedLine
+  .bg
+    .cont
+      wish-section
+  .roundedLine.flipped
+  .cont
+    learn-section
+    about-section
+    tariff-section
+    requirements-section
+    advantage-section
+    resume-section
+    painting-section
+    faq-section
+  reviews-section
+  .cont
+    trust-section
+    news-section
 </template>
 
 <script>

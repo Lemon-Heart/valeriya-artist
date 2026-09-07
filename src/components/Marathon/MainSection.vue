@@ -57,15 +57,6 @@ export default {
     h1
       @include heading-ustroke
       text-align: start
-      @media screen and (max-width: $XXXLWidth)
-        font-size: 15*$u
-        line-height: 15*$u
-      @media screen and (max-width: $XXLWidth)
-        font-size: 13*$u
-        line-height: 13*$u
-      @media screen and (max-width: $padWidth)
-        font-size: 10*$u
-        line-height: 10*$u
       @media screen and (max-width: 730px)
         text-align: center
     p

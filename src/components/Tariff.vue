@@ -4,7 +4,7 @@
     ui-svg-icon(name="diamond" :size="60")
   .tariff__title
     span Тариф
-    h1 {{ name }}
+    .tariff__name {{ name }}
   .tariff__body(v-if="textTop")
     .tariff__text(v-html="textTop")
   .tariff__footer(v-if="textMiddle")
@@ -16,7 +16,7 @@
   .tariff__priceWrapper
     template(v-if="newPrice")
       .tariff__oldPrice {{ price }} ₽
-      h1.tariff__price {{ newPrice }} ₽
+      .tariff__price {{ newPrice }} ₽
     template(v-else)
       .tariff__defaultPrice {{ price }} ₽
   ui-button.tariff__button(is-animated variant="dark" is-responsive @click="$emit('buy', 'Стандарт')") Оплатить полностью
@@ -65,6 +65,9 @@ export default {
     display: flex
     flex-direction: column
     align-items: center
+    margin-bottom: 10*$u
+  &__name
+    @include heading
   &__body
     display: flex
     flex-direction: column
@@ -86,6 +89,8 @@ export default {
     display: flex
     flex-direction: column
     align-items: center
+  &__price
+    @include heading
   &__oldPrice, &__defaultPrice
     text-decoration: line-through
     @include font('h3')

@@ -33,18 +33,18 @@
 
   @if $label == 'h1-ustroke'
     font-family: Ustroke-Regular, serif
-    font-size: 20*$u
-    line-height: 20*$u
+    font-size: 10*$u
+    line-height: 12*$u
 
   @if $label == 'h2-ustroke'
     font-family: Ustroke-Regular, serif
-    font-size: 15*$u
-    line-height: 15*$u
+    font-size: 8*$u
+    line-height: 10*$u
 
   @if $label == 'h3-ustroke'
     font-family: Ustroke-Regular, serif
-    font-size: 12*$u
-    line-height: 12*$u
+    font-size: 6*$u
+    line-height: 8*$u
 
   @if $label == 'h3-bebas'
     font-family: BebasNeueBold, serif
@@ -113,7 +113,6 @@
 
 // ***** Heading *****
 @mixin heading
-  margin-bottom: 10*$u
   text-transform: uppercase
   color: $firstColor
   text-align: center
@@ -124,7 +123,6 @@
     @include font('h3')
 
 @mixin heading-ustroke
-  margin-bottom: 0
   text-transform: uppercase
   color: $firstColor
   text-align: center
@@ -135,7 +133,6 @@
     @include font('h3-ustroke')
 
 @mixin heading-finland
-  margin-bottom: 0
   text-transform: none
   color: $firstColor
   text-align: center

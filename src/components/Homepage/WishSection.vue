@@ -61,10 +61,6 @@ export default {
   .advantage
     margin-bottom: 10*$u
     width: 100%
-    @media screen and (max-width: $padWidth)
-      margin: 20*$u 0
-    @media screen and (max-width: $XXSWidth)
-      margin: 20*$u 0 0
   .button
     z-index: 10
 </style>
