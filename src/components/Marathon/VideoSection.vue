@@ -42,7 +42,7 @@ export default {
   background-position: center center
   background-size: cover
   @media screen and (max-width: $padWidth)
-    padding: 15*$u 0
+    padding: 5*$u 0
     .cont
       padding: 0
 

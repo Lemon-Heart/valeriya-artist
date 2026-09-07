@@ -1,9 +1,9 @@
 <template lang="pug">
-.video(:class="vertical ? 'video_vertical' : ''")
+.video(:class="videoClasses")
   .video__name {{ name }}
   .video__media(:class="vertical ? 'video__media_vertical' : ''")
     img.video__play(
-      v-if="!isFrameVisible && preview",
+      v-if="!isFrameVisible && preview && available",
       src="/img/marathon/video-section/play.PNG",
       @click="available ? isFrameVisible = true : isFrameVisible = false"
     )
@@ -82,7 +82,7 @@ export default {
   &.notAvailable
     filter: brightness(0.5)
 
-  &_vertical
+  &.vertical
     gap: 2*$u
 
   &__media

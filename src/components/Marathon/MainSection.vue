@@ -101,13 +101,9 @@ export default {
     flex-direction: column
     justify-content: center
     position: relative
-    // @media screen and (max-width: $padWidth)
-    //   height: 100%
     @media screen and (max-width: 730px)
       order: -1
     picture
-      // @media screen and (max-width: $padWidth)
-      //   height: 100%
     &__main
       max-width: 100%
       @media screen and (max-width: $padWidth)

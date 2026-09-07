@@ -132,7 +132,7 @@ export default {
     const tabs = computed(() => {
       const result = []
       if (hasCourses.value) {
-        result.push({ key: 'courses', label: 'Модули' })
+        result.push({ key: 'courses', label: 'Курс' })
       }
       if (hasMarathon.value) {
         result.push({ key: 'marathon', label: 'Марафон' })
