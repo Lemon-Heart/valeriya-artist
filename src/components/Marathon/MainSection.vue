@@ -9,7 +9,7 @@ section.main-section
         .list__icon
           ui-svg-icon(name="heart" :size="20")
         .list__text {{ item }}
-    ui-button(is-animated variant="primary" size="XL") Начать путешествие
+    ui-button(is-animated variant="primary" size="XL" @click="$emit('buy')") Начать путешествие
   .img
     picture
       source(media="(max-width: 730px)" srcset="/img/marathon/main-section/bg.PNG")
@@ -21,6 +21,7 @@ section.main-section
 
 <script>
 export default {
+  emits: ['buy'],
   setup () {
     const list = [
       'Вспомни давно забытые истории',

@@ -20,13 +20,14 @@ section.memory-section(ref="sectionRef")
     img.memory-section__flowers(src="/img/marathon/memory-section/flowers.PNG" alt="")
     h1
       ui-text-anim Готов начать?
-    ui-button(is-animated variant="primary" size="XL") Начать путешествие
+    ui-button(is-animated variant="primary" size="XL" @click="$emit('buy')") Начать путешествие
 </template>
 
 <script>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 export default {
+  emits: ['buy'],
   setup () {
     const sectionRef = ref(null)
     const containerRef = ref(null)

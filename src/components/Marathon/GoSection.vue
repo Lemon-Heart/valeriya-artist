@@ -6,11 +6,12 @@ section.go-section
   .go-section__block
     h1
       ui-text-anim Ты можешь начать прямо сейчас!
-    ui-button(is-animated variant="primary" size="XL") Начать путешествие
+    ui-button(is-animated variant="primary" size="XL" @click="$emit('buy')") Начать путешествие
 </template>
 
 <script>
 export default {
+  emits: ['buy'],
   setup () {
     return { }
   }

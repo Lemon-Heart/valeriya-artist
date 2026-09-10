@@ -3,7 +3,7 @@ import router from '@/router'
 import UserProfile from '@/models/UserProfile'
 import Module from '@/models/Module'
 import Lesson from '@/models/Lesson'
-import { buyCourse } from '@/services/payment'
+import { buyCourse, buyMarathon } from '@/services/payment'
 import { useLoading } from '@/composables/useLoading'
 
 export default function UserController (auth, modalQueue, sideMenu) {
@@ -107,11 +107,17 @@ export default function UserController (auth, modalQueue, sideMenu) {
     if (response.ok) {
       auth.setAuthToken(res.auth_token)
       auth.setUuid(res.uuid)
-      if (router.currentRoute.value.query.checkout) {
+
+      const checkout = router.currentRoute.value.query.checkout
+      if (checkout === 'marathon') {
+        await buyMarathon()
+      } else if (checkout) {
         const data = new FormData()
-        data.append('tariff', router.currentRoute.value.query.checkout)
+        data.append('tariff', checkout)
         await buyCourse(data)
-      } else await router.push({ name: 'Profile' })
+      } else {
+        await router.push({ name: 'Profile' })
+      }
       modalQueue.removeAll()
     } else setError(res.err)
   }

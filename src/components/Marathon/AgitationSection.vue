@@ -7,11 +7,12 @@ section.agitation-section
   .img
     img.img__main(src="/img/marathon/agitation-section/bg.PNG" alt="")
     .img__description Присоединяйся к марафону и начни свое путешествие в самые теплые воспоминания
-    ui-button(is-animated variant="primary" size="XL") Хочу на марафон
+    ui-button(is-animated variant="primary" size="XL" @click="$emit('buy')") Хочу на марафон
 </template>
 
 <script>
 export default {
+  emits: ['buy'],
   setup () {
     const list = [
       'Вспомни давно забытые истории',

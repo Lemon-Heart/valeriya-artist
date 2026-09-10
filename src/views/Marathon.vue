@@ -2,24 +2,27 @@
 .marathon-wrapper
   .cont
     .marathon
-      main-section
+      main-section(@buy="buyMarathon")
       about-section
       why-section
       dont-worry-section
       imagine-section
-      memory-section
+      memory-section(@buy="buyMarathon")
   road-section
   .cont
     .marathon
-      go-section
+      go-section(@buy="buyMarathon")
   video-section
   .cont
     .marathon
-      agitation-section
+      agitation-section(@buy="buyMarathon")
 </template>
 
 <script>
-import { onMounted, onBeforeUnmount } from 'vue'
+import { onMounted, onBeforeUnmount, inject } from 'vue'
+import { useRouter } from 'vue-router'
+import { buyMarathon as buyMarathonRequest } from '@/services/payment'
+import LoginAndAuthComponent from '@/components/Forms/LoginAndAuthComponent'
 import MainSection from '@/components/Marathon/MainSection'
 import AboutSection from '@/components/Marathon/AboutSection'
 import WhySection from '@/components/Marathon/WhySection'
@@ -45,12 +48,29 @@ export default {
     AgitationSection
   },
   setup () {
+    const router = useRouter()
+    const store = inject('store')
+
+    const buyMarathon = async () => {
+      if (store.auth.isAuth) {
+        await buyMarathonRequest()
+      } else {
+        router.push({ query: { checkout: 'marathon' } })
+        store.modalQueue.push({
+          key: 'LoginAndAuthComponent',
+          component: LoginAndAuthComponent
+        })
+      }
+    }
+
     onMounted(() => {
       document.body.classList.add('marathon-page')
     })
     onBeforeUnmount(() => {
       document.body.classList.remove('marathon-page')
     })
+
+    return { buyMarathon }
   }
 }
 </script>

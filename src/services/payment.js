@@ -12,6 +12,20 @@ export const buyCourse = async payload => {
     window.location.href = res.url
   }
 }
+
+export const buyMarathon = async () => {
+  const response = await fetch('https://valeriya-artist.art/api/payment/marathon', {
+    method: 'POST',
+    headers: {
+      Authorization: localStorage.getItem('auth_token')
+    }
+  })
+  if (response.ok) {
+    const res = await response.json()
+    window.location.href = res.url
+  }
+}
+
 export const buyPaint = async payload => {
   if (!payload) return
   const response = await fetch('https://valeriya-artist.art/api/payment/paint', {
