@@ -50,7 +50,7 @@ export default {
     padding: 8*$u 6*$u
     gap: 3*$u 5*$u
   @media screen and (max-width: $XXSWidth)
-    padding: 4*$u 2*$u
+    padding: 4*$u
 
   &__img
     grid-area: img

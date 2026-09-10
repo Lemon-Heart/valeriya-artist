@@ -58,7 +58,7 @@
 
   template(v-if="activeTab === 'courses' && courses && courses.length")
     ReviewsCta.review-form(
-      text="Уже прошел обучение? Мне будет приятно, если ты напишешь пару слов для обратной связи и поделишься результатом - загрузи фото своей работы до и после прохождения курса."
+      text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса."
     )
 
     .videos(v-for="course in courses" :key="course.id")
@@ -279,6 +279,8 @@ export default {
   display: flex
   justify-content: space-between
   position: relative
+  @media screen and (max-width: $XXLWidth)
+    padding: 7*$u
   @media screen and (max-width: $XSWidth)
     padding: 5*$u
   @media screen and (max-width: $XXSWidth)
@@ -576,6 +578,8 @@ export default {
   border-radius: $BR
   color: $white
   margin-top: 10*$u
+  @media screen and (max-width: $XXLWidth)
+    padding: 7*$u
   @media screen and (max-width: $padWidth)
     padding: 5*$u
     margin-top: 5*$u
@@ -593,12 +597,13 @@ export default {
     gap: 10*$u
     &_marathon
       gap: 10*$u 5*$u
-      grid-template-columns: repeat(auto-fit, minmax(49*$u, 1fr))
+      grid-template-columns: repeat(5, 1fr)
       @media screen and (max-width: $XXXLWidth)
-        grid-template-columns: repeat(auto-fit, minmax(calc(100vw / 7.5), 1fr))
+        grid-template-columns: repeat(4, 1fr)
       @media screen and (max-width: $XXLWidth)
-        grid-template-columns: repeat(auto-fit, minmax(calc(100vw / 6), 1fr))
-      @media screen and (max-width: $XXSWidth)
-        gap: 6*$u 2.5*$u
         grid-template-columns: repeat(3, 1fr)
+      @media screen and (max-width: $padWidth)
+        grid-template-columns: repeat(2, 1fr)
+      @media screen and (max-width: $XXSWidth)
+        grid-template-columns: 1fr
 </style>
