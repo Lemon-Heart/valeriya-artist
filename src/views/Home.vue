@@ -58,11 +58,11 @@ export default {
   setup () {
     const route = useRoute()
 
-    const scrollToFaq = () => {
+    const scrollToFaq = (tag) => {
       nextTick(() => {
-        const faqElement = document.getElementById('faq')
-        if (faqElement) {
-          faqElement.scrollIntoView({ behavior: 'smooth' })
+        const el = document.getElementById(tag)
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
         }
       })
     }
@@ -70,7 +70,10 @@ export default {
     onMounted(() => {
       document.body.classList.add('home-page')
       if (route.hash === '#faq') {
-        setTimeout(scrollToFaq, 500)
+        setTimeout(scrollToFaq('faq'), 500)
+      }
+      if (route.hash === '#reviews') {
+        setTimeout(scrollToFaq('reviews'), 500)
       }
     })
 

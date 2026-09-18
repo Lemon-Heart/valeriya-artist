@@ -6,10 +6,17 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
       ui-close(:size="40" @onClick="sideMenu.toggle")
     .menu
       .mainMenu
-        router-link(:to="{ name: 'Home'}") С чего начинается портрет
-        a(href="/#faq") Частые вопросы
-        router-link(:to="{ name: 'Catalog'}") Каталог картин Валерии
-        router-link(:to="{ name: 'Marathon'}") Марафон
+        router-link.mainMenu__link(:to="{ name: 'Marathon'}")
+          .mainMenu__title Возвращение в детство
+          .mainMenu__subtitle 30-дневный арт-марафон
+        router-link.mainMenu__link(:to="{ name: 'Home'}")
+          .mainMenu__title С чего начинается портрет
+          .mainMenu__subtitle онлайн-курс
+        .mainMenu__list
+          a.mainMenu__title(href="/#faq") Частые вопросы
+          a.mainMenu__title(href="/#reviews") Отзывы
+        router-link.mainMenu__link(:to="{ name: 'Catalog'}")
+          .mainMenu__title Каталог картин Валерии
       .footerMenu
         ui-button(is-responsive is-animated variant="primary" size="L" @click.prevent="$router.push({ name: 'Profile' })") Профиль
         header-soc.soc
@@ -70,15 +77,21 @@ export default {
   & > *
     display: flex
     flex-direction: column
-.mainMenu, .exit
-  @include font('h3-bebas')
-  letter-spacing: 1px
-.mainMenu a
-  transition: .1s
-  &:hover
-    color: $firstColor
-    transform: scale(1.05)
-    font-size: 5.15*$u
+.mainMenu
+  display: grid
+  gap: 4*$u
+  &__list
+    display: grid
+    padding-left: 4*$u
+    .mainMenu__title::before
+      content: '• '
+  &__title
+    @include font('h3-bebas')
+    letter-spacing: 1px
+    transition: .1s
+    &:hover
+      color: $firstColor
+  &__subtitle
 .footerMenu
   display: grid
   gap: 2*$u

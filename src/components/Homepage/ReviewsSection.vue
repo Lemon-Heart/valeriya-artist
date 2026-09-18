@@ -1,5 +1,5 @@
 <template lang="pug">
-section.reviews-section
+section.reviews-section(id="reviews")
   h1.reviews-section__title
     ui-text-anim Отзывы учеников
   .reviews-section__subtitle то, ради чего я создала этот курс
