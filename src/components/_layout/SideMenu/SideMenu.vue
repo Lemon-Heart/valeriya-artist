@@ -6,17 +6,20 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
       ui-close(:size="40" @onClick="sideMenu.toggle")
     .menu
       .mainMenu
-        router-link.mainMenu__link(:to="{ name: 'Marathon'}")
-          .mainMenu__title Возвращение в детство
-          .mainMenu__subtitle 30-дневный арт-марафон
-        router-link.mainMenu__link(:to="{ name: 'Home'}")
-          .mainMenu__title С чего начинается портрет
-          .mainMenu__subtitle онлайн-курс
-        .mainMenu__list
-          a.mainMenu__title(href="/#faq") Частые вопросы
-          a.mainMenu__title(href="/#reviews") Отзывы
-        router-link.mainMenu__link(:to="{ name: 'Catalog'}")
-          .mainMenu__title Каталог картин Валерии
+        .mainMenu__block
+          router-link.mainMenu__link(:to="{ name: 'Marathon'}")
+            .mainMenu__title Возвращение в детство
+            .mainMenu__subtitle 30-дневный арт-марафон
+        .mainMenu__block
+          router-link.mainMenu__link(:to="{ name: 'Home'}")
+            .mainMenu__title С чего начинается портрет
+            .mainMenu__subtitle онлайн-курс
+          .mainMenu__list
+            a.mainMenu__title(href="/#faq") Частые вопросы
+            a.mainMenu__title(href="/#reviews") Отзывы
+        .mainMenu__block
+          router-link.mainMenu__link(:to="{ name: 'Catalog'}")
+            .mainMenu__title Каталог картин Валерии
       .footerMenu
         ui-button(is-responsive is-animated variant="primary" size="L" @click.prevent="$router.push({ name: 'Profile' })") Профиль
         header-soc.soc
@@ -79,7 +82,10 @@ export default {
     flex-direction: column
 .mainMenu
   display: grid
-  gap: 4*$u
+  gap: 6*$u
+  &__block
+    display: grid
+    gap: 2*$u
   &__list
     display: grid
     padding-left: 4*$u
