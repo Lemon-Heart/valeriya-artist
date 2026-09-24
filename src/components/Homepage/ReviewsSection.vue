@@ -4,7 +4,7 @@ section.reviews-section(id="reviews")
     ui-text-anim Отзывы учеников
   .reviews-section__subtitle то, ради чего я создала этот курс
   UiFullScreenLoader(v-if="loading")
-  ReviewSlider.reviews-section__slider(v-else :reviews="reviews")
+  ReviewSlider.reviews-section__slider(v-else :reviews="filteredReviews")
   ReviewsCta.reviews-section__cta(text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса")
 </template>
 
@@ -22,11 +22,16 @@ export default {
     const loading = computed(() => store.review.loading)
     const reviews = computed(() => store.review.reviews)
 
+    // Секция для курса — показываем только отзывы с variant = 1
+    const filteredReviews = computed(() =>
+      reviews.value.filter(review => Number(review.variant) === 1)
+    )
+
     store.review.getReviews()
 
     return {
       loading,
-      reviews
+      filteredReviews
     }
   }
 }
