@@ -584,12 +584,8 @@ export default {
     padding: 5*$u
     margin-top: 5*$u
   &__head
-    color: $firstColor
-    @include font('h1')
-    @media screen and (max-width: $padWidth)
-      @include font('h2')
-    @media screen and (max-width: $mobileWidth)
-      @include font('h3')
+    @include heading-ustroke
+    text-align: start
   &__wrapper
     margin-top: 20px
     display: grid
