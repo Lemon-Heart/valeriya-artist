@@ -10,7 +10,7 @@
     p Чтобы оставить отзыв, необходимо&nbsp;
       router-link(:to="{ name: 'Profile' }") авторизоваться
 
-ReviewsSlider(:reviews="reviews")
+ReviewsSlider(:reviews="filteredReviews")
 
 UiNotification(
   v-if="store.review.errMess || store.review.successMess"
@@ -38,11 +38,25 @@ export default {
     const reviews = computed(() => store.review.reviews)
     const isAuth = computed(() => store.auth.isAuth)
     const sourceFromQuery = computed(() => route.query.source)
+
+    // variant: 1 — course (оба фото), 2 — marathon (одно фото)
+    const targetVariant = computed(() => {
+      if (sourceFromQuery.value === 'course') return 1
+      if (sourceFromQuery.value === 'marathon') return 2
+      return null
+    })
+
+    const filteredReviews = computed(() => {
+      if (targetVariant.value === null) return reviews.value
+      return reviews.value.filter(review => Number(review.variant) === targetVariant.value)
+    })
+
     store.review.getReviews()
 
     return {
       store,
       reviews,
+      filteredReviews,
       isAuth,
       sourceFromQuery
     }
