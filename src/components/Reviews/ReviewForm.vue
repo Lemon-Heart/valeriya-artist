@@ -12,7 +12,7 @@
   )
 
   .review-form__photos(:class="photoClasses")
-    .review-form__photo
+    .review-form__photo(v-if="photosRequired !== 'one'")
       UiImageUploader(
         v-model="photoBefore"
         :label="photosRequired === 'both' ? 'покажи как ты рисовал портреты до обучения *' : 'покажи как ты рисовал портреты до обучения'"
@@ -24,7 +24,7 @@
     .review-form__photo
       UiImageUploader(
         v-model="photoAfter"
-        :label="photosRequired === 'both' ? 'покажи как ты рисовал портреты после обучения *' : 'покажи как ты рисовал портреты после обучения'"
+        :label="photosRequired === 'both' || photosRequired === 'one' ? 'покажи как ты рисовал портреты после обучения *' : 'покажи как ты рисовал портреты после обучения'"
         placeholder="Перетащи или нажми для загрузки"
         icon="download"
         :key="photoAfterKey"
@@ -34,7 +34,7 @@
     .review-form__hint(v-if="photosRequired === 'both'")
       | * Оба фото обязательны для загрузки
     .review-form__hint(v-else-if="photosRequired === 'one'")
-      | * Необходимо загрузить хотя бы одно фото
+      | * Необходимо загрузить фото
     .review-form__hint(v-else)
       | Фото загружаются по желанию
 
@@ -84,6 +84,7 @@ export default {
       }
       if (props.photosRequired === 'one') {
         classes['review-form__photos--required-one'] = true
+        classes['review-form__photos--single'] = true
       }
       return classes
     })
@@ -101,7 +102,7 @@ export default {
       }
 
       if (props.photosRequired === 'one') {
-        return !photoBefore.value && !photoAfter.value
+        return !photoAfter.value
       }
 
       return false
@@ -111,6 +112,7 @@ export default {
       const formData = new FormData()
       formData.append('review_text', reviewText.value.trim())
       formData.append('photos_required', props.photosRequired)
+      formData.append('variant', props.photosRequired === 'both' ? 1 : 2)
 
       if (photoBefore.value) {
         formData.append('photo_before', photoBefore.value)
@@ -225,6 +227,9 @@ export default {
     gap: 20px
     margin: 20px 0
     @media screen and (max-width: 500px)
+      grid-template-columns: 1fr
+
+    &--single
       grid-template-columns: 1fr
 
     &--required-both
