@@ -48,7 +48,12 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
     if (response.ok) {
       const res = await response.json()
-      if (!res.mess) marathon.value = res.map((o) => new Lesson(o))
+      if (!res.mess) {
+        marathon.value = {
+          lessons: res.lessons.map((o) => new Lesson(o)),
+          marathonCompleted: res.marathon_completed
+        }
+      }
       loadingOff()
     } else {
       await refresh(getMarathon)

@@ -93,6 +93,37 @@
           :preview="lesson.preview"
         )
 
+    .videos(v-if="marathonCompleted")
+      img.videos__img(src="/img/marathon/marathon-pdf-branch.png")
+      .marathon-final
+        .marathon-final__title
+          span Вот и подошел
+          span к концу наш марафон
+        .marathon-final__content
+          .marathon-final__video
+            iframe(
+              v-if="isFrameVisible",
+              src="https://rutube.ru/play/embed/e4473fc980f1cb795333f2a15ebf624c/?p=a5XKAwEkI2atDFLkPU9iAg&skinColor=000000&autoplay=true&mute=1",
+              allow="autoplay",
+              allowfullscreen
+            )
+            img.marathon-final__preview(
+              v-if="!isFrameVisible",
+              v-lazy="'/img/marathon/video-section/preview.JPG'",
+              @click="isFrameVisible = true"
+            )
+            img.marathon-final__play(
+              v-if="!isFrameVisible",
+              src="/img/marathon/video-section/play.PNG",
+              @click="isFrameVisible = true"
+            )
+            .marathon-final__frame
+          .marathon-final__info
+            img.marathon-final__heart(src="/img/marathon/marathon-pdf-heart.png")
+            img.marathon-final__sticker(src="/img/marathon/marathon-pdf-sticker.png")
+            a.marathon-final__link(href="https://vk.ru/doc126043828_707368177?hash=ydkgYrrY7vZh2QlQZRSEKZb0IFrAIelD0nhe2eNLMQo&dl=uh5tFsjbjx8UwX5vctn18PzDnLy2WUcZzzrtU3rDhAX&from_module=vkmsg_desktop" download target="_blank")
+              img(src="/img/marathon/marathon-link.png")
+
   .empty-content(v-if="!hasContent && !loading")
     p У вас пока нет доступа к материалам
 </template>
@@ -116,12 +147,14 @@ export default {
     const profile = computed(() => store.user.profile)
     const user = computed(() => store.user)
     const courses = computed(() => store.user.courses)
-    const marathon = computed(() => store.user.marathon)
+    const marathon = computed(() => store.user.marathon?.lessons)
+    const marathonCompleted = computed(() => store.user.marathon?.marathonCompleted)
     const error = computed(() => store.user.errMess)
 
     const isEdit = ref(false)
     const menuOpen = ref(false)
     const activeTab = ref('courses')
+    const isFrameVisible = ref(false)
 
     const hasCourses = computed(() => courses.value && courses.value.length > 0)
     const hasMarathon = computed(() => marathon.value && marathon.value.length > 0)
@@ -210,6 +243,7 @@ export default {
       courses,
       marathon,
       isEdit,
+      isFrameVisible,
       changeProfileInfo,
       changeProfileAvatar,
       error,
@@ -227,7 +261,8 @@ export default {
       showTabs,
       hasContent,
       hasCourses,
-      hasMarathon
+      hasMarathon,
+      marathonCompleted
     }
   }
 }
@@ -577,12 +612,20 @@ export default {
   padding: 10*$u
   border-radius: $BR
   color: $white
+  position: relative
   margin-top: 10*$u
   @media screen and (max-width: $XXLWidth)
     padding: 7*$u
   @media screen and (max-width: $padWidth)
     padding: 5*$u
     margin-top: 5*$u
+  &__img
+    position: absolute
+    left: 0
+    top: 35%
+    width: 12.5*$u
+    @media screen and (max-width: $padWidth)
+      display: none
   &__head
     @include heading-ustroke
     text-align: start
@@ -602,4 +645,122 @@ export default {
         grid-template-columns: repeat(2, 1fr)
       @media screen and (max-width: $XXSWidth)
         grid-template-columns: 1fr
+
+.marathon-final
+  &__title
+    margin-bottom: 10*$u
+    color: $firstColor
+    @include font('t18-finland')
+    display: flex
+    flex-direction: column
+    transform: rotate(-10deg)
+    width: fit-content
+    margin-left: 30*$u
+
+    span:last-child
+      margin-left: 20*$u
+    @media screen and (max-width: $XSWidth)
+      margin-left: 5*$u
+    @media screen and (max-width: $XXSWidth)
+      @include font('t16-finland')
+    @media screen and (max-width: $mobileWidth)
+      @include font('t14-finland')
+
+  &__content
+    display: grid
+    grid-template-columns: 1.5fr 1fr
+    @media screen and (max-width: $XSWidth)
+      grid-template-columns: 1fr
+      gap: 4*$u
+
+  &__video
+    position: relative
+    width: 100%
+    aspect-ratio: 16 / 9
+    border-radius: 20px
+    transform: scale(0.85)
+    @media screen and (max-width: $XSWidth)
+      transform: scale(0.9)
+
+  &__preview,
+  iframe
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    object-fit: cover
+    border-radius: 20px
+    transform: rotate(-4.5deg)
+    @media screen and (max-width: $XSWidth)
+      transform: rotate(0)
+
+  &__frame
+    position: absolute
+    top: -15%
+    right: -6%
+    bottom: -12%
+    left: -8%
+    background-image: url('/public/img/marathon/marathon-prf-border.png')
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: 100% 100%
+    pointer-events: none
+    z-index: 5
+    border-radius: 20px
+    @media screen and (max-width: $XSWidth)
+      transform: rotate(4.5deg)
+
+  &__play
+    position: absolute
+    cursor: pointer
+    width: 16*$u
+    height: 16*$u
+    bottom: -7*$u
+    left: calc(50% - 8*$u)
+    z-index: 10
+
+  &__info
+    display: flex
+    flex-direction: column
+    position: relative
+    gap: 2*$u
+  &__heart
+    position: absolute
+    top: -15%
+    left: 40%
+    width: 10*$u
+    @media screen and (max-width: $XSWidth)
+      display: none
+  &__sticker
+    width: 100%
+  &__link
+    @include font('t18-demibold')
+    margin: 0 6*$u 0 3*$u
+    width: fit-content
+    position: relative
+    overflow: hidden
+    &:before
+      content: ""
+      background-color: rgba(255,255,255,0.5)
+      height: 74%
+      width: 3em
+      display: block
+      position: absolute
+      top: 7*$u
+      left: -4.5em
+      animation: 3s blink ease-in-out infinite
+    img
+      width: 100%
+    @media screen and (max-width: $XSWidth)
+      margin-left: auto
+      margin-right: auto
+
+@keyframes blink
+  0%
+    transform: skewX(-45deg) translateX(0)
+  20%
+    transform: skewX(-45deg) translateX(700px)
+  100%
+    transform: skewX(-45deg) translateX(700px)
 </style>
