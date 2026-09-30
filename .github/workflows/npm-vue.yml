@@ -24,5 +24,5 @@ jobs:
         server: bodymaiu.beget.tech
         local-dir: ./dist/
         server-dir: /
-        username: bodymaiu_art
-        password: ${{ secrets.FTP_PASS_NEW }}
+        username: bodymaiu_shatova
+        password: ${{ secrets.FTP_PASS_SHATOVA }}
