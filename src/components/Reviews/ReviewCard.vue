@@ -30,8 +30,12 @@
       v-if="review.photo_after"
       @click="openPhotoViewer(1)"
     )
-      img.review-card__photo-bg(src="/img/photoAfter.png")
-      img.review-card__photo-img(:src="review.photo_after" alt="Фото после")
+      img.review-card__photo-bg(:src="review.photo_before ? '/img/photoAfter.png' : '/img/photoSingle.png'")
+      img.review-card__photo-img(
+        :class="{ 'review-card__photo-img_single': !review.photo_before }"
+        :src="review.photo_after"
+        alt="Фото после"
+      )
       .review-card__photo-zoom
         ui-svg-icon(name="zoom" :size="10")
 </template>
@@ -207,14 +211,13 @@ export default {
       pointer-events: none
       position: absolute
       z-index: 10
-      top: 9*$u
-      right: 2*$u
-      left: 2*$u
-      bottom: 2*$u
       top: 20%
       right: 3%
       left: 3%
       bottom: 4%
+      &_single
+        height: 63%
+        top: 31%
 
     &:hover
       .review-card__photo-zoom
