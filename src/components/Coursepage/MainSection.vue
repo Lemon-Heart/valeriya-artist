@@ -5,7 +5,7 @@ section.main-section
     p Твоя школа по формированию базовых навыков в рисовании портрета. Система понятных последовательных шагов от наброска до законченной работы с опорой на логику, а не интуицию
     ui-button.buttonDesktop(is-animated scroll-to="tariffs") Оформить заявку
   .img
-    img(:src="'/img/homepage/section1/3.webp'")
+    img(:src="'/img/coursepage/section1/3.webp'")
   ui-button.buttonMobile(is-animated scroll-to="tariffs") Оформить заявку
 </template>
 

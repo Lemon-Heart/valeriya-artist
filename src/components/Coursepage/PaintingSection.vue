@@ -36,7 +36,7 @@ export default {
     const images = ref([])
 
     for (let i = 1; i <= 19; i++) {
-      images.value.push(`/img/homepage/section9/${i}.webp`)
+      images.value.push(`/img/coursepage/section9/${i}.webp`)
     }
 
     const openPhotoViewer = (index) => {

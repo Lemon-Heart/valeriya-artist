@@ -16,22 +16,22 @@ export default {
     const items = ref([
       {
         title: 'Скетчбук или бумага',
-        icon: '/img/homepage/requirements-section/book.png',
+        icon: '/img/coursepage/requirements-section/book.png',
         text: 'Плотность ~200г/м² Формат А4 (в идеале А3) Бумага для акварели или принтера НЕ подойдет'
       },
       {
         title: 'Карандаши',
-        icon: '/img/homepage/requirements-section/pen.webp',
+        icon: '/img/coursepage/requirements-section/pen.webp',
         text: 'Потребуется 3 вида: средней твердости НВ(ТМ) мягкие 2В(М) и 6В(М)'
       },
       {
         title: 'Блокнот',
-        icon: '/img/homepage/requirements-section/paper.webp',
+        icon: '/img/coursepage/requirements-section/paper.webp',
         text: 'Может потребоваться для конспектов, а можешь записывать их прямо в скетчбуке'
       },
       {
         title: 'Ластик/клячка',
-        icon: '/img/homepage/requirements-section/eraser.png',
+        icon: '/img/coursepage/requirements-section/eraser.png',
         text: 'Клячка лучше - не затирает бумагу и не оставляет крошек. Ластик советую исключительно белый и мягкий'
       }
     ])

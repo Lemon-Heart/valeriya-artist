@@ -6,7 +6,7 @@ section.resume-section
     .shadowWrapper
       .shadow
     .img
-      img(:src="'img/homepage/section8/1.PNG'")
+      img(:src="'img/coursepage/section8/1.PNG'")
     .text
       ul
         li

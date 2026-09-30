@@ -11,7 +11,7 @@ aside.sideMenuWrapper(:class="{'open': sideMenu.isOpen}" @click="sideMenu.close"
             .mainMenu__title Возвращение в детство
             .mainMenu__subtitle 30-дневный арт-марафон
         .mainMenu__block
-          router-link.mainMenu__link(:to="{ name: 'Home'}")
+          router-link.mainMenu__link(:to="{ name: 'Course'}")
             .mainMenu__title С чего начинается портрет
             .mainMenu__subtitle онлайн-курс
           .mainMenu__list
