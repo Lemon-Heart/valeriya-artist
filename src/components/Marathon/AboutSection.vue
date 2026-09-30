@@ -2,12 +2,13 @@
 section.about-section
   h1
     ui-text-anim Что тебя ждет...
-  .about-section__block
+  .about-section__block(:style="{ backgroundImage: `url('/img/marathon/about-section/bg.PNG')` }")
     img.about-section__branch(src="/img/marathon/about-section/branch.PNG" alt="")
     .about-section__list
       .about-section__item(
         v-for="(item, i) in list"
         :key="i"
+        :style="{ backgroundImage: `url('/img/marathon/about-section/bg-mobile-${i}.PNG')` }"
         v-observe
       )
         picture
@@ -62,7 +63,6 @@ export default {
 .about-section
   &__block
     margin-top: 5*$u
-    background-image: url('/public/img/marathon/about-section/bg.PNG')
     background-repeat: no-repeat
     background-position: center center
     background-size: contain
@@ -123,11 +123,6 @@ export default {
       transform: translateY(80%)
       opacity: 0
       transition: 1s
-
-      $items: 5
-      @for $i from 1 through $items
-        &:nth-child(#{$i})
-          background-image: url('/public/img/marathon/about-section/bg-mobile-#{$i}.PNG')
 
       &:not(:first-child)
         margin-top: -7%

@@ -8,7 +8,7 @@ section.memory-section(ref="sectionRef")
       | Например…
     .memory-section__container(ref="containerRef")
       .memory-section__bg(
-        :style="{ clipPath: 'inset(0 ' + clipRight + '% 0 0)' }"
+        :style="{ clipPath: 'inset(0 ' + clipRight + '% 0 0)', backgroundImage: `url('/img/marathon/memory-section/bg.PNG')` }"
       )
       img.memory-section__bicycle(
         ref="bicycleRef"
@@ -142,7 +142,6 @@ export default {
     left: 0
     width: 100%
     height: 100%
-    background-image: url('/public/img/marathon/memory-section/bg.PNG')
     background-repeat: no-repeat
     background-position: center center
     background-size: contain

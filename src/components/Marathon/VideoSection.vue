@@ -1,5 +1,5 @@
 <template lang="pug">
-section.video-section
+section.video-section(:style="{ backgroundImage: `url('/img/marathon/video-section/bg.PNG')` }")
   .cont
     .video-section__block
       .video-section__wrapper
@@ -37,7 +37,6 @@ export default {
 <style lang="sass" scoped>
 .video-section
   padding: 25*$u 0
-  background-image: url('/public/img/marathon/video-section/bg.PNG')
   background-repeat: no-repeat
   background-position: center center
   background-size: cover
