@@ -121,7 +121,7 @@
           .marathon-final__info
             img.marathon-final__heart(src="/img/marathon/marathon-pdf-heart.png")
             img.marathon-final__sticker(src="/img/marathon/marathon-pdf-sticker.png")
-            a.marathon-final__link(href="https://vk.ru/doc126043828_707368177?hash=ydkgYrrY7vZh2QlQZRSEKZb0IFrAIelD0nhe2eNLMQo&dl=uh5tFsjbjx8UwX5vctn18PzDnLy2WUcZzzrtU3rDhAX&from_module=vkmsg_desktop" download target="_blank")
+            a.marathon-final__link(href="https://vk.ru/doc126043828_707486799?hash=qX3Jn9gaSpSzT72VNstZTU57QKbz5JnkI4bpV58rI3k&dl=8G8qh2ky3MWVkgaHaV8WVc6uNez4aUOZENEmdhfMxrD&from_module=vkmsg_desktop" download target="_blank")
               img(src="/img/marathon/marathon-link.png")
 
   .empty-content(v-if="!hasContent && !loading")
