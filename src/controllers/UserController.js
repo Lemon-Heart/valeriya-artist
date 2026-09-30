@@ -5,6 +5,7 @@ import Module from '@/models/Module'
 import Lesson from '@/models/Lesson'
 import { buyCourse, buyMarathon } from '@/services/payment'
 import { useLoading } from '@/composables/useLoading'
+import API_BASE_URL from '@/services/constants'
 
 export default function UserController (auth, modalQueue, sideMenu) {
   const { loading, loadingOn, loadingOff } = useLoading()
@@ -21,7 +22,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const getCourses = async () => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.art/api/courses', {
+    const response = await fetch(`${API_BASE_URL}/courses`, {
       method: 'GET',
       headers: {
         Authorization: auth.getAuthToken()
@@ -39,7 +40,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const getMarathon = async () => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.art/api/marathon', {
+    const response = await fetch(`${API_BASE_URL}/marathon`, {
       method: 'GET',
       headers: {
         Authorization: auth.getAuthToken()
@@ -62,7 +63,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const getProfile = async () => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.art/api/profile', {
+    const response = await fetch(`${API_BASE_URL}/profile`, {
       method: 'GET',
       headers: {
         Authorization: auth.getAuthToken()
@@ -85,7 +86,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
       return
     }
 
-    const response = await fetch('https://valeriya-artist.art/api/refresh', {
+    const response = await fetch(`${API_BASE_URL}/refresh`, {
       method: 'GET',
       headers: {
         uuid: auth.getUuid()
@@ -104,7 +105,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const authAction = async payload => {
     if (!payload) return
-    const response = await fetch('https://valeriya-artist.art/api/auth', {
+    const response = await fetch(`${API_BASE_URL}/auth`, {
       method: 'POST',
       body: payload
     })
@@ -129,7 +130,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const login = async payload => {
     if (!payload) return
-    const response = await fetch('https://valeriya-artist.art/api/login', {
+    const response = await fetch(`${API_BASE_URL}/login`, {
       method: 'POST',
       body: payload
     })
@@ -140,7 +141,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const changePass = async payload => {
     if (!payload) return
-    const response = await fetch('https://valeriya-artist.art/api/changepass', {
+    const response = await fetch(`${API_BASE_URL}/changepass`, {
       method: 'POST',
       body: payload
     })
@@ -151,7 +152,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const restore = async payload => {
     if (!payload) return
-    const response = await fetch('https://valeriya-artist.art/api/restore', {
+    const response = await fetch(`${API_BASE_URL}/restore`, {
       method: 'POST',
       headers: {
         uuid: router.currentRoute.value.query.uuid
@@ -172,7 +173,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const changeProfileInfo = async payload => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.art/api/profile/change', {
+    const response = await fetch(`${API_BASE_URL}/profile/change`, {
       method: 'POST',
       headers: {
         Authorization: auth.getAuthToken()
@@ -187,7 +188,7 @@ export default function UserController (auth, modalQueue, sideMenu) {
 
   const changeProfileAvatar = async (payload) => {
     loadingOn()
-    const response = await fetch('https://valeriya-artist.art/api/profile/avatar', {
+    const response = await fetch(`${API_BASE_URL}/profile/avatar`, {
       method: 'POST',
       headers: {
         Authorization: auth.getAuthToken()

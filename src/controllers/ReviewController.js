@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { useLoading } from '@/composables/useLoading'
+import API_BASE_URL from '@/services/constants'
 
 export default function ReviewController (auth) {
   const { loading, loadingOn, loadingOff } = useLoading()
@@ -21,7 +22,7 @@ export default function ReviewController (auth) {
   const getReviews = async () => {
     loadingOn()
     try {
-      const response = await fetch('https://valeriya-artist.art/api/reviews', {
+      const response = await fetch(`${API_BASE_URL}/reviews`, {
         method: 'GET'
       })
 
@@ -52,7 +53,7 @@ export default function ReviewController (auth) {
 
     loadingOn()
     try {
-      const response = await fetch('https://valeriya-artist.art/api/reviews', {
+      const response = await fetch(`${API_BASE_URL}/reviews`, {
         method: 'POST',
         headers: {
           Authorization: auth.getAuthToken()

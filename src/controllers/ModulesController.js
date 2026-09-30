@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import API_BASE_URL from '@/services/constants'
 
 export default function ModulesController () {
   const modules = ref(null)
@@ -6,7 +7,7 @@ export default function ModulesController () {
 
   const getModules = async () => {
     if (!modules.value) {
-      const response = await fetch('https://valeriya-artist.art/api/modules')
+      const response = await fetch(`${API_BASE_URL}/modules`)
       if (response.ok) {
         const res = await response.json()
         if (!res.mess) {
