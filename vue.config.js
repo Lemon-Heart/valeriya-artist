@@ -9,6 +9,14 @@ module.exports = {
   pwa: {
     name: 'Valeriya-Artist',
     themeColor: '#000000',
+    iconPaths: {
+      faviconSVG: null,
+      favicon32: 'favicon.ico',
+      favicon16: 'favicon.ico',
+      appleTouchIcon: 'favicon.ico',
+      maskIcon: null,
+      msTileImage: 'favicon.ico'
+    },
     workboxOptions: {
       runtimeCaching: [
         {
