@@ -12,6 +12,7 @@
   .cont
     .marathon
       go-section(@buy="buyMarathon")
+  reviews-section
   video-section
   .cont
     .marathon
@@ -33,6 +34,7 @@ import RoadSection from '@/components/Marathon/RoadSection'
 import GoSection from '@/components/Marathon/GoSection'
 import AgitationSection from '@/components/Marathon/AgitationSection'
 import VideoSection from '@/components/Marathon/VideoSection'
+import ReviewsSection from '@/components/Marathon/ReviewsSection'
 
 export default {
   components: {
@@ -45,7 +47,8 @@ export default {
     RoadSection,
     GoSection,
     VideoSection,
-    AgitationSection
+    AgitationSection,
+    ReviewsSection
   },
   setup () {
     const router = useRouter()

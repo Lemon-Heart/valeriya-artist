@@ -3,29 +3,32 @@ section.reviews-section(id="reviews")
   template(v-if="filteredReviews.length")
     h1.reviews-section__title
       ui-text-anim Отзывы учеников
-    .reviews-section__subtitle то, ради чего я создала этот курс
+    //- .reviews-section__subtitle то, ради чего я создала этот курс
     UiFullScreenLoader(v-if="loading")
-    ReviewsSlider.reviews-section__slider(v-else :reviews="filteredReviews")
-  ReviewsCta.reviews-section__cta(text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса")
+    ReviewsSliderMarathon.reviews-section__slider(v-else :reviews="filteredReviews")
+  //- ReviewsCta.reviews-section__cta(
+  //-   text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса"
+  //-   source="marathon"
+  //- )
 </template>
 
 <script>
 import { inject, computed } from 'vue'
-import ReviewsSlider from '@/components/Reviews/ReviewsSlider'
+import ReviewsSliderMarathon from '@/components/Reviews/ReviewsSliderMarathon'
 import ReviewsCta from '@/components/Reviews/ReviewsCta'
 
 export default {
   name: 'ReviewsSection',
-  components: { ReviewsSlider, ReviewsCta },
+  components: { ReviewsSliderMarathon, ReviewsCta },
   setup () {
     const store = inject('store')
 
     const loading = computed(() => store.review.loading)
     const reviews = computed(() => store.review.reviews)
 
-    // Секция для курса — показываем только отзывы с variant = 1
+    // Секция для курса — показываем только отзывы с variant = 2
     const filteredReviews = computed(() =>
-      reviews.value.filter(review => Number(review.variant) === 1)
+      reviews.value.filter(review => Number(review.variant) === 2)
     )
 
     store.review.getReviews()
@@ -42,12 +45,9 @@ export default {
 .reviews-section
   display: flex
   flex-direction: column
-  margin-top: 50*$u
-  @media screen and (max-width: $XXLWidth)
-    margin-top: 20*$u
 
   &__title
-    margin-bottom: 2*$u
+    margin-bottom: 5*$u
 
   &__subtitle
     @include font('t18-regular')

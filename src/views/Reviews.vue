@@ -10,7 +10,8 @@
     p Чтобы оставить отзыв, необходимо&nbsp;
       router-link(:to="{ name: 'Profile' }") авторизоваться
 
-ReviewsSlider(:reviews="filteredReviews")
+ReviewsSlider(v-if="sourceFromQuery === 'course'" :reviews="filteredReviews")
+ReviewsSliderMarathon(v-if="sourceFromQuery === 'marathon'" :reviews="filteredReviews")
 
 UiNotification(
   v-if="store.review.errMess || store.review.successMess"
@@ -22,14 +23,16 @@ UiNotification(
 <script>
 import { inject, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import ReviewsSlider from '@/components/Reviews/ReviewSlider'
+import ReviewsSlider from '@/components/Reviews/ReviewsSlider'
+import ReviewsSliderMarathon from '@/components/Reviews/ReviewsSliderMarathon'
 import ReviewForm from '@/components/Reviews/ReviewForm'
 
 export default {
   name: 'ReviewsPage',
   components: {
     ReviewsSlider,
-    ReviewForm
+    ReviewForm,
+    ReviewsSliderMarathon
   },
   setup () {
     const route = useRoute()
