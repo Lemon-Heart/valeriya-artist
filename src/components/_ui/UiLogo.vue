@@ -1,7 +1,7 @@
 <template lang="pug">
 router-link(:to="{name: 'Home'}").logo(:style="`color: ${color}`")
   .text1(v-if="!clipped") Авторский курс от
-  .text2 Valeriya.Artist
+  .text2 Shatova.Art
 </template>
 
 <script>
@@ -27,4 +27,6 @@ export default {
     margin-right: 2*$u
     @media screen and (max-width: $padWidth)
       display: none
+  .text2
+    text-transform: uppercase
 </style>
