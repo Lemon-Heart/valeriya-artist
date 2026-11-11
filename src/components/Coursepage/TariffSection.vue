@@ -243,20 +243,12 @@ export default {
     &:last-child
       transform: rotate(-45deg)
 
-.modal-expand-enter-active,
-.modal-expand-leave-active
-  transition: opacity 0.25s ease
-
-.modal-expand-enter-from,
-.modal-expand-leave-to
-  opacity: 0
-
 .modal-expand-enter-active .modal-content,
 .modal-expand-leave-active .modal-content
-  transition: transform 0.25s ease, opacity 0.25s ease
+  transition: transform 0.35s ease
+  transform-origin: center center
 
 .modal-expand-enter-from .modal-content,
 .modal-expand-leave-to .modal-content
-  transform: scale(0.6)
-  opacity: 0
+  transform: scaleX(0)
 </style>
