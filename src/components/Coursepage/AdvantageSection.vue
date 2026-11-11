@@ -44,5 +44,4 @@ export default {
   flex-direction: column
   @media screen and (max-width: $padWidth)
     margin-top: 25*$u
-    padding-bottom: 20*$u
 </style>

@@ -53,7 +53,7 @@ export default {
     background-image: url('/public/img/coursepage/requirements-section/line3.png')
     background-repeat: no-repeat
     background-position: center
-    background-size: contain
+    background-size: 92% 92%
     grid-template-columns: repeat(4, 1fr)
     gap: 5*$u
     @media screen and (max-width: $padWidth)
