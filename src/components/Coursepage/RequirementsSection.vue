@@ -69,9 +69,13 @@ export default {
     line-height: 32px
     margin-top: 20*$u
     padding: 10*$u 5*$u
-    border: 1px solid $white
     border-radius: $BR
     box-shadow: 0 0 10px 10px $btnBGDarkHover
+    box-sizing: border-box
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23f8d4ac' stroke-width='2' stroke-dasharray='20 12' stroke-dashoffset='0' rx='20'/%3e%3c/svg%3e")
+    background-repeat: no-repeat
+    background-position: center
+    background-size: 100% 100%
     @media screen and (max-width: $XXSWidth)
       font-size: 16px
       line-height: 26px

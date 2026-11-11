@@ -42,22 +42,27 @@ section.resume-section
     margin-top: 20*$u
   .about
     display: flex
-    border: 1px solid $white
     border-radius: $BR
     box-shadow: 0 0 10px 10px $btnBGDarkHover
     position: relative
+    box-sizing: border-box
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23f8d4ac' stroke-width='2' stroke-dasharray='20 12' stroke-dashoffset='0' rx='20'/%3e%3c/svg%3e")
+    background-repeat: no-repeat
+    background-position: center
+    background-size: 100% 100%
     @media screen and (max-width: $XXXLWidth)
       flex-direction: column
       border: none
       box-shadow: none
+      background: none
     .shadowWrapper
       position: absolute
-      bottom: 0
+      bottom: 1px
       left: 0
       right: 0
       height: 45*$u
       overflow: hidden
-      border-radius: 0 0 $BR $BR
+      border-radius: 0 0 18px 18px
       @media screen and (max-width: $XXXLWidth)
         display: none
       .shadow
@@ -88,7 +93,9 @@ section.resume-section
       img
         position: absolute
         width: 90%
-        bottom: 0
+        bottom: 1px
+        left: 1px
+        border-radius: 0 0 0 15%
         transform: translateX(-5%)
         @media screen and (max-width: $XXXLWidth)
           position: inherit
@@ -102,10 +109,13 @@ section.resume-section
         padding: 5*$u 10*$u 5*$u 0
       @media screen and (max-width: $XXXLWidth)
         z-index: 10
-        border: 1px solid $white
         padding: 10*$u
         border-radius: $BR
         box-shadow: 0 -10px 20px 10px black
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23f8d4ac' stroke-width='2' stroke-dasharray='20 12' stroke-dashoffset='0' rx='20'/%3e%3c/svg%3e")
+        background-repeat: no-repeat
+        background-position: center
+        background-size: 100% 100%
       @media screen and (max-width: $XXSWidth)
         padding: 5*$u
       ul

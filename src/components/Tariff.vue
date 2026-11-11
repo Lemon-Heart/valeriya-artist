@@ -46,12 +46,15 @@ export default {
   display: flex
   flex-direction: column
   padding: 10*$u 5*$u
-  border: 1px solid $white
   border-radius: $BR
   box-shadow: 0 0 10px 10px $btnBGDarkHover
   height: fit-content
   max-width: calc((100% - 10*$u) / 3)
   min-width: calc((100% - 10*$u) / 3)
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23f8d4ac' stroke-width='2' stroke-dasharray='20 12' stroke-dashoffset='0' rx='20'/%3e%3c/svg%3e")
+  background-repeat: no-repeat
+  background-position: center
+  background-size: 100% 100%
   &_alt
     box-shadow: 0 0 10px 10px $btnBGDarkHover
     border: none
