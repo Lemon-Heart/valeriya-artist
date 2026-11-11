@@ -47,6 +47,16 @@
   .profile-empty(v-else-if="!loading && !error")
     p Профиль не найден
 
+  ReviewsCta.review-form(
+    v-if="activeTab === 'courses' && courses && courses.length"
+    text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса."
+  )
+  ReviewsCta.review-form(
+    v-if="(activeTab === 'marathon' || !hasCourses) && marathon && marathon.length"
+    source="marathon"
+    text="Уже прошел марафон? Поделись, как это было? И покажи свой самый лучший скетч или страницу из твоего арт-дневника."
+  )
+
   .tabs(v-if="showTabs")
     .tabs__list
       .tabs__item(
@@ -57,10 +67,6 @@
       ) {{ tab.label }}
 
   template(v-if="activeTab === 'courses' && courses && courses.length")
-    ReviewsCta.review-form(
-      text="Уже прошел обучение? Напиши пару слов и загрузи фото своей работы до/после прохождения курса."
-    )
-
     .videos(v-for="course in courses" :key="course.id")
       .videos__head {{ course.name }}
       .videos__wrapper
@@ -75,10 +81,6 @@
         )
 
   template(v-if="(activeTab === 'marathon' || !hasCourses) && marathon && marathon.length")
-    ReviewsCta.review-form(
-      source="marathon"
-      text="Уже прошел марафон? Поделись, как это было? И покажи свой самый лучший скетч или страницу из твоего арт-дневника."
-    )
     .videos
       .videos__head Марафон
       .videos__wrapper.videos__wrapper_marathon
@@ -596,15 +598,13 @@ export default {
     @media screen and (max-width: $XSWidth)
       @include font('t14-regular')
 
-// Если нужен отдельный компонент для отзывов марафона
-.marathon-review-form
-  margin-top: 10*$u
-  @media screen and (max-width: $XXSWidth)
-    margin-top: 5*$u
-
 .review-form
   margin-top: 10*$u
-  @media screen and (max-width: $XXSWidth)
+  &:deep(.reviews-cta__content)
+    margin-left: auto
+    margin-right: auto
+    max-width: 210*$u
+  @media screen and (max-width: 840px)
     margin-top: 5*$u
 
 .videos

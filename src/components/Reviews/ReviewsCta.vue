@@ -1,14 +1,15 @@
 <template lang="pug">
 section.reviews-cta
-  img.reviews-cta__img(:src="'/img/envelope.png'")
-  h2.reviews-cta__title Твой отзыв может вдохновить других!
-  p.reviews-cta__subtitle {{ text }}
-  router-link.reviews-cta__button(
-    :to="{ name: 'Reviews', query: { source: source } }"
-    variant="dark"
-    size="L"
-    is-animated
-  ) Оставить отзыв
+  .reviews-cta__content
+    img.reviews-cta__img(:src="'/img/envelope.png'")
+    h2.reviews-cta__title Твой отзыв может вдохновить других!
+    p.reviews-cta__subtitle {{ text }}
+    router-link.reviews-cta__button(
+      :to="{ name: 'Reviews', query: { source: source } }"
+      variant="dark"
+      size="L"
+      is-animated
+    ) Оставить отзыв
 </template>
 
 <script>
@@ -36,21 +37,25 @@ export default {
   border-radius: 5*$u
   padding: 10*$u 8*$u 10*$u 5*$u
   box-sizing: border-box
-  display: grid
-  grid-template-areas: "img title title" "img subtitle button"
-  gap: 5*$u
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23f8d4ac' stroke-width='2' stroke-dasharray='20 12' stroke-dashoffset='0' rx='20'/%3e%3c/svg%3e")
   background-repeat: no-repeat
   background-position: center
   background-size: 100% 100%
-  grid-template-columns: auto 1fr auto
   @media screen and (max-width: $padWidth)
-    grid-template-areas: "img title" "img subtitle" "button button"
-    grid-template-columns: auto 1fr
     padding: 8*$u 6*$u
-    gap: 3*$u 5*$u
   @media screen and (max-width: $XXSWidth)
     padding: 4*$u
+
+  &__content
+    display: grid
+    grid-template-areas: "img title title" "img subtitle button"
+    gap: 5*$u
+    grid-template-columns: auto 1fr auto
+    @media screen and (max-width: $padWidth)
+      grid-template-areas: "img title" "img subtitle" "button button"
+      grid-template-columns: auto 1fr
+      padding: 8*$u 6*$u
+      gap: 3*$u 5*$u
 
   &__img
     grid-area: img

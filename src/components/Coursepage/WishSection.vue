@@ -2,50 +2,40 @@
 section.wish-section
   h1
     ui-text-anim Этот курс для тебя, если ты хочешь:
-  .advantage
-    block-list(:items="advantage")
+  .wish-section__items
+    img.wish-section__item(v-for="item in advantage" :key="item.icon" :src="item.icon")
   ui-button.button(is-animated variant="dark" scroll-to="tariffs") Хочу на курс
 </template>
 
 <script>
 import { ref } from 'vue'
-import BlockList from '@/components/BlockList/BlockList'
 
 export default {
-  components: { BlockList },
   setup () {
     const advantage = ref([
       {
-        icon: '/img/coursepage/section2/molbertwhite.webp',
-        text: 'Разобраться в основах и уверенно доводить портрет до законченного результата'
+        icon: '/img/coursepage/wish-section/molbert.png'
       },
       {
-        icon: '/img/coursepage/section2/brandwhite.webp',
-        text: 'Найти свой авторский почерк для развития личного бренда художника'
+        icon: '/img/coursepage/wish-section/brand.png'
       },
       {
-        icon: '/img/coursepage/section2/moneywhite.webp',
-        text: 'Заниматься любимым делом, монетизируя свои навыки'
+        icon: '/img/coursepage/wish-section/money.png'
       },
       {
-        icon: '/img/coursepage/section2/portfoliowhite.webp',
-        text: 'Сформировать портфолио на основе сильных работ'
+        icon: '/img/coursepage/wish-section/portfolio.png'
       },
       {
-        icon: '/img/coursepage/section2/earthwhite.png',
-        text: 'Работать из любой точки мира'
+        icon: '/img/coursepage/wish-section/earth.png'
       },
       {
-        icon: '/img/coursepage/section2/timewhite.webp',
-        text: 'Сфокуссироваться на самом важном, без лишних лет обучения'
+        icon: '/img/coursepage/wish-section/time.png'
       },
       {
-        icon: '/img/coursepage/section2/handswhite.webp',
-        text: 'Стать частью творческого сообщества единомышленников и обрести поддержку'
+        icon: '/img/coursepage/wish-section/hands.png'
       },
       {
-        icon: '/img/coursepage/section2/portretwhite.webp',
-        text: 'Научиться видеть и передавать сходство в портрете'
+        icon: '/img/coursepage/wish-section/portret.png'
       }
     ])
     return { advantage }
@@ -58,9 +48,34 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
-  .advantage
-    margin-bottom: 10*$u
-    width: 100%
+  &__items
+    display: grid
+    background-image: url('/public/img/coursepage/requirements-section/line3.png')
+    background-repeat: no-repeat
+    background-position: center
+    background-size: contain
+    grid-template-columns: repeat(4, 1fr)
+    gap: 5*$u
+    @media screen and (max-width: $padWidth)
+      background-image: url('/public/img/coursepage/requirements-section/line.png')
+      grid-template-columns: repeat(2, 1fr)
+  &__item
+    display: block
+    height: 20vw
+    max-height: 65*$u
+    width: auto
+    max-width: 100%
+    object-fit: contain
+    margin: 0 auto
+    &:nth-child(3)
+      transform: translate(-5%, -5%) scale(1.15)
+    &:nth-child(5)
+      transform: rotate(15deg)
+    &:nth-child(7)
+      transform: scale(.95)
+    @media screen and (max-width: $padWidth)
+      height: 35vw
   .button
     z-index: 10
+    margin-top: 10*$u
 </style>

@@ -19,9 +19,8 @@
       .tariff__price {{ newPrice }} ₽
     template(v-else)
       .tariff__defaultPrice {{ price }} ₽
-  ui-button.tariff__button(is-animated variant="dark" is-responsive @click="$emit('buy', 'Стандарт')") Оплатить полностью
-  a(target="_blank" href="https://t.me/valeriya_admin")
-    ui-button.tariff__button(is-animated variant="dark" is-responsive) Внутренняя рассрочка
+  ui-button.tariff__button(is-animated variant="dark" is-responsive @click="$emit('buy')") Оплатить полностью
+  ui-button.tariff__button(is-animated variant="dark" is-responsive @click="$emit('buy-parts')") Внутренняя рассрочка
 </template>
 
 <script>
