@@ -67,7 +67,7 @@ export default {
     display: flex
     flex-direction: column
     align-items: center
-    margin-bottom: 10*$u
+    margin-bottom: 5*$u
   &__name
     @include heading
   &__body
@@ -79,7 +79,7 @@ export default {
   &__footer
     display: flex
     flex-direction: column
-    padding: 10*$u 0
+    padding: 5*$u 0
     border-top: 1px solid $firstColor
   &__text
     @include font('t18-demibold')

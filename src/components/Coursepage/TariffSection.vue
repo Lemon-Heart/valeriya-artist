@@ -1,21 +1,24 @@
 <template lang="pug">
 ui-base-loader(v-if="loading")
 section.tariff-section(v-else id="tariffs")
-  Tariff(
-    v-for="tariff in tariffs"
-    :key="tariff.id"
-    :alt="tariff.altDisplay"
-    :name="tariff.name"
-    :code="tariff.code"
-    :text-top="tariff.textTop"
-    :text-middle="tariff.textMiddle"
-    :text-bottom="tariff.textBottom"
-    :text-more="tariff.textMore"
-    :price="tariff.price"
-    :new-price="tariff.newPrice"
-    @buy="buy(tariff.code)"
-    @buy-parts="openModal"
-  )
+  h1
+    ui-text-anim Тарифы
+  .tariff-section__body
+    Tariff(
+      v-for="tariff in tariffs"
+      :key="tariff.id"
+      :alt="tariff.altDisplay"
+      :name="tariff.name"
+      :code="tariff.code"
+      :text-top="tariff.textTop"
+      :text-middle="tariff.textMiddle"
+      :text-bottom="tariff.textBottom"
+      :text-more="tariff.textMore"
+      :price="tariff.price"
+      :new-price="tariff.newPrice"
+      @buy="buy(tariff.code)"
+      @buy-parts="openModal"
+    )
 
 teleport(to="body")
   transition(name="modal-expand")
@@ -138,18 +141,21 @@ export default {
 
 <style lang="sass" scoped>
 .tariff-section
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
   margin-top: 50*$u
-  grid-gap: 5*$u
-  gap: 5*$u
-  justify-content: center
-  @media screen and (max-width: $XXLWidth)
-    flex-direction: column
-    align-items: center
   @media screen and (max-width: $XXSWidth)
     margin-top: 25*$u
+  h1
+    margin-bottom: 20*$u
+  &__body
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    grid-gap: 5*$u
+    gap: 5*$u
+    justify-content: center
+    @media screen and (max-width: $XXLWidth)
+      flex-direction: column
+      align-items: center
 
 .modal-overlay
   position: fixed
@@ -164,6 +170,7 @@ export default {
   position: relative
   max-width: 90vw
   max-height: 90vh
+  clip-path: inset(0 0 0 0)
 
   &__soc
     position: absolute
@@ -243,12 +250,20 @@ export default {
     &:last-child
       transform: rotate(-45deg)
 
+.modal-expand-enter-active,
+.modal-expand-leave-active
+  transition: opacity 0.25s ease
+
 .modal-expand-enter-active .modal-content,
 .modal-expand-leave-active .modal-content
-  transition: transform 0.35s ease
-  transform-origin: center center
+  transition: clip-path 0.4s ease-out, opacity 0.25s ease
+
+.modal-expand-enter-from,
+.modal-expand-leave-to
+  opacity: 0
 
 .modal-expand-enter-from .modal-content,
 .modal-expand-leave-to .modal-content
-  transform: scaleX(0)
+  clip-path: inset(0 50% 0 50%)
+  opacity: 0
 </style>
