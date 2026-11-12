@@ -146,6 +146,8 @@ export default {
     margin-top: 25*$u
   h1
     margin-bottom: 20*$u
+    @media screen and (max-width: $XXLWidth)
+      margin-bottom: 10*$u
   &__body
     display: flex
     flex-direction: row

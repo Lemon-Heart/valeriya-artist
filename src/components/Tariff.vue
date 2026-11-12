@@ -61,8 +61,9 @@ export default {
     background: $BGOpacity
   @media screen and (max-width: $XXLWidth)
     max-width: 100*$u
-    margin-bottom: 20*$u
     width: 100%
+    &:not(:last-child)
+      margin-bottom: 20*$u
   &__title
     display: flex
     flex-direction: column
