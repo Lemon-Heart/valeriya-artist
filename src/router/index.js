@@ -108,8 +108,8 @@ const router = createRouter({
   }
 })
 
-const DEFAULT_TITLE = 'Valeriya.Artist'
-const DEFAULT_DESCRIPTION = 'Valeriya.Artist'
+const DEFAULT_TITLE = 'Shatova.Art'
+const DEFAULT_DESCRIPTION = 'Shatova.Art'
 router.afterEach((to, from) => {
   nextTick(() => {
     document.title = to.meta.title || DEFAULT_TITLE
