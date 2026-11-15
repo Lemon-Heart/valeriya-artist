@@ -92,7 +92,7 @@ section.resume-section
         max-height: 110*$u
       img
         position: absolute
-        width: 90%
+        width: 100%
         bottom: 1px
         left: 1px
         border-radius: 0 0 0 15%
