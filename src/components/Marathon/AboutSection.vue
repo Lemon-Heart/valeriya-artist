@@ -8,7 +8,7 @@ section.about-section
       .about-section__item(
         v-for="(item, i) in list"
         :key="i"
-        :style="{ backgroundImage: `url('/img/marathon/about-section/bg-mobile-${i}.PNG')` }"
+        :style="{ backgroundImage: `url('/img/marathon/about-section/bg-mobile-${i + 1}.PNG')` }"
         v-observe
       )
         picture
@@ -72,7 +72,7 @@ export default {
     position: relative
     @media screen and (max-width: $XXLWidth)
       padding-right: 0
-      background: none
+      background: none !important
   &__branch
     max-height: 78*$u
     height: calc(100vw / 4.4)
@@ -110,6 +110,8 @@ export default {
     color: $brown
     font-size: clamp($u, calc(100vw / 70), 4*$u)
     position: relative
+    @media screen and (min-width: $XXLWidth + 1)
+      background: none !important
     @media screen and (max-width: $XXLWidth)
       display: grid
       font-size: 5*$u
