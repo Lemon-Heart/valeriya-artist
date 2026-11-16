@@ -20,7 +20,7 @@ section.video-section(:style="{ backgroundImage: `url('/img/marathon/video-secti
             allow="autoplay",
             allowfullscreen
           )
-      .video-section__border
+      .video-section__border(:style="{ backgroundImage: `url('/img/marathon/video-section/border.PNG')` }")
 </template>
 
 <script>
@@ -94,7 +94,6 @@ export default {
     right: 0
     bottom: 0
     left: 0
-    background-image: url('/public/img/marathon/video-section/border.PNG')
     background-repeat: no-repeat
     background-position: center center
     background-size: 100% 100%

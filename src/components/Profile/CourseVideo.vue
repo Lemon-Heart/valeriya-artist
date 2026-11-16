@@ -18,7 +18,7 @@
       allow="autoplay",
       allowfullscreen
     )
-    .video__frame(v-if="!vertical")
+    .video__frame(v-if="!vertical" :style="{ backgroundImage: `url('/img/border.PNG')` }")
   a.video__link(
     v-if="link && available",
     :href="link",
@@ -131,7 +131,6 @@ export default {
     right: -5%
     bottom: -9%
     left: -5%
-    background-image: url('./border.PNG')
     background-repeat: no-repeat
     background-position: center center
     background-size: 100% 100%

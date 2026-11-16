@@ -32,7 +32,7 @@ module.exports = {
           }
         },
         {
-          urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
+          urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/i,
           handler: 'CacheFirst',
           options: {
             cacheName: 'image-cache',
